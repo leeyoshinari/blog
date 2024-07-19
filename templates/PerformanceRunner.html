@@ -66,19 +66,39 @@
 <h2>自动部署Agent</h2>
 <p class="qaq-content">点击 Deploy 会打开新的页面，这个页面可以上传部署包、自动部署和卸载。</p>
 <img src="../static/PerformanceRunner/img/shell_deploy.JPG" alt="">
-<p class="qaq-content">由于一些部署包区分Linux发行版本和CPU架构，故需要先准备好对应的部署包，然后上传到平台，通过该平台进行部署。如果部署包不区分Linux发行版本和CPU架构，上传部署包时可随意选择一种。</p>
-<p class="qaq-content">该平台下面的所有agent都可以且只能通过该平台自动部署（当前只支持部署 <a href="https://github.com/leeyoshinari/monitor_agent">monitor-agent</a> 、<a href="https://github.com/leeyoshinari/jmeter_agent">jmeter-agent</a> 、java、jmeter）。为了方便部署，所有的agent的配置文件已经简化到不能再简化了，一般情况下不需要修改任何配置，所有的配置都从平台自动获取。建议部署顺序：先部署Java(仅施压机部署且没有部署过)，再部署JMeter(仅施压机部署)，再部署monitor-agent和jmeter-agent。</p>
-<p class="qaq-content" style="margin-top: 15px">在点击部署/卸载前，请仔细核对当前服务器的Linux系统发行版本和CPU架构是否和部署包的Linux系统发行版本和CPU架构一致。</p>
-<p class="qaq-content" style="margin-top: 15px">注：极少数情况下需要修改agent配置文件，例如：你的nginx部署方式和99%的人都不一样，无法自动获取nginx的日志路径，这时就需要修改配置文件。</p>
+<p class="qaq-content">由于一些部署包区分 Linux 发行版本和 CPU 架构，故需要先准备好对应的部署包，然后上传到平台，通过该平台进行部署。如果部署包不区分 Linux 发行版本和 CPU 架构，上传部署包时可随意选择一种。</p>
+<p class="qaq-content">该平台下面的所有 agent 都可以且只能通过该平台自动部署（当前只支持部署 monitor-agent 、jmeter-agent 、java、jmeter）。为了方便部署，所有的 agent 的配置文件已经简化到不能再简化了，一般情况下不需要修改任何配置，所有的配置都从平台自动获取。建议部署顺序：先部署 Java (仅施压机部署且没有部署过)，再部署 JMeter (仅施压机部署)，再部署 monitor-agent 和 jmeter-agent。请往后查看如何打包 monitor-agent 和 jmeter-agent。</p>
+<p class="qaq-content" style="margin-top: 15px">在点击部署/卸载前，请仔细核对当前服务器的Linux系统发行版本和 CPU 架构是否和部署包的 Linux 系统发行版本和 CPU 架构一致。</p>
+<p class="qaq-content" style="margin-top: 15px">注：极少数情况下需要修改 agent 配置文件，例如：你的 nginx 部署方式和99%的人都不一样，无法自动获取 nginx 的日志路径，这时就需要修改配置文件。</p>
 <h3>打包 monitor-agent</h3>
+<p class="qaq-content">1、修改配置文件<code>config.conf</code>，一般情况下是不需要修改的。</p>
+<p class="qaq-content">2、打包：</p>
+<ul>
+    <li style="text-indent: 1em; list-style-position: inside">执行打包命令：<code>pyinstaller --onefile --name=server server.py --hidden-import logger --hidden-import config</code></li>
+    <li style="text-indent: 1em; list-style-position: inside">编辑 server.spec 文件，修改 pathex 为当前项目目录，例如：<code>pathex=['/home/monitor_agent']</code></li>
+    <li style="text-indent: 1em; list-style-position: inside">执行打包命令：<code>pyinstaller server.spec</code></li>
+    <li style="text-indent: 1em; list-style-position: inside">复制 config.conf 到 dist 目录，命令：<code>cp config.conf dist/</code></li>
+    <li style="text-indent: 1em; list-style-position: inside">进入 dist 目录，将文件打包成 zip，命令：<code>zip monitor_agent.zip server config.conf</code></li>
+    <li style="text-indent: 1em; list-style-position: inside">将打包好的 monitor_agent.zip 文件上传至平台。</li>
+</ul>
 <h3>打包 jmeter-agent</h3>
+<p class="qaq-content">1、修改配置文件<code>config.conf</code>，一般情况下是不需要修改的。</p>
+<p class="qaq-content">2、打包：</p>
+<ul>
+    <li style="text-indent: 1em; list-style-position: inside">执行打包命令：<code>pyinstaller --onefile --name=server server.py --hidden-import taskController --hidden-import common</code></li>
+    <li style="text-indent: 1em; list-style-position: inside">编辑 server.spec 文件，修改 pathex 为当前项目目录，例如：<code>pathex=['/home/jmeter_agent']</code></li>
+    <li style="text-indent: 1em; list-style-position: inside">执行打包命令：<code>pyinstaller server.spec</code></li>
+    <li style="text-indent: 1em; list-style-position: inside">复制 config.conf 到 dist 目录，命令：<code>cp config.conf dist/</code></li>
+    <li style="text-indent: 1em; list-style-position: inside">进入 dist 目录，将文件打包成 zip，命令：<code>zip jmeter_agent.zip server config.conf</code></li>
+    <li style="text-indent: 1em; list-style-position: inside">将打包好的 jmeter_agent.zip 文件上传至平台。</li>
+</ul>
 <h1>服务器资源监控</h1>
 <p class="qaq-content">该工具（<a href="https://github.com/leeyoshinari/monitor_agent">快点我部署</a>）主要用于监控服务器资源使用情况，主要有一下功能：</p>
 <ul>
-<li style="text-indent: 1em; list-style-position: inside">监控整个服务器的CPU使用率、io wait、内存使用、磁盘IO、网络带宽和TCP连接数</li>
-<li style="text-indent: 1em; list-style-position: inside">监控端口的 TCP 状态</li>
-<li style="text-indent: 1em; list-style-position: inside">针对java应用，可以监控jvm大小和垃圾回收情况；当Full GC频率过高时，可发送邮件提醒</li>
-<li style="text-indent: 1em; list-style-position: inside">系统CPU使用率过高，或者剩余内存过低时，可发送邮件提醒；可设置自动清理缓存</li>
+    <li style="text-indent: 1em; list-style-position: inside">监控整个服务器的CPU使用率、io wait、内存使用、磁盘IO、网络带宽和TCP连接数</li>
+    <li style="text-indent: 1em; list-style-position: inside">监控端口的 TCP 状态</li>
+    <li style="text-indent: 1em; list-style-position: inside">针对java应用，可以监控jvm大小和垃圾回收情况；当Full GC频率过高时，可发送邮件提醒</li>
+    <li style="text-indent: 1em; list-style-position: inside">系统CPU使用率过高，或者剩余内存过低时，可发送邮件提醒；可设置自动清理缓存</li>
 </ul>
 <p class="qaq-content" style="margin-top: 15px">相较于之前的服务器资源监控工具（<a href="https://github.com/leeyoshinari/performance_monitor">快点我查看</a>），此次进行了大刀阔斧地改进，首先不再是单独的工具，而是集成进平台中，和平台中的其他工具可以无缝对接；其次是使用了全新的交互和监控方案，并引入了项目组和机房，更加适用于大规模集群部署的应用。</p>
 <h2>首页</h2>
