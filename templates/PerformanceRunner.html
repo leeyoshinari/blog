@@ -1,22 +1,22 @@
 <!doctype html>
 <html lang="en">
-  <head>
-	  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-      <title>性能测试平台</title>
-      <link rel="shutcut icon" type="image/png" sizes="96x96" href="../static/PerformanceRunner/favicon.ico">
-      <link href="../static/PerformanceRunner/css/github-bf51422f4bb36427d391e4b75a1daa083c2d840e.css" media="all" rel="stylesheet" type="text/css"/>
-      <link href="../static/PerformanceRunner/css/github2-d731afd4f624c99a4b19ad69f3083cd6d02b81d5.css" media="all" rel="stylesheet" type="text/css"/>
-      <link href="../static/PerformanceRunner/css/zTreeStyle.css" media="all" rel="stylesheet" type="text/css"/>
-	  <style>
-		pre{counter-reset:line-numbering;border:solid 1px #d9d9d9;border-radius:0;background:#fff;padding:0;line-height:23px;margin-bottom:30px;white-space:pre;overflow-x:auto;word-break:inherit;word-wrap:inherit}
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>性能测试平台</title>
+    <link rel="shutcut icon" type="image/png" sizes="96x96" href="../static/PerformanceRunner/favicon.ico">
+    <link href="../static/PerformanceRunner/css/github-bf51422f4bb36427d391e4b75a1daa083c2d840e.css" media="all" rel="stylesheet" type="text/css"/>
+    <link href="../static/PerformanceRunner/css/github2-d731afd4f624c99a4b19ad69f3083cd6d02b81d5.css" media="all" rel="stylesheet" type="text/css"/>
+    <link href="../static/PerformanceRunner/css/zTreeStyle.css" media="all" rel="stylesheet" type="text/css"/>
+    <style>
+        pre{counter-reset:line-numbering;border:solid 1px #d9d9d9;border-radius:0;background:#fff;padding:0;line-height:23px;margin-bottom:30px;white-space:pre;overflow-x:auto;word-break:inherit;word-wrap:inherit}
         pre a::before{content:counter(line-numbering);counter-increment:line-numbering;padding-right:1em;width:25px;text-align:right;opacity:0.7;display:inline-block;color:#aaa;background:#eee;margin-right:16px;padding:2px 10px;font-size:13px;-webkit-touch-callout:none;-webkit-user-select:none;-khtml-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}
         pre a:first-of-type::before{padding-top:10px}
         pre a:last-of-type::before{padding-bottom:10px}
         pre a:only-of-type::before{padding:10px}
         .highlight{background-color:#ffffcc}
-		</style>
-  </head>
-  <body>
+    </style>
+</head>
+<body>
 <div style='width:25%;'><ul id="tree" class="ztree"></ul></div>
 <div id='readme' style='width:70%;margin-left:20%;'><article class='markdown-body'>
 <p class="qaq-title" style="font-size: xx-large;">性能测试平台，支持分布式压测，支持自动化压测</p>
@@ -27,23 +27,7 @@
 <p>3、服务器资源监控；</p>
 <p>4、Nginx 访问日志流量收集；</p>
 <p>5、性能测试工具，提供自动化压测和分布式压测的能力；</p>
-<h1>项目目录</h1><ul>
-<li>MyPlatform - 项目文件</li>
-<li>staticfiles - 静态文件</li>
-<li>templates - 模板文件</li>
-<li>templateFilter - 模板自定义过滤器</li>
-<li>common - 通用的方法</li>
-<li>user - 用户相关</li>
-<li>shell - shell 工具</li>
-<li>monitor - 监控工具</li>
-<li>performance - 性能测试平台</li>
-</ul><h1>第三方组件</h1><ul>
-<li>关系型数据库：SQLite3 或 MySQL - 用于存储平台数据</li>
-<li>时序数据库：InfluxDB - 用于存储监控数据</li>
-<li>键值数据库：Redis - 用于集群/分布式数据同步</li>
-<li>文件服务器：MinIO - 用于存储文件</li>
-<li>性能测试工具：JMeter - 用于执行 JMeter 脚本</li>
-</ul><h1>部署架构图</h1>
+<h1>部署架构图</h1>
 <img src="../static/PerformanceRunner/img/myPlarform.jpg" alt="">
 <p class="qaq-content">该平台已支持集群部署，可通过 Nginx 的 upstream 挂在任意多个后端服务，如需高可用，请自行部署 keepalive。所有 Agent 也可部署任意多个。</p>
 <p class="qaq-title" style="margin-top: 15px">说明</p>
@@ -269,6 +253,7 @@
 <p class="qaq-content">本工具只提供通用的压测能力，可根据请求头的 <code>Performance-Header</code> 区分是否是压测流量。由于服务端的部署架构、语言和业务的不同，因此没法提供各语言的探针，可自己结合实际情况编写探针，来实现mock功能，或将数据写入影子表/影子库，或走影子链路。</p>
 <p class="qaq-title">6、服务器资源监控一直在运行，但为什么查询监控结果会有错误提示？</p>
 <p class="qaq-content">一般出现这种情况是因为服务器资源监控运行后，该服务器所属的项目组和机房被修改过，修改后的信息没有同步到资源监控工具，导致数据不一致。因此需要重启服务器资源监控工具，或者重新部署。</p>
+<!--h1>缺陷提交</h1><p class="qaq-title">如果您在使用过程中遇到了bug，<a href="https://github.com/leeyoshinari/blog/issues" target="_blank">请在这里提交</a>。如果您有功能建议，也<a href="https://github.com/leeyoshinari/blog/issues" target="_blank">请在这里提交</a>。谢谢 ~</p-->
 </article>
 </div></div>
 <script type="text/javascript" src="../static/js/jquery.min.js"></script>
@@ -276,11 +261,11 @@
 <script type="text/javascript" src="../static/PerformanceRunner/js/ztree_toc.js"></script>
 <script type="text/javascript" src="../static/PerformanceRunner/js/toc_conf.js"></script>
 <script type="text/javascript" >
-$(document).ready(function(){
-    var css_conf = eval(markdown_panel_style);
-    $('#readme').css(css_conf)
-    var conf = eval(jquery_ztree_toc_opts);
-		$('#tree').ztree_toc(conf);
-});
+    $(document).ready(function(){
+        var css_conf = eval(markdown_panel_style);
+        $('#readme').css(css_conf);
+        var conf = eval(jquery_ztree_toc_opts);
+        $('#tree').ztree_toc(conf);
+    });
 </script>
 </body></html>
