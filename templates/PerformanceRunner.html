@@ -78,12 +78,10 @@ python3 manage.py migrate</code></pre>
     proxy_set_header Upgrade $http_upgrade;
     proxy_set_header Connection &quot;upgrade&quot;;
 }</code></pre>
-<p style="margin-top: 15px">12、启动</p>
+<p style="margin-top: 15px">11、启动</p>
 <pre><code>sh startup.sh</code></pre>
 <p>停止请执行 <code>sh shutdown.sh</code></p>
-<p style="margin-top: 15px">13、访问页面，url是 <code>http://ip:port/config.conf中的prefix</code>
-<p style="margin-top: 15px">15、部署服务器资源监控执行工具，<a href="">快点我</a></p>
-<p style="margin-top: 15px">16、部署性能测试执行工具，<a href="">快点我</a></p>
+<p style="margin-top: 15px">12、访问页面，url是 <code>http://ip:port/config.conf中的prefix</code>
 <h2>Redis 部署</h2>
 <p class="qaq-content" style="margin-top: 15px">InfluxDB 安装比较简单，可按照 <a href="https://redis.io/docs/latest/operate/oss_and_stack/install/install-redis/install-redis-on-linux/" target="_blank">Redis官方文档</a>安装，也可以<a href="https://github.com/redis/redis/releases" target="_blank">自行下载源码</a>编译安装。</p>
 <h2>InfluxDB 部署</h2>
@@ -91,7 +89,7 @@ python3 manage.py migrate</code></pre>
 <h2>MinIO 部署</h2>
 <p class="qaq-content" style="margin-top: 15px">MinIO 安装非常简单，可直接按照 <a href="https://min.io/download?license=agpl&platform=linux" target="_blank">MinIO 官网</a>的步骤安装。安装完成后，用浏览器打开 web 页面，主要配置如下：</p>
 <img src="../static/PerformanceRunner/img/minio_config.JPG" alt="">
-<p class="qaq-content" style="margin-top: 15px">获取 <code>Access Key</code> 和 <code>Secret Key</code>，并将它们配置在 <code>config.conf</code> 中。打开 <code>User Policy</code>，配置用户访问策略，如下：</p>
+<p class="qaq-content" style="margin-top: 15px">获取 <code>Access Key</code> 和 <code>Secret Key</code>，并将它们配置在 <code>config.conf</code> 中。打开 <code>User Policy</code>，配置数据访问策略，如下：</p>
 <pre style="margin-left: 30px;"><code>{
     "Version": "2012-10-17",
     "Statement": [
@@ -115,7 +113,6 @@ python3 manage.py migrate</code></pre>
     <li style="text-indent: 1em; list-style-position: inside">编译：<code>make && make install</code></li>
     <li style="text-indent: 1em; list-style-position: inside">安装完成后，Nginx 配置文件在<code>/usr/local/nginx/conf/nginx.conf</code></li>
 </ul>
-<h1>配置文件介绍</h1>
 <h1>项目组管理</h1>
 <h1>机房管理</h1>
 <h1>服务器管理</h1>
@@ -210,7 +207,6 @@ python3 manage.py migrate</code></pre>
 <h2>接口流量</h2>
 <p class="qaq-content" style="margin-top: 15px">点击每个接口，可查看该接口的每秒数据变化图</p>
 <img src="../static/PerformanceRunner/img/nginx_detail.JPG" alt="">
-<p class="qaq-content" style="margin-top: 15px">注意：<strong>为了采集到上述数据，需要修改 nginx 日志格式，详见 <a href="#90701">monitor-agent 部署</a>。</strong></p>
 <h1>性能测试工具</h1>
 <p class="qaq-content" style="margin-top: 15px">现在开源的、最好用的性能测试工具是 JMeter，很多公司的性能测试平台的底层都用的是 JMeter，所以本工具底层也是用 JMeter 实现的，而且原滋原味的保留了 JMeter 的所有功能，让您像在本地使用 JMeter 一样的丝般顺滑，使用体验远超某电商的全链路压测平台。</p>
 <p class="qaq-content" style="margin-top: 15px">该工具具有以下功能：</p>
@@ -236,36 +232,36 @@ python3 manage.py migrate</code></pre>
 <p class="qaq-content" style="margin-top: 15px">Server Room 列可以查看该机房里空闲的施压机数量；</p>
 <p class="qaq-content" style="margin-top: 15px">Action列具有的一些操作：</p>
 <ul>
-<li style="text-indent: 1em; list-style-position: inside">Enabled/Disabled：禁用/启用，对应JMeter右键菜单里的禁用/启用；</li>
+<li style="text-indent: 1em; list-style-position: inside">Enabled/Disabled：禁用/启用，对应 JMeter 右键菜单里的 禁用/启用 功能；</li>
 <li style="text-indent: 1em; list-style-position: inside">Copy：复制，快速复制一个测试计划；</li>
-<li style="text-indent: 1em; list-style-position: inside">Variables：设置全局变量，对应JMeter中的测试计划中的“用户自定义的变量”；</li>
+<li style="text-indent: 1em; list-style-position: inside">Variables：设置全局变量，对应 JMeter 中的测试计划中的 “用户自定义的变量”；</li>
 <li style="text-indent: 1em; list-style-position: inside">ThreadGroup：查看测试计划中的所有线程组；</li>
-<li style="text-indent: 1em; list-style-position: inside">StartTest：开始执行性能测试。如果是手动执行，则会立即开始压测；如果是自动执行，也会生成一个压测任务，等待压测时间开始执行；</li>
+<li style="text-indent: 1em; list-style-position: inside">StartTest：开始执行性能测试。如果是手动执行，则会立即开始压测；如果是自动执行，则会生成一个压测任务，等待压测时间开始后自动执行；</li>
 </ul>
 <p class="qaq-content" style="margin-top: 15px">点击 Variables，可以设置全局变量，如下：</p>
 <img src="../static/PerformanceRunner/img/plan_variable.JPG" alt="">
 <p class="qaq-content" style="margin-top: 15px">点击添加或编辑，出现下面的页面：（如果不清楚每个字段的意思，可点击问号查看提示）</p>
 <img src="../static/PerformanceRunner/img/plan_add.JPG" alt="">
 <ul>
-<li style="text-indent: 1em; list-style-position: inside">tearDown：对应JMeter中的 Test Plan 中的设置“主线程结束后运行tearDown线程组”；</li>
-<li style="text-indent: 1em; list-style-position: inside">Serialize：对应JMeter中的 Test Plan 中的设置“独立运行每个线程组（例如在一个组运行结束后启动下一个）”；</li>
-<li style="text-indent: 1em; list-style-position: inside">runType：指定压测脚本运行类型，可选指定线程数运行和指定TPS运行；</li>
-<li style="text-indent: 1em; list-style-position: inside">Target TPS/Thread Num：当运行类型为指定TPS运行时，这里就是目标TPS；当运行类型为指定线程数运行时，这里就是线程数；</li>
-<li style="text-indent: 1em; list-style-position: inside">Duration：压测执行时间，单位：秒；对应JMeter中的 Thread Group 中的设置“持续时间（秒）”；</li>
+<li style="text-indent: 1em; list-style-position: inside">tearDown：对应 JMeter 中的 测试计划 中的设置 “主线程结束后运行tearDown线程组”；</li>
+<li style="text-indent: 1em; list-style-position: inside">Serialize：对应 JMeter 中的 测试计划 中的设置 “独立运行每个线程组（例如在一个组运行结束后启动下一个）”；</li>
+<li style="text-indent: 1em; list-style-position: inside">runType：指定压测脚本运行类型，可选指定线程数运行和指定 TPS 运行；</li>
+<li style="text-indent: 1em; list-style-position: inside">Target TPS/Thread Num：当运行类型为指定 TPS 运行时，这里就是目标 TPS；当运行类型为指定线程数运行时，这里就是线程数；</li>
+<li style="text-indent: 1em; list-style-position: inside">Duration：压测执行时间，单位：秒；对应 JMeter 中的 线程组 中的设置 “持续时间（秒）”；</li>
 <li style="text-indent: 1em; list-style-position: inside">Schedule：压测执行方式，可选手动执行或自动执行。当选择自动执行时，需要设置自动执行的时间；</li>
-<li style="text-indent: 1em; list-style-position: inside">Time Setting：用于设置自动执行时间，仅当Schedule设置为自动执行时生效。设置时间后，可以点击Preview预览压力变化曲线；</li>
+<li style="text-indent: 1em; list-style-position: inside">Time Setting：用于设置自动执行时间，仅当 Schedule 设置为自动执行时生效。设置时间后，可以点击 Preview 预览流量变化曲线；</li>
 <li style="text-indent: 1em; list-style-position: inside">Server Room：机房，指的是施压机所在的机房，压测脚本会在设置的机房的施压机上运行 (一般性能测试尽可能避免跨机房，减少网络对性能测试的影响)。压测时，该机房必须有可用的(空闲的)施压机；</li>
 <li style="text-indent: 1em; list-style-position: inside">Server Number：施压机数，执行压测时，设置的机房里必须有足够数量的空闲的施压机；</li>
-<li style="text-indent: 1em; list-style-position: inside">isDebug：如果设置Debug模式，则脚本在执行时候会生成jtl文件，该文件包含每一个请求的结果，正式测试时，建议设置非Debug模式，以免影响施压机性能；</li>
+<li style="text-indent: 1em; list-style-position: inside">isDebug：如果设置 Debug 模式，则脚本在执行时候会生成 jtl 文件，该文件包含每一个请求的结果，正式测试时，建议设置非 Debug 模式，以免影响施压机性能；</li>
 </ul>
 <h3>添加线程组</h3>
 <p class="qaq-content">在左侧点击 Thread Group，可以查看所有的线程组；如果在 Test Plan 中点击 ThreadGroup，可以查看该测试计划下的所有线程组。线程组列表如下：</p>
 <img src="../static/PerformanceRunner/img/group_home.JPG" alt="">
 <p class="qaq-content" style="margin-top: 15px">Action列具有的一些操作：</p>
 <ul>
-<li style="text-indent: 1em; list-style-position: inside">Enabled/Disabled：禁用/启用，对应JMeter右键菜单里的禁用/启用；</li>
+<li style="text-indent: 1em; list-style-position: inside">Enabled/Disabled：禁用/启用，对应JMeter右键菜单里的 禁用/启用 功能；</li>
 <li style="text-indent: 1em; list-style-position: inside">Copy：复制，快速复制一个线程组；</li>
-<li style="text-indent: 1em; list-style-position: inside">Cookies：如果压测需要cookies，可以在这里设置；对应的是JMeter中的Http Cookie管理器；</li>
+<li style="text-indent: 1em; list-style-position: inside">Cookies：如果压测需要 cookies，可以在这里设置；对应的是 JMeter 中的 Http Cookie管理器；</li>
 <li style="text-indent: 1em; list-style-position: inside">Controller：查看线程组中的所有控制器；</li>
 </ul>
 <p class="qaq-content" style="margin-top: 15px">Cookies 设置页面如下：</p>
@@ -274,15 +270,15 @@ python3 manage.py migrate</code></pre>
 <img src="../static/PerformanceRunner/img/group_add.JPG" alt="">
 <ul>
 <li style="text-indent: 1em; list-style-position: inside">Plan ID：将该线程组绑定到指定的测试计划；</li>
-<li style="text-indent: 1em; list-style-position: inside">Ramp Time：在这个时间内启动所有的线程，对应JMeter线程组中的“Ramp-Up时间（秒）”；</li>
-<li style="text-indent: 1em; list-style-position: inside">CSVDataSet：上传压测需要的文件，需要设置变量名称（英文逗号分割）、分隔符、遇到文件结束符是否继续、线程共享模式，这里的设置和JMeter中的CSV数据文件设置一样；</li>
+<li style="text-indent: 1em; list-style-position: inside">Ramp Time：在这个时间内启动所有的线程，对应 JMeter 线程组中的 “Ramp-Up时间（秒）”；</li>
+<li style="text-indent: 1em; list-style-position: inside">CSVDataSet：上传压测需要的文件，需要设置变量名称（英文逗号分割）、分隔符、遇到文件结束符是否继续、线程共享模式，这里的设置和 JMeter 中的 CSV 数据文件设置一样；</li>
 </ul>
 <h3>添加控制器</h3>
 <p class="qaq-content">在左侧点击 Controller，可以查看所有的控制器；如果在 Thread Group 中点击 Controller，可以查看该线程组下的所有控制器。控制器列表如下：</p>
 <img src="../static/PerformanceRunner/img/controller_home.JPG" alt="">
 <p class="qaq-content" style="margin-top: 15px">Action列具有的一些操作：</p>
 <ul>
-<li style="text-indent: 1em; list-style-position: inside">Enabled/Disabled：禁用/启用，对应JMeter右键菜单里的禁用/启用；</li>
+<li style="text-indent: 1em; list-style-position: inside">Enabled/Disabled：禁用/启用，对应 JMeter 右键菜单里的 禁用/启用 功能；</li>
 <li style="text-indent: 1em; list-style-position: inside">Copy：复制，快速复制一个控制器；</li>
 <li style="text-indent: 1em; list-style-position: inside">HTTPSample：查看控制器中的所有取样器；</li>
 </ul>
@@ -293,24 +289,24 @@ python3 manage.py migrate</code></pre>
 <img src="../static/PerformanceRunner/img/sample_add.JPG" alt="">
 <ul>
 <li style="text-indent: 1em; list-style-position: inside">Controller ID：把该取样器绑定到指定的控制器；</li>
-<li style="text-indent: 1em; list-style-position: inside">Protocol：协议，可选HTTP或HTTPs；</li>
-<li style="text-indent: 1em; list-style-position: inside">Domain Name：域名或ip；</li>
+<li style="text-indent: 1em; list-style-position: inside">Protocol：协议，可选 HTTP 或 HTTPs；</li>
+<li style="text-indent: 1em; list-style-position: inside">Domain Name：域名或 ip；</li>
 <li style="text-indent: 1em; list-style-position: inside">Port：端口号；</li>
 <li style="text-indent: 1em; list-style-position: inside">Path：url 路径；</li>
-<li style="text-indent: 1em; list-style-position: inside">Method：http请求方法；</li>
-<li style="text-indent: 1em; list-style-position: inside">Arguments：http请求参数，可选请求参数格式为json或form表单，对应JMeter中的取样器的参数设置；</li>
-<li style="text-indent: 1em; list-style-position: inside">HTTP Header：下拉选择对应的请求头，请求头配置在HTTP Header中；如果没有请求头，需要提前设置好；</li>
-<li style="text-indent: 1em; list-style-position: inside">Assertion：断言，可选类型为Contain(包含)、Equal(相等)或Match(匹配)，对应JMeter中的响应断言；</li>
-<li style="text-indent: 1em; list-style-position: inside">Post Extractor：后置处理器，用于提取响应值中的数据，仅支持JSON提取器和正则表达式提取器；</li>
-<li style="text-indent: 1em; list-style-position: inside">contentEncoding：内容编码格式，可选None或UTF-8，对应JMeter中的取样器中的“内容编码”；</li>
+<li style="text-indent: 1em; list-style-position: inside">Method：http 请求方法；</li>
+<li style="text-indent: 1em; list-style-position: inside">Arguments：http 请求参数，可选请求参数格式为 json 或 form 表单，对应 JMeter 中的取样器的参数设置；</li>
+<li style="text-indent: 1em; list-style-position: inside">HTTP Header：下拉选择对应的请求头，请求头配置在 HTTP Header 中；如果没有请求头，需要提前设置好；</li>
+<li style="text-indent: 1em; list-style-position: inside">Assertion：断言，可选类型为 Contain(包含)、Equal(相等)或 Match(匹配)，对应 JMeter 中的响应断言；</li>
+<li style="text-indent: 1em; list-style-position: inside">Post Extractor：后置处理器，用于提取响应值中的数据，仅支持 JSON 提取器和正则表达式提取器；</li>
+<li style="text-indent: 1em; list-style-position: inside">contentEncoding：内容编码格式，可选 None 或 UTF-8，对应 JMeter 中的取样器中的 “内容编码”；</li>
 </ul>
-<p class="qaq-content" style="margin-top: 15px">以上设置和在JMeter中的取样器中的设置一样，也可以引用变量，后置处理器也可以设置变量。</p>
+<p class="qaq-content" style="margin-top: 15px">以上设置和在 JMeter 中的取样器中的设置一样，也可以引用变量，后置处理器也可以设置变量。</p>
 <h3>添加请求头</h3>
 <p class="qaq-content">在左侧点击 HTTP Header，可以查看所有的请求头；</p>
 <img src="../static/PerformanceRunner/img/header_home.JPG" alt="">
-<p class="qaq-content" style="margin-top: 15px">在设置请求头时，只需要把字段和值填入即可，这里也可以引用变量，引用格式和JMeter一样。</p>
+<p class="qaq-content" style="margin-top: 15px">在设置请求头时，只需要把字段和值填入即可，这里也可以引用变量，引用格式和 JMeter 一样。</p>
 <img src="../static/PerformanceRunner/img/header_add.JPG" alt="">
-<p class="qaq-content" style="margin-top: 15px">以上，就完成了在这个工具上手动编写压测脚本。如果已有本地的已经调试好的JMeter脚本，且是按照上面说的结构，可以在 Test Plan 页面直接点击 Import Plan 按钮导入进系统中。导入后会对文件进行解析，可能会有少许修改，可以在页面手动核对和修改。</p>
+<p class="qaq-content" style="margin-top: 15px">以上，就完成了在这个工具上手动编写压测脚本。如果已有本地的已经调试好的 JMeter 脚本，且是按照上面说的结构，可以在 Test Plan 页面直接点击 Import Plan 按钮导入进系统中。导入后会对文件进行解析，可能会有少许修改，可以在页面手动核对和修改。</p>
 <h2>上传本地JMeter文件</h2>
 <p class="qaq-content">考虑到有些性能测试场景的压测脚本很复杂，例如有 BeanShell 脚本、for/if 等控制语句，但仍想使用压测工具赋予的压测能力，可以把本地调试通过的 JMeter 脚本，连同需要使用的外部文件，打包成 zip 压缩包，然后在 Upload JMeter 页面上传该压缩包，上传成功后就可以使用工具赋予的压测能力了。</p>
 <p class="qaq-content" style="margin-top: 15px">这里说一下这个工具对上传的压缩包是怎么处理的：</p>
@@ -348,18 +344,18 @@ python3 manage.py migrate</code></pre>
 <h3>施压机热挂载</h3>
 <p class="qaq-content">同样也是借用Redis实现的。当在性能测试过程中，发现压力不够，需要增加施压机时，只需要在当前压测任务下（即查看压测详情页面）启动一个施压机即可，而不需要单独另开启一个压测任务（两个任务之间的数据是独立的）；当需要下掉一个施压机时，直接点击施压机的停止按钮即可立即下线；可以更加灵活地调整压力。</p>
 <h1>QAQ</h1>
-<p class="qaq-title">1、为什么shell会经常提醒 Session is in closed status？</p>
+<p class="qaq-title" style="margin-top: 15px">1、为什么shell会经常提醒 Session is in closed status？</p>
 <p class="qaq-content">为了避免可能的无效连接占用服务器资源，对超过10分钟没有任何数据交互的连接进行关闭；同时由于客户端网络问题或其他各种异常，服务端也需要及时关闭无效连接。</p>
-<p class="qaq-title">2、为什么自动部署agent包时一直不成功？</p>
+<p class="qaq-title" style="margin-top: 15px">2、为什么自动部署agent包时一直不成功？</p>
 <p class="qaq-content">首先核对Linux系统发行版本和CPU架构是否和部署包一致，然后查看部署日志。部署路径是配置文件<code>config.conf</code>中的<code>deployPath</code>。</p>
-<p class="qaq-title">3、单台施压机支持压测的流量多少？</p>
+<p class="qaq-title" style="margin-top: 15px">3、单台施压机支持压测的流量多少？</p>
 <p class="qaq-content">建议每台施压机的流量不要超过1000/s（需要结合实际情况）。如果发现压力上不来，请先排除施压机和被测系统问题后，再增加一台施压机。</p>
-<p class="qaq-title">4、性能测试怎么区分压测流量和正常流量？</p>
+<p class="qaq-title" style="margin-top: 15px">4、性能测试怎么区分压测流量和正常流量？</p>
 <p class="qaq-content">如果你是在页面上手动编写的脚本，那么当脚本执行时，会自动往请求头中添加 <code>Performance-Header</code> 字段，故可根据 <code>Performance-Header</code> 区分压测流量。</p>
 <p class="qaq-content">如果你是在<code>Upload JMeter</code>页面手动上传本地调试好的脚本，那么脚本中必须有 <code>HTTP信息头管理器</code> ，当执行脚本时，会自动往请求头中添加 <code>Performance-Header</code> 字段。</p>
-<p class="qaq-title">5、性能测试的某个接口的请求怎么mock，或者写入影子表/影子库？</p>
+<p class="qaq-title" style="margin-top: 15px">5、性能测试的某个接口的请求怎么mock，或者写入影子表/影子库？</p>
 <p class="qaq-content">本工具只提供通用的压测能力，可根据请求头的 <code>Performance-Header</code> 区分是否是压测流量。由于服务端的部署架构、语言和业务的不同，因此没法提供各语言的探针，可自己结合实际情况编写探针，来实现mock功能，或将数据写入影子表/影子库，或走影子链路。</p>
-<p class="qaq-title">6、服务器资源监控一直在运行，但为什么查询监控结果会有错误提示？</p>
+<p class="qaq-title" style="margin-top: 15px">6、服务器资源监控一直在运行，但为什么查询监控结果会有错误提示？</p>
 <p class="qaq-content">一般出现这种情况是因为服务器资源监控运行后，该服务器所属的项目组和机房被修改过，修改后的信息没有同步到资源监控工具，导致数据不一致。因此需要重启服务器资源监控工具，或者重新部署。</p>
 <!--h1>缺陷提交</h1><p class="qaq-title">如果您在使用过程中遇到了bug，<a href="https://github.com/leeyoshinari/blog/issues" target="_blank">请在这里提交</a>。如果您有功能建议，也<a href="https://github.com/leeyoshinari/blog/issues" target="_blank">请在这里提交</a>。谢谢 ~</p-->
 <h1>ToDo</h1>
