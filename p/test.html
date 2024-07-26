@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>白瑜的博客</title>
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="shortcut icon" href="/img/favicon.ico">
+  <!-- <link rel="stylesheet" href="https://registry.npmmirror.com/lxgw-wenkai-screen-web/1.321.0/files/lxgwwenkaiscreen/result.css"> -->
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"> -->
+  <script src="/js/jquery.min.js"></script>
+</head>
+<body>
+  <div class="l_body s:aa content tech" id="start" layout="post" >
+    <aside class="l_left">
+      <div class="leftbar-container">
+        <header class="header"><div class="logo-wrap"><a class="avatar" href="#"><img class="avatar" src="/img/rtEVzmVj.webp" loading="lazy" /></a><a class="title" href="/"><div class="main" ff="title">白瑜のBlog</div><div class="sub normal cap">人生无非是笑笑人家，再让人家</div><div class="sub hover cap" style="opacity:0">笑笑而已</div></a></div></header>
+        <div class="widgets">
+          <widget class="widget-wrapper post-list">
+            <div class="widget-header dis-select"><span class="name">最近更新</span></div>
+            <div class="widget-body fs14">
+              <a class="item title" href="/165643616.html"><span class="title">Github Action 自动化部署 Hexo 博客</span></a>
+            </div>
+          </widget>
+        </div>
+        <footer class="footer dis-select">
+          <div class="social-wrap">
+            <a class="social" title="Github" href="https://github.com/FelicxFoster" target="_blank" rel="external nofollow noopener noreferrer">
+              <i class="fa-solid fa-github fa-brands fa-bounce"></i>
+            </a>
+            <a class="social" title="哔哔广场" href="/bb" rel="noopener noreferrer">
+              <i class="fa-solid fa-paw fa-bounce"></i>
+            </a>
+            <a class="social" title="留言板" href="/friends/#comments" rel="noopener noreferrer">
+              <i class="fa-solid fa-commenting fa-bounce"></i>
+            </a>
+            <a class="social" title="RSS订阅" href="/atom.xml" rel="noopener noreferrer">
+              <i class="fa-solid fa-rss fa-bounce"></i>
+            </a>
+            <a class="social" title="日/夜" onclick="switchTheme()">
+              <i class="fa-solid fa-moon fa-bounce"></i>
+            </a>
+          </div>
+        </footer>
+      </div>
+    </aside>
+    <div class="l_main" id="main">
+      <header class="header mobile-only"><div class="logo-wrap"><a class="avatar" href="#"><img class="avatar" src="/img/rtEVzmVj.webp" loading="lazy" /></a><a class="title" href="/"><div class="main" ff="title">白瑜のBlog</div><div class="sub normal cap">人生无非是笑笑人家，再让人家笑笑而已。</div><div class="sub hover cap" style="opacity:0"></div></a></div></header>
+      <div class="article banner top"><div class="content"><div class="bottom only-title"><div class="text-area">
+        <h1 class="text title"><span>Hexo 博客搭建</span></h1>
+      </div></div></div></div>
+      <article class="md-text content">
+        <h2 id="前言">前言</h2>
+        <p>之前博客用的是 <a href="https://blog.felicx.eu.org/3594890502.html">Halo 2.0</a> 搭建，最近服务器到期了，在国内服务器需要备案，不想再续费了，最终选择了 <em>Hexo+Github+Vercel</em> 的组合。具体效果可以参考<a href="https://blog.felicx.eu.org/">我的博客</a>。</p>
+        <h2 id="Hexo-安装">Hexo 安装</h2>
+        <p>因为 Hexo 是基于 Node.js 的，所以要使用 Hexo，那么第一步肯定是安装 Node.js。</p>
+        <h3 id="安装-Node-js">安装 Node.js</h3>
+        <p>进入<a target="_blank" rel="noopener external nofollow noreferrer" href="https://nodejs.cn/download/">下载地址</a>下载</p>
+        <p>直接安装，完成后，在 cmd 上输入 <code>node -v</code> 和 <code>npm -v</code> 查看是否安装成功，这两条命令如果都输出了版本号，那么就表示安装成功了。</p>
+        <p class="non-row md-indent">安装完之后，因为 Node.js 仓库会被墙掉，所以我们需要更换为国内镜像仓库，在终端中执行：</p>
+        <h3 id="创建-Hexo-本地程序">创建 Hexo 本地程序</h3>
+        <p>在电脑上创建一个目录 HexoBlog，cmd 命令进入该目录（不要用 Git Bash Here，不然你没法用 Ctrl+C 关闭）</p>
+        <p>复制上文中的 <code>http://localhost:4000</code> 并在浏览器中打开，就可以看到你的网站在本地的部署</p>
+        <h3 id="验证是否成功">验证是否成功</h3>
+        <p>打开 <code>Git Bash</code> ，运行下面的命令 :</p>
+        <p>另外，需要在域名解析处（比如我是 Cloudfalre）填写相应的 CNAME 值。</p>
+        <table>
+          <thead>
+            <tr>
+              <th>Type</th>
+              <th>Name</th>
+              <th>Value</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>CNAME</td>
+              <td>blog</td>
+              <td>cname.vercel-dns.com</td>
+            </tr>
+          </tbody>
+        </table>
+        <h2 id="参考资料">参考资料</h2>
+        <ul>
+          <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://zhuanlan.zhihu.com/p/661328908">Hexo+Github+Netlify博客搭建教程</a></li>
+        </ul>
+        <div class="article-footer fs14">
+          <section id="donate">
+            <div class="header"><!--span>打赏</span--></div>
+            <div class="body">
+              <p>如果这篇文章对您有帮助，那<a onclick="showQRCode()" class="donate-icon">请作者喝杯咖啡</a>吧!</p>
+              <div class="donate-image" id="donate-wechat" style="display:none; position:absolute; z-index:1000; transform: translateY(-100%); left: 50%; transform: translateX(-50%) translateY(-100%);">
+                <img loading="lazy" src="/img/rtEVzmVj.webp" alt="打赏" style="width: 150px; height: auto;" />
+              </div>
+            </div>
+          </section>
+        </div>
+      </article>
+      <footer class="page-footer footnote"><hr><div class="text"><center><span>© 2024 白瑜  ·  共发表 3 篇 Blogs</span><br></center></div></footer>
+      <div class="main-mask" onclick="sidebar.dismiss()"></div>
+    </div>
+    <aside class="l_right">
+      <div class="widgets">
+        <widget class="widget-wrapper toc" id="data-toc" collapse="false">
+          <div class="widget-header dis-select">
+            <span class="name" style="font-size: 1.3em; font-weight: bold;">目 录</span>
+            <a class="cap-action" onclick="sidebar.toggleTOC()" >
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
+                <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/>
+              </svg>
+            </a>
+          </div>
+          <div class="widget-body"></div>
+          <div class="widget-footer">
+            <a class="top" onclick="util.scrollTop()">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
+                <g fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M2 12c0-4.714 0-7.071 1.464-8.536C4.93 2 7.286 2 12 2c4.714 0 7.071 0 8.535 1.464C22 4.93 22 7.286 22 12c0 4.714 0 7.071-1.465 8.535C19.072 22 16.714 22 12 22s-7.071 0-8.536-1.465C2 19.072 2 16.714 2 12Z"/>
+                  <path stroke-linecap="round" stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/>
+                </g>
+              </svg>
+              <span>返回顶部</span>
+            </a>
+          </div>
+        </widget>
+      </div>
+    </aside>
+    <div class='float-panel blur'>
+      <button type='button' style='display:none' class='laptop-only rightbar-toggle mobile' onclick='sidebar.rightbar()'>
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
+          <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/>
+        </svg>
+      </button>
+      <button type='button' style='display:none' class='mobile-only leftbar-toggle mobile' onclick='sidebar.leftbar()'>
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
+          <g fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M2 11c0-3.771 0-5.657 1.172-6.828C4.343 3 6.229 3 10 3h4c3.771 0 5.657 0 6.828 1.172C22 5.343 22 7.229 22 11v2c0 3.771 0 5.657-1.172 6.828C19.657 21 17.771 21 14 21h-4c-3.771 0-5.657 0-6.828-1.172C2 18.657 2 16.771 2 13z"/>
+            <path id="sep" stroke-linecap="round" d="M5.5 10h6m-5 4h4m4.5 7V3"/>
+          </g>
+        </svg>
+      </button>
+      <button type='button' style='display:none' class='laptop-only topbar-toggle mobile' onclick='util.scrollTop()'>
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
+          <g fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M2 12c0-4.714 0-7.071 1.464-8.536C4.93 2 7.286 2 12 2c4.714 0 7.071 0 8.535 1.464C22 4.93 22 7.286 22 12c0 4.714 0 7.071-1.465 8.535C19.072 22 16.714 22 12 22s-7.071 0-8.536-1.465C2 19.072 2 16.714 2 12Z"/>
+            <path stroke-linecap="round" stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/>
+          </g>
+        </svg>
+      </button>
+    </div>
+  </div>
+</body>
+<script type="text/javascript" src="/js/main.js"></script>
+</html>

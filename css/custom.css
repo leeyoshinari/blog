@@ -1,0 +1,5 @@
+/* 隐藏文章内容页面的文章修改时间 */
+
+:root {
+    --post-update-datetime: none;
+}
