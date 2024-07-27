@@ -1047,7 +1047,7 @@ div.toast.show {
   }
 }
 .md-text .article-footer {
-  margin-top: 4rem;
+  margin-top: 2rem;
   padding: 1rem;
   background: var(--block);
   border-radius: 12px;
@@ -4015,8 +4015,8 @@ details.toc[open] >div.body section .header+.doc_tree {
 }
 .social-wrap {
   display: grid;
-  grid-gap: 0.25rem 0.25rem;
-  grid-template-columns: repeat(auto-fill, 32px);
+  grid-gap: 0.5rem 0.5rem;
+  grid-template-columns: repeat(auto-fill, 38px);
   text-align: center;
 }
 .social-wrap .social {

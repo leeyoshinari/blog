@@ -8,20 +8,14 @@ const showQRCode = () => {
 const hideQRCode = (event) => {
   const qrCode = document.getElementById('donate-wechat');
   const donateIcon = document.querySelector('.donate-icon');
-  const donateLeft = document.querySelector('.left-donate');
-  if (!qrCode.contains(event.target) && !donateIcon.contains(event.target) && !donateLeft.contains(event.target)) {
+  if (!qrCode.contains(event.target) && !donateIcon.contains(event.target)) {
     qrCode.style.display = 'none';
     document.removeEventListener('click', hideQRCode);
   }
 };
 
 const applyTheme = (theme) => {
-  if (theme === 'auto') {
-    document.documentElement.removeAttribute('data-theme')
-  } else {
-    document.documentElement.setAttribute('data-theme', theme)
-  }
-  theme = theme === 'auto' ? 'preferred_color_scheme' : theme
+  document.documentElement.setAttribute('data-theme', theme)
   const cmt = document.getElementById('giscus')
   if (cmt) {
     // This works before giscus load.
@@ -40,10 +34,10 @@ const switchTheme = () => {
   let newTheme;
   switch (currentTheme) {
     case 'light':
-      newTheme = 'dark'
+      newTheme = 'dark';
       break
     default:
-      newTheme = 'light'
+      newTheme = 'light';
   }
   applyTheme(newTheme)
   window.localStorage.setItem('Stellar.theme', newTheme)
