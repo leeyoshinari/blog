@@ -2,7 +2,7 @@ export function createLeft() {
   const ele = document.createElement('div');
   ele.classList.add('leftbar-container');
   ele.innerHTML = `
-      <header class="header"><div class="logo-wrap"><a class="avatar" href="#"><img class="avatar" src="/img/rtEVzmVj.webp" loading="lazy" /></a><a class="title" href="/"><div class="main" ff="title">白瑜のBlog</div><div class="sub normal cap" style="margin-left:-3px;">笑，只是一个表情，与快乐无关。</div><div class="sub hover cap" style="margin-left:-3px;opacity:0;">生活，就是过了今天等明天而已。</div></a></div></header>
+      <header class="header"><div class="logo-wrap"><a class="avatar" href="/"><img class="avatar" src="/img/rtEVzmVj.webp" loading="lazy" /></a><a class="title" href="/"><div class="main" ff="title">白瑜のBlog</div><div class="sub normal cap" style="margin-left:-3px;">笑，只是一个表情，与快乐无关。</div><div class="sub hover cap" style="margin-left:-3px;opacity:0;">生活，就是过了今天等明天而已。</div></a></div></header>
       <div class="widgets">
       <widget class="widget-wrapper post-list">
           <div class="widget-header dis-select"><span class="name" style="font-weight: bold;">墙裂推荐</span></div>
@@ -11,6 +11,7 @@ export function createLeft() {
           <a class="item title" href="/p/940241892.html"><span class="title">性能测试平台，支持分布式和自动化压测</span></a>
           <a class="item title" href="/p/940241891.html"><span class="title">Windows 风格的个人网盘</span></a>
           <a class="item title" href="/p/940241883.html"><span class="title">“自制”空调遥控器</span></a>
+          <a class="item title" href="/p/840241882.html"><span class="title">Linux 系统服务器资源监控</span></a>
           <a class="item title" href="/p/940241882.html"><span class="title">做一个自己的领券 APP</span></a>
           </div>
       </widget>
@@ -59,14 +60,14 @@ export function createDefaultRight() {
 export function createFootNote() {
   const ele = document.createElement('div');
   ele.classList.add('text');
-  ele.innerHTML = `<center><span>© 2024 白瑜  ·  共发表 5 篇 Blogs</span><br></center>`;
+  ele.innerHTML = `<center><span>© 2024 白瑜  ·  共发表 6 篇 Blogs</span><br></center>`;
   return ele;
 }
 
 export function createMobileHeader() {
   const ele = document.createElement('div');
   ele.classList.add('logo-wrap');
-  ele.innerHTML = `<a class="avatar" href="#"><img class="avatar" src="/img/rtEVzmVj.webp" loading="lazy" /></a><a class="title" href="/"><div class="main" ff="title">白瑜のBlog</div><div class="sub normal cap">人生无非是笑笑人家，再让人家笑笑而已！</div><div class="sub hover cap" style="opacity:0">今天的事情不必今天做完，万一活不到明天呢！</div></a>`;
+  ele.innerHTML = `<a class="avatar" href="/"><img class="avatar" src="/img/rtEVzmVj.webp" loading="lazy" /></a><a class="title" href="/"><div class="main" ff="title">白瑜のBlog</div><div class="sub normal cap">人生无非是笑笑人家，再让人家笑笑而已！</div><div class="sub hover cap" style="opacity:0">今天的事情不必今天做完，万一活不到明天呢！</div></a>`;
   return ele;
 }
 
