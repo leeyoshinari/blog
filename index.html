@@ -9,8 +9,6 @@
   <link rel="stylesheet" href="/css/main.css">
   <link rel="shortcut icon" href="/img/favicon.ico">
   <!-- <link rel="stylesheet" href="https://registry.npmmirror.com/lxgw-wenkai-screen-web/1.321.0/files/lxgwwenkaiscreen/result.css"> -->
-  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"> -->
-  <!-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script> -->
 </head>
 <body>
   <div class="l_body s:aa index tech" id="start" layout>
@@ -30,7 +28,7 @@
               <p>将 AIGC 的文本生成能力集成进 OnlyOffice 中，提高办公效率</p>
             </div>
             <div class="meta cap">
-              <span class="cap" id="post-meta"><img src="/img/post-date.svg" alt="" /><time datetime="2024-07-20T20:30:00.000Z">2024-07-20</time></span>
+              <span class="cap" id="post-meta"><img src="/img/post-date.svg" alt="" /><time datetime="2024-05-25T17:25:00.000Z">2024-05-25</time></span>
               <!--span class="cap breadcrumb"><img src="img/post-category.svg" alt="" /><span>读书笔记</span></span-->
             </div>
           </article>
@@ -43,7 +41,6 @@
             </div>
             <div class="meta cap">
               <span class="cap" id="post-meta"><img src="/img/post-date.svg" alt="" /><time datetime="2024-07-20T20:30:00.000Z">2024-07-20</time></span>
-              <!--span class="cap breadcrumb"><img src="img/post-category.svg" alt="" /><span>读书笔记</span></span-->
             </div>
           </article>
         </a>
@@ -62,50 +59,48 @@
           <article class="md-text">
             <h2 class="post-title">“自制”空调遥控器</h2>
             <div class="excerpt">
-              <p>Windows风格的个人网盘，支持 OnlyOffice 多人协作，支持比商业网盘更多的功能</p>
+              <p>晚上睡觉时控制空调，即省电，又不冷也不热</p>
             </div>
             <div class="meta cap">
               <span class="cap" id="post-meta"><img src="/img/post-date.svg" alt=""><time datetime="2023-07-09T21:21:00.000Z">2023-07-09</time></span>
             </div>
           </article>
         </a>
+        <a class="post-card post" href="/p/940241882.html">
+          <article class="md-text">
+            <h2 class="post-title">做一个自己的领券 APP</h2>
+            <div class="excerpt">
+              <p>网上购物时领取优惠券，省钱又可以拿佣金</p>
+            </div>
+            <div class="meta cap">
+              <span class="cap" id="post-meta"><img src="/img/post-date.svg" alt=""><time datetime="2023-02-12T22:24:00.000Z">2023-02-12</time></span>
+            </div>
+          </article>
+        </a>
       </div>
-      <div class='paginator-wrap dis-select' style="display: none;">
+      <!-- <div class='paginator-wrap dis-select' style="display: none;">
         <span class="extend prev" rel="prev"></span>
         <span class="page-number current">1</span>
-        <!--a class="page-number" href="/page/2/">2</a>
+        <a class="page-number" href="/page/2/">2</a>
         <a class="page-number" href="/page/3/">3</a>
         <span class="space">&hellip;</span>
-        <a class="page-number" href="/page/8/">8</a-->
+        <a class="page-number" href="/page/8/">8</a>
         <a class="extend next" rel="next" href="/page/2/"></a>
-      </div>
+      </div> -->
       <footer class="page-footer footnote"><hr></footer>
+      <div class="article-footer fs14"><section><div class="donate-image donate-icon" id="donate-wechat" style="display: none; position: absolute; z-index: 1000; transform: translateX(-1%) translateY(-100%);"><img loading="lazy" src="/img/donate.jpg" alt="打赏"></div></section></div>
       <div class="main-mask" onclick="sidebar.dismiss()"></div>
     </div>
     <aside class="l_right"></aside>
-    <div class='float-panel blur'>
-      <button type='button' style='display:none' class='laptop-only rightbar-toggle mobile' onclick='sidebar.rightbar()'>
-        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
-          <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/>
-        </svg>
-      </button>
-      <button type='button' style='display:none' class='mobile-only leftbar-toggle mobile' onclick='sidebar.leftbar()'>
-        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
-          <g fill="none" stroke="currentColor" stroke-width="1.5">
-            <path d="M2 11c0-3.771 0-5.657 1.172-6.828C4.343 3 6.229 3 10 3h4c3.771 0 5.657 0 6.828 1.172C22 5.343 22 7.229 22 11v2c0 3.771 0 5.657-1.172 6.828C19.657 21 17.771 21 14 21h-4c-3.771 0-5.657 0-6.828-1.172C2 18.657 2 16.771 2 13z"/>
-            <path id="sep" stroke-linecap="round" d="M5.5 10h6m-5 4h4m4.5 7V3"/>
-          </g>
-        </svg>
-      </button>
-    </div>
   </div>
 </body>
 <script type="module">
-  import { createLeft, createFootNote, createMobileHeader, createDefaultRight } from '/js/template.js';
+  import { createLeft, createFootNote, createMobileHeader, createDefaultRight, createFloatPanel } from '/js/template.js';
   document.getElementsByClassName('l_left')[0].appendChild(createLeft());
   document.getElementsByClassName('header mobile-only')[0].appendChild(createMobileHeader());
   document.getElementsByClassName('page-footer footnote')[0].appendChild(createFootNote());
   document.getElementsByClassName('l_right')[0].appendChild(createDefaultRight());
+  document.getElementById('start').appendChild(createFloatPanel(false));
 </script>
 <script type="text/javascript" src="https://v1.hitokoto.cn/?/?c=b&encode=js&select=%23hitokoto" async></script>
 <script type="text/javascript" src="/js/main.js"></script>

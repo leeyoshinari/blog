@@ -8,7 +8,8 @@ const showQRCode = () => {
 const hideQRCode = (event) => {
   const qrCode = document.getElementById('donate-wechat');
   const donateIcon = document.querySelector('.donate-icon');
-  if (!qrCode.contains(event.target) && !donateIcon.contains(event.target)) {
+  const donateLeft = document.querySelector('.left-donate');
+  if (!qrCode.contains(event.target) && !donateIcon.contains(event.target) && !donateLeft.contains(event.target)) {
     qrCode.style.display = 'none';
     document.removeEventListener('click', hideQRCode);
   }
@@ -47,8 +48,8 @@ const switchTheme = () => {
   applyTheme(newTheme)
   window.localStorage.setItem('Stellar.theme', newTheme)
   const messages = {
-    light: `已切换为日光模式`,
-    dark: `已切换为暗黑模式`,
+    light: `已切换为浅色模式`,
+    dark: `已切换为深色模式`,
   }
   hud?.toast?.(messages[newTheme])
 }

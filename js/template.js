@@ -11,29 +11,17 @@ export function createLeft() {
           <a class="item title" href="/p/940241892.html"><span class="title">性能测试平台，支持分布式和自动化压测</span></a>
           <a class="item title" href="/p/940241891.html"><span class="title">Windows 风格的个人网盘</span></a>
           <a class="item title" href="/p/940241883.html"><span class="title">“自制”空调遥控器</span></a>
+          <a class="item title" href="/p/940241882.html"><span class="title">做一个自己的领券 APP</span></a>
           </div>
       </widget>
       </div>
       <footer class="footer dis-select">
       <div class="social-wrap">
-          <a class="social" title="Github" href="https://github.com/FelicxFoster" target="_blank" rel="external nofollow noopener noreferrer">
-          <i class="fa-solid fa-github fa-brands fa-bounce"></i>
-          </a>
-          <a class="social" title="哔哔广场" href="/bb" rel="noopener noreferrer">
-          <i class="fa-solid fa-paw fa-bounce"></i>
-          </a>
-          <a class="social" title="留言板" href="/friends/#comments" rel="noopener noreferrer">
-          <i class="fa-solid fa-commenting fa-bounce"></i>
-          </a>
-          <a class="social" title="RSS订阅" href="/atom.xml" rel="noopener noreferrer">
-          <i class="fa-solid fa-rss fa-bounce"></i>
-          </a>
-          <a class="social" title="日/夜" onclick="switchTheme()">
-          <i class="fa-solid fa-moon fa-bounce"></i>
-          </a>
+          <a class="social" title="Github" href="https://github.com/" target="_blank"><img src="/img/github.svg" alt="" /></a>
+          <a class="social left-donate" title="打赏" onclick="showQRCode()"><img src="/img/donate.svg" alt="" /></a>
+          <a class="social" title="浅色/深色" onclick="switchTheme()"><img src="/img/moon.svg" alt="" /></a>
       </div>
-      </footer>
-  `;
+      </footer>`;
   return ele;
 }
 
@@ -50,8 +38,7 @@ export function createRight() {
       <div class="widget-footer">
         <a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12c0-4.714 0-7.071 1.464-8.536C4.93 2 7.286 2 12 2c4.714 0 7.071 0 8.535 1.464C22 4.93 22 7.286 22 12c0 4.714 0 7.071-1.465 8.535C19.072 22 16.714 22 12 22s-7.071 0-8.536-1.465C2 19.072 2 16.714 2 12Z"/><path stroke-linecap="round" stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/></g></svg><span>返回顶部</span></a>
       </div>
-    </widget>
-  `;
+    </widget>`;
   return ele;
 }
 
@@ -64,24 +51,21 @@ export function createDefaultRight() {
     </widget>
     <widget class="widget-wrapper markdown">
       <div class="widget-header dis-select"><span class="name">🥂 这么有缘，那就认识一下吧 ~</span></div><div class="widget-body fs14" style="text-align: center;"><hr style="border: 1px solid black; background-color: black;"><img src="/img/wechat.jpg" alt="" loading="lazy" /></div>
-    </widget>
-  `;
+    </widget>`;
   return ele;
 }
 
 export function createFootNote() {
   const ele = document.createElement('div');
   ele.classList.add('text');
-  ele.innerHTML = `<center><span>© 2024 白瑜  ·  共发表 4 篇 Blogs</span><br></center>`;
+  ele.innerHTML = `<center><span>© 2024 白瑜  ·  共发表 5 篇 Blogs</span><br></center>`;
   return ele;
 }
 
 export function createMobileHeader() {
   const ele = document.createElement('div');
   ele.classList.add('logo-wrap');
-  ele.innerHTML = `
-  <a class="avatar" href="#"><img class="avatar" src="/img/rtEVzmVj.webp" loading="lazy" /></a><a class="title" href="/"><div class="main" ff="title">白瑜のBlog</div><div class="sub normal cap">人生无非是笑笑人家，再让人家笑笑而已！</div><div class="sub hover cap" style="opacity:0">今天的事情不必今天做完，万一活不到明天呢！</div></a>
-  `;
+  ele.innerHTML = `<a class="avatar" href="#"><img class="avatar" src="/img/rtEVzmVj.webp" loading="lazy" /></a><a class="title" href="/"><div class="main" ff="title">白瑜のBlog</div><div class="sub normal cap">人生无非是笑笑人家，再让人家笑笑而已！</div><div class="sub hover cap" style="opacity:0">今天的事情不必今天做完，万一活不到明天呢！</div></a>`;
   return ele;
 }
 
@@ -91,19 +75,18 @@ export function createDonate() {
     <div class="header"><!--span>打赏</span--></div>
     <div class="body">
         <p>如果这篇文章对您有帮助，那<a onclick="showQRCode()" class="donate-icon">请作者喝杯咖啡</a>吧!</p>
-        <div class="donate-image" id="donate-wechat" style="display:none; position:absolute; z-index:1000; transform: translateY(-100%); transform: translateX(-3%) translateY(-100%);">
+        <div class="donate-image" id="donate-wechat" style="display:none; position:absolute; z-index:1000; transform: translateY(-100%); transform: translateX(-1%) translateY(-100%);">
         <img loading="lazy" src="/img/donate.jpg" alt="打赏" loading="lazy" />
         </div>
-    </div>
-  `;
+    </div>`;
   return ele;
 }
 
-export function createFloatPanel() {
+export function createFloatPanel(isTop=true) {
   const ele = document.createElement('div');
   ele.classList.add('float-panel');
   ele.classList.add('blur');
-  ele.innerHTML = `
+  var text = `
     <button type='button' style='display:none' class='laptop-only rightbar-toggle mobile' onclick='sidebar.rightbar()'>
       <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
         <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/>
@@ -116,15 +99,18 @@ export function createFloatPanel() {
           <path id="sep" stroke-linecap="round" d="M5.5 10h6m-5 4h4m4.5 7V3"/>
         </g>
       </svg>
-    </button>
-    <button type='button' style='display:none' class='laptop-only topbar-toggle mobile' onclick='util.scrollTop()'>
-      <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
-        <g fill="none" stroke="currentColor" stroke-width="1.5">
-          <path d="M2 12c0-4.714 0-7.071 1.464-8.536C4.93 2 7.286 2 12 2c4.714 0 7.071 0 8.535 1.464C22 4.93 22 7.286 22 12c0 4.714 0 7.071-1.465 8.535C19.072 22 16.714 22 12 22s-7.071 0-8.536-1.465C2 19.072 2 16.714 2 12Z"/>
-          <path stroke-linecap="round" stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/>
-        </g>
-      </svg>
-    </button>
-  `;
+    </button>`;
+  if (isTop) {
+    text += `
+      <button type='button' style='display:none' class='laptop-only topbar-toggle mobile' onclick='util.scrollTop()'>
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
+          <g fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M2 12c0-4.714 0-7.071 1.464-8.536C4.93 2 7.286 2 12 2c4.714 0 7.071 0 8.535 1.464C22 4.93 22 7.286 22 12c0 4.714 0 7.071-1.465 8.535C19.072 22 16.714 22 12 22s-7.071 0-8.536-1.465C2 19.072 2 16.714 2 12Z"/>
+            <path stroke-linecap="round" stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/>
+          </g>
+        </svg>
+      </button>`;
+  }
+  ele.innerHTML = text;
   return ele;
 }

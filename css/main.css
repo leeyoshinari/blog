@@ -4032,13 +4032,9 @@ details.toc[open] >div.body section .header+.doc_tree {
   -webkit-transition: box-shadow 0.2s ease-out, background 0.2s ease-out, transform 0.2s ease-out;
   -o-transition: box-shadow 0.2s ease-out, background 0.2s ease-out, transform 0.2s ease-out;
 }
-.social-wrap .social:hover {
-  z-index: 1;
-  filter: unset;
-  background: var(--alpha100);
-}
 .social-wrap .social img {
   border-radius: 2px;
+  width: 32px;
 }
 .logo-wrap {
   display: flex;
