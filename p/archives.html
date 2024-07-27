@@ -22,40 +22,19 @@
       <div class="post-list archives">
         <article class="" id="archive">
           <div class='archive-header h4'>2024</div>
+          <div class="archive-list"><a class='post fs14' href="/p/940241893.html"><time>06-22</time><span>AIGC 助力办公智能化</span></a></div>
           <div class="archive-list"><a class='post fs14' href="/p/940241892.html"><time>06-22</time><span>性能测试平台，支持分布式和自动化压测</span></a></div>
-          <div class="archive-list"><a class='post fs14' href="/p/940241891.html"><time>06-16</time><span>Windows 风格的个人网盘</span></a></div>
+          <div class="archive-list"><a class='post fs14' href="/p/940241891.html"><time>02-08</time><span>Windows 风格的个人网盘</span></a></div>
         </article>
         <article class="" id="archive">
           <div class='archive-header h4'>2023</div>
-          <div class="archive-list"><a class='post fs14' href="/3216805600.html"><time>12-31</time><span>2023年度总结</span></a></div>
+          <div class="archive-list"><a class='post fs14' href="/p/940241883.html"><time>07-09</time><span>“自制”空调遥控器</span></a></div>
         </article>
       </div>
       <footer class="page-footer footnote"><hr></footer>
       <div class="main-mask" onclick="sidebar.dismiss()"></div>
     </div>
-    <aside class="l_right">
-      <div class="widgets">
-        <widget class="widget-wrapper markdown">
-          <div class="widget-header dis-select">
-            <span class="name">🎉 你好呀，欢迎光临 ~</span>
-          </div>
-          <div class="widget-body fs14">
-            <p><span id="hitokoto"></span></p>
-            <hr style="border: 1px solid black; background-color: black;">
-            本站纯静态页面，托管于Vercel, 加载缓慢请耐心等待 ～
-          </div>
-        </widget>
-        <widget class="widget-wrapper markdown">
-          <div class="widget-header dis-select">
-            <span class="name">🥂 这么有缘，那就交个朋友吧 ~</span>
-          </div>
-          <div class="widget-body fs14">
-            <hr style="border: 1px solid black; background-color: black;">
-            本站纯静态页面，托管于Vercel, 加载缓慢请耐心等待 ～
-          </div>
-        </widget>
-      </div>
-    </aside>
+    <aside class="l_right"></aside>
     <div class='float-panel blur'>
       <button type='button' style='display:none' class='laptop-only rightbar-toggle mobile' onclick='sidebar.rightbar()'>
         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
@@ -74,10 +53,11 @@
   </div>
 </body>
 <script type="module">
-  import { createLeft, createFootNote, createMobileHeader } from '/js/template.js';
+  import { createLeft, createFootNote, createMobileHeader, createDefaultRight } from '/js/template.js';
   document.getElementsByClassName('l_left')[0].appendChild(createLeft());
   document.getElementsByClassName('header mobile-only')[0].appendChild(createMobileHeader());
   document.getElementsByClassName('page-footer footnote')[0].appendChild(createFootNote());
+  document.getElementsByClassName('l_right')[0].appendChild(createDefaultRight());
 </script>
 <script type="text/javascript" src="https://v1.hitokoto.cn/?/?c=b&encode=js&select=%23hitokoto" async></script>
 <script type="text/javascript" src="/js/main.js"></script>

@@ -19,7 +19,7 @@
       <header class="header mobile-only"></header>
       <div class="article banner top"><div class="content"><div class="bottom only-title"><div class="text-area">
         <h1 class="text title"><span>Windows 风格的个人网盘</span></h1>
-      </div></div></div></div>
+      </div><div class="publish-date"><span>发布时间：2024-02-28</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>更新时间：2024-07-27</span></div></div></div></div>
       <article class="md-text content">
         <h2 id="写在最前面">写在最前面</h2>
         <p>众所周知，当前使用最广泛的云盘是百度网盘，而百度各种骚操作真让人无法忍受，倍速看视频还要开会员，真是恶心他妈给恶心开门。而号称不限速的阿里云盘也开始限速了，后面可能也和百度一个德行。其实各种体验问题都可以容忍，最无法忍受的是数据安全，我们上传到百度网盘的每一个文件，都已经被备份了n份了，尽管有些文件已经被我们删除了，但是这些文件仍然在百度的服务器里，个人隐私极不安全；可能有些人不太清楚，很久之前百度网盘有一个秒传功能，为什么一个几G的文件能秒传，那是因为百度的服务器里已经有了一个相同的文件了，你上传的文件其实并不是你的文件，如果你删除了这个文件，其实你也并没有删除这个文件。而且百度还有人工审核（偷窥）用户隐私图片的前科。还有另一个非常严重的问题是自己好不容易收藏的电影，结果变成了 8s 的教育片。</p>
@@ -40,6 +40,7 @@
             <li>单点登录，不同用户的数据完全隔离</li>
             <li>可任意挂载多个磁盘</li>
         </ul>
+        <p>如需体验网盘前端交互，<a href="https://windows.ihuster.top" target="_blank">请点击体验</a>，因为没有后端，只能体验前端交互。</p>
         <h2 id="部署">部署</h2>
         <p>1、先解压文件，然后进入文件夹</p>
         <p>2、安装第三方依赖包；</p>
@@ -48,7 +49,7 @@
         <p>4、初始化数据库，依次执行下面命令;</p>
         <pre style="margin-left: 2em;"><code>aerich init -t settings.TORTOISE_ORM<br>aerich init-db</code></pre>
         <p>5、安装文件下载工具 <a href="https://github.com/aria2/aria2/releases" target="_blank">aria2</a>，执行 <code>aria2c -v</code> 验证是否安装成功。</p>
-        <p>6、部署<code>nginx</code>，并修改配置，location 相关配置如下：(ps: 下面 location 中的<code>platform</code>就是配置文件<code>config.conf</code>中的<code>prefix</code>，可根据自己需要修改)；</p>
+        <p>6、部署<code>nginx</code>，并修改配置，location 相关配置如下：(ps: 下面 location 中的<code>mycloud</code>就是配置文件<code>config.conf</code>中的<code>prefix</code>，可根据自己需要修改)；</p>
         <p>（1）前端配置：前端文件在 <code>web</code> 目录里, <code>/Windows</code>可任意修改成你喜欢的名字</p>
         <pre style="margin-left: 2em;"><code>location /Windows {<br>    alias /home/Windows/web/;<br>    index  index.html;<br>}</code></pre>
         <p>（2）后端请求：<code>proxy_pass</code> 是配置文件 <code>config.conf</code> 中的 IP 和 端口, <code>/mycloud</code> 必须和 <code>config.conf</code> 中的 <code>prefix</code> 一样</p>
@@ -64,7 +65,7 @@
         <p>8、创建用户</p>
         <p>为了避免被其他人恶意创建账号，页面未放开创建账号的入口；可以通过在API接口文档中创建用户，进入 swagger-ui 页面，找到 <code>createUser</code> 接口即可。</p>
         <pre style="margin-left: 2em;"><code>http://IP:Port/mycloud/swagger-ui</code></pre>
-        <p>9、访问页面，url 是 <code>http://IP:Port/Windows</code>（这里的 IP 和 端口是 Nginx 中设置的 IP 和 端口。Windows 就是第7步中的前端配置的 location）</p>
+        <p>9、访问页面，url 是 <code>http://IP:Port/Windows</code>（这里的 IP 和 端口是 Nginx 中设置的 IP 和 端口。Windows 就是第 6 步中的前端配置的 location）</p>
         <p>10、如果想把当前服务器上已有的文件导入系统中，可访问后台 swagger-ui 接口页面，找到 <code>file/import</code> 接口，请求参数分别是需要导入的文件夹的绝对路径和目标的目录Id。</p>
         <h2 id="功能介绍">功能介绍</h2>
         <p>系统的核心功能就是一个网盘（和百度网盘的功能类似），还提供了比普通网盘更多的功能 —— 文本等文件的在线编辑功能，且可任意扩展功能。在页面上看到的文件和文件夹的目录层级结构在本地服务器/电脑的磁盘里是真实存在的，即使你以后觉得我这个系统不好用了，我也会给你留下一个完整有序的目录文件，而不是乱序的。</p>

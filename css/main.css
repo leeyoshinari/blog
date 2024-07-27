@@ -1701,10 +1701,13 @@ article.md-text.content+.related-wrap {
   height: 48px;
 }
 .banner .bottom {
-  display: flex;
+  /* display: flex; */
   padding: 1rem;
   width: 100%;
   box-sizing: border-box;
+}
+.banner .bottom.only-title .publish-date {
+  font-size: 0.9em;
 }
 .banner .title {
   font-size: 1.5rem;
