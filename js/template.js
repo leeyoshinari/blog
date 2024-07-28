@@ -7,8 +7,9 @@ export function createLeft() {
       <widget class="widget-wrapper post-list">
           <div class="widget-header dis-select"><span class="name" style="font-weight: bold;">墙裂推荐</span></div>
           <div class="widget-body fs14">
+          <a class="item title" href="/p/940241892.html"><span class="title">性能测试平台</span></a>
+          <a class="item title" href="/p/940242882.html"><span class="title">做一个自己的领券网站</span></a>
           <a class="item title" href="/p/940241893.html"><span class="title">AIGC 助力办公智能化</span></a>
-          <a class="item title" href="/p/940241892.html"><span class="title">性能测试平台，支持分布式和自动化压测</span></a>
           <a class="item title" href="/p/940241891.html"><span class="title">Windows 风格的个人网盘</span></a>
           <a class="item title" href="/p/940241883.html"><span class="title">“自制”空调遥控器</span></a>
           <a class="item title" href="/p/840241882.html"><span class="title">Linux 系统服务器资源监控</span></a>
@@ -60,7 +61,7 @@ export function createDefaultRight() {
 export function createFootNote() {
   const ele = document.createElement('div');
   ele.classList.add('text');
-  ele.innerHTML = `<center><span>© 2024 白瑜  ·  共发表 6 篇 Blogs</span><br></center>`;
+  ele.innerHTML = `<center><span>© 2024 白瑜  ·  共发表 7 篇 Blogs</span><br></center>`;
   return ele;
 }
 

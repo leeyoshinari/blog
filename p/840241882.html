@@ -49,10 +49,10 @@
         <h3 id="Server 启动过程">Server 启动过程</h3>
         <p>启动Server（服务端）后，会进行以下动作：</p>
         <p>1、获取当前服务器 IP</p>
-        <p>2、启动服务，监听端口</p>
-        <p>3、修改数据库数据保留策略</p>
-        <p>4、初始化全局变量，等待 Agent 的注册</p>
-        <p>5、每隔 12s 检查 Agent 状态，将异常的 Agent 及时踢下线</p>
+        <p class="non-row md-indent">2、启动服务，监听端口</p>
+        <p class="non-row md-indent">3、修改数据库数据保留策略</p>
+        <p class="non-row md-indent">4、初始化全局变量，等待 Agent 的注册</p>
+        <p class="non-row md-indent">5、每隔 12s 检查 Agent 状态，将异常的 Agent 及时踢下线</p>
         <h3 id="首页">首页</h3>
         <p>首页展示了当前已经监控的服务器的当前状态和基本信息，分别是当前服务器的 IP、系统版本、CPU核数/当前CPU使用率、物理内存/当前内存使用率、磁盘总大小/当前磁盘总使用率、网卡支持的带宽；所有使用率超过设置值（配置文件中可配）时会红色加粗显示。点击服务器IP，可以查看更详细的服务器信息，如：CPU型号、磁盘号、网卡。</p>
         <img src="/img/monitor/home.jpg" alt="" loading="lazy" />
