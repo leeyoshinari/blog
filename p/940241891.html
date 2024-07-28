@@ -8,9 +8,8 @@
   <title>白瑜的博客</title>
   <link rel="stylesheet" href="/css/main.css">
   <link rel="shortcut icon" href="/img/favicon.ico">
-  <!-- <link rel="stylesheet" href="https://registry.npmmirror.com/lxgw-wenkai-screen-web/1.321.0/files/lxgwwenkaiscreen/result.css"> -->
-  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"> -->
   <script src="/js/jquery.min.js"></script>
+  <link rel="stylesheet" href="/css/font/result.css">
 </head>
 <body>
   <div class="l_body s:aa content tech" id="start" layout="post" >
@@ -22,7 +21,7 @@
       </div><div class="publish-date"><span>发布时间：2024-02-28</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>更新时间：2024-07-27</span></div></div></div></div>
       <article class="md-text content">
         <h2 id="写在最前面">写在最前面</h2>
-        <p>众所周知，当前使用最广泛的云盘是百度网盘，而百度各种骚操作真让人无法忍受，倍速看视频还要开会员，真是恶心他妈给恶心开门。而号称不限速的阿里云盘也开始限速了，后面可能也和百度一个德行。其实各种体验问题都可以容忍，最无法忍受的是数据安全，我们上传到百度网盘的每一个文件，都已经被备份了n份了，尽管有些文件已经被我们删除了，但是这些文件仍然在百度的服务器里，个人隐私极不安全；可能有些人不太清楚，很久之前百度网盘有一个秒传功能，为什么一个几G的文件能秒传，那是因为百度的服务器里已经有了一个相同的文件了，你上传的文件其实并不是你的文件，如果你删除了这个文件，其实你也并没有删除这个文件。而且百度还有人工审核（偷窥）用户隐私图片的前科。还有另一个非常严重的问题是自己好不容易收藏的电影，结果变成了 8s 的教育片。</p>
+        <p>众所周知，当前使用最广泛的云盘是百度网盘，而百度各种骚操作真让人无法忍受，倍速看视频还要开会员，真是恶心他妈给恶心开门。而号称不限速的阿里云盘也开始限速了，后面可能也和百度一个德行。其实各种体验问题都可以容忍，最无法忍受的是数据安全，我们上传到百度网盘的每一个文件，都已经被备份了 n 份了，尽管有些文件已经被我们删除了，但是这些文件仍然在百度的服务器里，个人隐私极不安全；可能有些人不太清楚，很久之前百度网盘有一个秒传功能，为什么一个几 G 的文件能秒传，那是因为百度的服务器里已经有了一个相同的文件了，你上传的文件其实并不是你的文件，如果你删除了这个文件，其实你也并没有删除这个文件。而且百度还有人工审核（偷窥）用户隐私图片的前科。还有另一个非常严重的问题是自己好不容易收藏的电影，结果变成了 8s 的教育片。</p>
         <p>既然这么多问题，那我就不用你了，那要存储文件怎么办，可以自己部署一个私有云盘呀。目前免费的比较好的私有云盘有: 国外的有 Nextcloud、ownCloud，这两个出自一脉，免费版的基本功能都有，但有一个致命的弱点是慢，非常占用服务器资源，网上一堆提高性能的攻略都没用(可能我水平不行，没有 get 到点)；国内的有可道云，免费版的也是基本功能都有，很多想用的功能都需要收费。于是我就自己写了这个网盘，网盘的前端是在<a href="https://github.com/tjy-gitnub/win12" target="_blank">开源Windows12网页版</a>项目的基础上进行了大量的增删改，后端纯个人开发。</p>
         <p>如果按照后面推荐的部署方案部署该网盘，成本比开百度会员要底很多，且可以保证数据安全。</p>
         <h2 id="功能概览">功能概览</h2>

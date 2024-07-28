@@ -8,9 +8,8 @@
   <title>白瑜的博客</title>
   <link rel="stylesheet" href="/css/main.css">
   <link rel="shortcut icon" href="/img/favicon.ico">
-  <!-- <link rel="stylesheet" href="https://registry.npmmirror.com/lxgw-wenkai-screen-web/1.321.0/files/lxgwwenkaiscreen/result.css"> -->
-  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"> -->
   <script src="/js/jquery.min.js"></script>
+  <link rel="stylesheet" href="/css/font/result.css">
 </head>
 <body>
   <div class="l_body s:aa content tech" id="start" layout="post" >
@@ -52,6 +51,7 @@
         <p>修改代码中的版本号，网站加载时会自动验证版本，如果网站的版本和本地缓存的版本不一致，就会重新加载网页。</p>
         <h2 id="部署到 Vercel">部署到 Vercel</h2>
         <p>有很多静态/动态代码托管网站，这里推荐使用 Vercel，它在国内访问速度还可以，唯一就是自动生成的域名国内无法访问，因此需要绑定一个域名，<a href="https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fleeyoshinari%2Fshopping&project-name=shopping&repository-name=shopping" target="_blank">点我立即开始部署</a></p>          
+        <p>由于 Vercel 是美国的服务提供商，我们访问网站时，首先会去请求 Vercel 的服务，Vercel 转发请求到淘宝、京东等服务，获取到结果后再返回到 Vercel 的服务，然后才会返回到自己的浏览器上并展示出来，所以网站的加载会比较慢。</p>
         <p>也可在其他代码托管网站部署，可自行探索。</p>
         <hr style="margin-top: 3em;">
         <div class="article-footer fs14"></div>
