@@ -18,32 +18,61 @@
       <header class="header mobile-only"></header>
       <div class="article banner top"><div class="content"><div class="bottom only-title"><div class="text-area">
         <h1 class="text title"><span>Linux 系统服务器资源监控</span></h1>
-      </div><div class="publish-date"><span>发布时间：2023-05-04</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>更新时间：2024-07-23</span></div></div></div></div>
+      </div><div class="publish-date"><span>发布时间：2023-05-04</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>更新时间：2024-07-28</span></div></div></div></div>
       <article class="md-text content">
-        <p style="margin-top: 4em;">本文适合在那些基础设施建设比较差的公司的小伙伴阅读，如果你所在的公司的各种监控比较完善，那么本文不适合你。</p>
+        <p style="margin-top: 4em;">本文适合在那些基础设施建设比较差的公司的小伙伴阅读，如果你所在的公司的各种监控比较完善，那么本文不适合你。如果你只是因为做性能测试缺少监控，那么<a href="http://127.0.0.1/p/940241892.html">这篇文章提供了端到端的性能测试解决方案</a>。</p>
         <h2 id="介绍">介绍</h2>
         <p>为什么要这个服务器资源监控工具呢？</p>
         <p>首先，有相当一部分公司的服务器资源监控是分钟级的，还有相当一部分小伙伴做性能测试时仍在用 JMeter 的监控插件监控服务器资源，还有一些小伙伴在使用一些很难用且操作复杂的工具监控服务器资源。对于性能测试，如果出现性能问题，以上监控方法会大大影响性能问题的排查。</p>
         <p>其次，目前开源的主流服务器资源监控工具（方案）的定位是运维监控，页面做的很好看，监控的数据很多，但因为页面太好看了，导致眼花缭乱，监控的很多数据实际上并没什么用，可能有用的数据它又没有，且部署复杂，工具本身占用系统资源较多，例如 Grafana+Zabbix+Prometheus 这套服务器资源监控方案。还有一个工具（nmon）基本满足我的需求，但是操作极其复杂，看了教程后，对它一点兴趣都没有了。</p>
         <p>最后，因为我也遇到过服务器资源监控的问题，为了保证性能测试时服务器资源监控的准确性，于是决定自己动手写了一个服务器资源监控工具。此工具几乎可以运行在任何可以运行 Python 的 Linux 系统上，已经测试过的系统发行版本有 Ubuntu、CentOS、中标麒麟、银河麒麟，支持 X86_64 和 ARM 架构。</p>
-        <p>从第一次提交代码开始，随着学习理解的不断深入，随着实际使用过程中收到的各种建议，该工具前前后后已经重构了 3 次，commit 了 230 多次；不断地增加功能、优化性能、提高稳定性、改善用户体验，最终形成了这个部署简单、操作简单、页面简洁、运行稳定的最终版。虽然这个监控工具的页面看起来有点 low，但还是很实用的，已经得到了实践的检验，可以长期稳定运行。</p>
+        <p>从 2019 年 5 月开始，随着学习理解的不断深入，随着实际使用过程中收到的各种建议，该工具前前后后已经重构了 3 次，commit 了 230 多次；不断地增加功能、优化性能、提高稳定性、改善用户体验，最终形成了这个部署简单、操作简单、页面简洁、运行稳定的最终版。虽然这个监控工具的页面看起来有点 low，但还是很实用的，已经得到了实践的检验，可以长期稳定可靠地运行。</p>
         <h2 id="功能">功能</h2>
-        <p>1、监控整个服务器的 CPU 使用率、load、io wait、内存大小、磁盘IO、网络带宽和 TCP 连接数</p>
-        <p>2、监控指定端口的 CPU 使用率、内存占用大小、磁盘读写速率和 TCP 连接数</p>
-        <p>3、针对 java 应用，可以监控 jvm 大小和垃圾回收情况；当 Full GC 频率过高时，可发送邮件提醒</p>
-        <p>4、当系统 CPU 使用率过高，或者剩余内存过低时，可发送邮件提醒；可设置自动清理缓存</p>
-        <p>5、可随时启动/停止监控指定端口</p>
-        <p>6、当端口重启后，可自动重新监控</p>
-        <p>7、支持运维监控，端口停止后，可发送邮件提醒</p>
-        <p>8、可按照指定时间段可视化监控结果</p>
-        <p>9、数据采样频率最高可达约 1次/s，可设置任意采样频率</p>
-        <p>10、可同时管理监控多台服务器</p>
-        <p>11、服务端停止后，不影响 Agent 继续监控</p>
+        <p class="non-row md-indent">1、监控整个服务器的 CPU 使用率、Load、io wait、内存大小、磁盘IO、网络带宽和 TCP 连接数</p>
+        <p class="non-row md-indent">2、监控指定端口的 CPU 使用率、内存占用大小、磁盘读写速率和 TCP 连接数</p>
+        <p class="non-row md-indent">3、针对 java 应用，可以监控 jvm 大小和垃圾回收情况；当 Full GC 频率过高时，可发送邮件提醒</p>
+        <p class="non-row md-indent">4、当系统 CPU 使用率过高，或者剩余内存过低时，可发送邮件提醒；可设置自动清理缓存</p>
+        <p class="non-row md-indent">5、可随时启动/停止监控指定端口</p>
+        <p class="non-row md-indent">6、当端口重启后，可自动重新监控</p>
+        <p class="non-row md-indent">7、支持运维监控，端口停止后，可发送邮件提醒</p>
+        <p class="non-row md-indent">8、可按照指定时间段可视化监控结果</p>
+        <p class="non-row md-indent">9、数据采样频率最高可达约 1次/s，可设置任意采样频率</p>
+        <p class="non-row md-indent">10、可同时管理监控多台服务器</p>
+        <p class="non-row md-indent">11、服务端停止后，不影响 Agent 继续监控</p>
         <h2 id="技术选型">技术选型</h2>
-        <p>Web框架：aiohttp</p>
-        <p>模板渲染：jinja2</p>
-        <p>可视化：echarts</p>
-        <p>数据库：InfluxDB</p>
+        <p class="non-row md-indent">Web框架：aiohttp</p>
+        <p class="non-row md-indent">模板渲染：jinja2</p>
+        <p class="non-row md-indent">可视化：echarts</p>
+        <p class="non-row md-indent">数据库：InfluxDB</p>
+        <h2 id="部署">部署</h2>
+        <p>1、克隆项目</p>
+        <pre style="margin-left: 2em;"><code>git clone https://github.com/leeyoshinari/performance_monitor.git</code></pre>
+        <p class="non-row md-indent">server 文件夹是服务端，只需部署一个即可；agent 文件夹是客户端，部署在需要监控的服务器上</p>
+        <p>2、部署 InfluxDB2 数据库，可直接按照 <a href="https://www.influxdata.com/downloads/" target="_blank">InfluxDB 官网</a>的步骤安装。安装完成后，用浏览器打开 web 页面，设置 Organization 和 bucket，获取 Token，将 Organization、bucket 和 Token 配置在 <code>config.conf</code> 中</p>
+        <p>3、分别修改 server 和 agent 文件夹里的配置文件 config.ini</p>
+        <p>4、检查 sysstat 版本。分别使用 iostat -V 和 pidstat -V 命令，12.7.5 版本已经测试过了，如果不是这个版本，<a href="https://sysstat.github.io/versions.html" target="_blank">请点我下载</a></p>
+        <p>5、分别运行 server 和 agent 文件夹中的 server.py</p>
+        <pre style="margin-left: 2em;"><code>nohup python3 server.py &</code></pre>
+        <h2 id="打包">打包</h2>
+        <p>如果代码能够正常运行，那么最好把代码进行打包，打包完成后，可快速在其他环境上部署该监控服务，而不需要在每个服务器上安装 python 环境。</p>
+        <p>注意：由于 agent 需要在待监控的服务器上运行，在 CentOS 系统 X86 架构的服务器上打包完成的可执行文件，只能运行在 CentOS 系统 X86 架构的服务器上；其他系统和架构的服务器需要重新在对应系统和架构的服务器上打包。</p>
+        <h3 id="打包 server">打包 server</h3>
+        <p>1、执行打包命令：</p>
+        <pre style="margin-left: 2em;"><code>pyinstaller --onefile --name=server server.py --hidden-import draw_performance --hidden-import config --hidden-import logger --hidden-import Email --hidden-import process --hidden-import request</code></pre>
+        <p>2、编辑 server.spec 文件，修改 pathex 为当前项目目录，例如：<code>pathex=['/home/performance_monitor/server']</code></p>
+        <p>3、执行打包命令：<code>pyinstaller server.spec</code></p>
+        <p>4、复制 config.ini 到 dist 目录，命令：<code>cp config.ini dist/</code></p>
+        <p>5、将模板文件 templates 和静态文件 static 拷贝到 dist 文件夹下</p>
+        <p>6、将 dist 整个文件夹拷贝到其他环境，启动 server</p>
+        <pre style="margin-left: 2em;"><code>nohup ./server &</code></pre>
+        <h3 id="打包 agent">打包 agent</h3>
+        <p>1、执行打包命令：</p>
+        <pre style="margin-left: 2em;"><code>pyinstaller --onefile --name=server server.py --hidden-import logger --hidden-import performance_monitor --hidden-import common --hidden-import config</code></pre>
+        <p>2、编辑 server.spec 文件，修改 pathex 为当前项目目录，例如：<code>pathex=['/home/performance_monitor/agent']</code></p>
+        <p>3、执行打包命令：<code>pyinstaller server.spec</code></p>
+        <p>4、复制 config.ini 到 dist 目录，命令：<code>cp config.ini dist/</code></p>
+        <p>5、将 dist 整个文件夹拷贝到其他环境，启动 server</p>
+        <pre style="margin-left: 2em;"><code>nohup ./server &</code></pre>
         <h2 id="Server（服务端）">Server（服务端）</h2>
         <p>Server 主要用于前端页面展示和从数据库读取数据并显示，可以统一查看所有已监控的服务器的相关数据。前端所有页面均已适配 1920×1080 和 1366×768 的分辨率。</p>
         <h3 id="Server 启动过程">Server 启动过程</h3>
@@ -67,12 +96,12 @@
         <h4 id="查看系统监控数据">查看系统监控数据</h4>
         <p>如果选择的数据来源类型是系统:</p>
         <p>第一个图是服务器总的 CPU 使用率和 iowait。总的 CPU 使用率可以看出服务器的整体负载。</p>
-        <p>第二个图是服务器的</p>
+        <p>第二个图是服务器的 CPU load，分别是最近 1 分钟、5分钟和 15 分钟的 CPU Load。</p>
         <p>第三个图是服务器的可用内存和剩余内存。可用内存和剩余内存的差值就是服务器的缓存使用大小。该图数据仅是物理内存，不包括虚拟内存。</p>
         <p>第四个图是服务器的磁盘读写速率和磁盘IO。这里展示的是指定磁盘的数据，可以看出当前磁盘是否存在瓶颈。</p>
         <p>第五个图是服务器的网卡接收和发送速率，以及网络带宽使用率。可以看出服务器是否存在网络瓶颈。</p>
         <p>第六个图是服务器的 TCP 的数量和 TCP 的重传数。TCP 重传数可以看出当前网络环境是否稳定。</p>
-        <p>最后的表格统计的是 CPU 使用率、磁盘IO、网卡使用率的百分位数。主要有 3 个百分位：90%、95%、99%。为什么要统计百分位数？例如看 CPU 使用率，不能看平均值，也不能看最大值，更不能看最小值，这些值都不能准确的反映出 CPU 在一段时间内的使用率，因此要使用百分位数来量化 CPU 在一段时间内的使用率，通常选择的百分位是 90%，也可根据实际需求选择其他的百分位。</p>
+        <p>最后的表格统计的是 CPU 使用率、磁盘IO、网卡使用率的百分位数。主要有 4 个百分位：75%、90%、95%、99%。为什么要统计百分位数？例如看 CPU 使用率，不能看平均值，也不能看最大值，更不能看最小值，这些值都不能准确的反映出 CPU 在一段时间内的使用率，因此要使用百分位数来量化 CPU 在一段时间内的使用率，通常选择的百分位是 90%，也可根据实际需求选择其他的百分位。</p>
         <h4 id="查看端口监控数据">查看端口监控数据</h4>
         <p>如果选择的数据来源类型是端口：</p>
         <p>第一个图是进程（端口对应的进程）的 CPU 使用率和用于上下文切换的 CPU 使用率。</p>
@@ -83,6 +112,7 @@
         <h3 id="重点关注的配置项">重点关注的配置项</h3>
         <p>1、<code>host</code>：是本机的 IP 地址，一般情况下都会自动获取到，如果服务器有多个网卡，且使用的不是第一张网卡，那么自动获取的 IP 可能不正确，可通过 <code>hostname -I</code> 命令查看第一个 IP 是不是本机 IP，如果不是，需要手动配置 host。</p>
         <p>2、<code>server_context</code>：是浏览器访问的 url 的 prefix，请按要求配置你想配置的任意名字，不要再问我为什么页面报 404 了。</p>
+        <p>3、InfluxDB 相关的配置，需要提前部署并配置好 InfluxDB。</p>
         <h2 id="Agent（执行器）">Agent（执行器）</h2>
         <p>Agent 主要用于执行监控任务，采集并存储数据。数据采集主要是使用 sysstat 工具，使用命令是 iostat 和 pidstat，采集的数据未做任何处理直接存入数据库，数据准确度取决于 sysstat。</p>
         <h3 id="Agent 启动过程">Agent 启动过程</h3>
@@ -113,9 +143,9 @@
         <p>建议实际监控时，请根据实际需求设置数据采样频率，监控整个服务器的频率和监控端口的频率可以分开设置。数据采样频率设置越高，监控本身占用的系统资源也就越多。</p>
         <h3 id="端口停止">端口停止</h3>
         <p>正常情况下，端口处于监听状态，那么执行监控命令时就不会报错。如果端口由于某种原因停止，则会根据配置进行不同的处理：</p>
-        <p>非运维监控配置：端口停止后，会每隔指定的时间（可配置）检查端口状态，每检查一次会计次，达到指定的次数（可配置）后会将端口的监控状态设置为已停止，然后停止监控该端口，释放线程。</p>
+        <p><span style="font-weight: bold;">非运维监控配置</span>：端口停止后，会每隔指定的时间（可配置）检查端口状态，每检查一次会计次，达到指定的次数（可配置）后会将端口的监控状态设置为已停止，然后停止监控该端口，释放线程。</p>
         <p class="non-row md-indent">为什么要等这么长时间才停止呢？这是考虑到我们会经常重启端口，当端口重启后会自动重新开始监控。如果端口停止了就也停止监控，端口重启后还需要手动再次开始监控，这个操作很不友好。</p>
-        <p>运维监控配置：端口停止后，会每隔指定的时间（可配置）检查端口状态，每检查一次会计次，达到指定的次数（可配置）后会将端口的监控状态设置为已停止，启动子线程发送邮件提醒（如果配置提醒），然后停止监控该端口，释放线程。</p>
+        <p><span style="font-weight: bold;">运维监控配置</span>：端口停止后，会每隔指定的时间（可配置）检查端口状态，每检查一次会计次，达到指定的次数（可配置）后会将端口的监控状态设置为已停止，启动子线程发送邮件提醒（如果配置提醒），然后停止监控该端口，释放线程。</p>
         <p>上述两种配置的处理逻辑基本一致，区别是次数不一样。这两种配置是互斥的，只允许选择其中的一种。</p>
         <h3 id="清理已停止监控的端口">清理已停止监控的端口</h3>
         <p>考虑到服务器压力，尽量监控需要监控的端口，暂不需要监控的端口可以先停掉，如果停止监控后又想看监控数据，那么端口停止后就不能立即把端口的监控记录删除，故设计成每天定时清理一次，定时时间可配置。</p>
