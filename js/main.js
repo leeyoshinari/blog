@@ -15,22 +15,22 @@ const hideQRCode = (event) => {
 };
 
 const applyTheme = (theme) => {
-  document.documentElement.setAttribute('data-theme', theme)
-  const cmt = document.getElementById('giscus')
+  document.documentElement.setAttribute('data-theme', theme);
+  const cmt = document.getElementById('giscus');
   if (cmt) {
     // This works before giscus load.
-    cmt.setAttribute('data-theme', theme)
+    cmt.setAttribute('data-theme', theme);
   }
-  const iframe = document.querySelector('#comments > section.giscus > iframe')
+  const iframe = document.querySelector('#comments > section.giscus > iframe');
   if (iframe) {
     // This works after giscus loaded.
-    const src = iframe.src
-    const newSrc = src.replace(/theme=[\w]+/, `theme=${theme}`)
-    iframe.src = newSrc
+    const src = iframe.src;
+    const newSrc = src.replace(/theme=[\w]+/, `theme=${theme}`);
+    iframe.src = newSrc;
   }
 }
 const switchTheme = () => {
-  const currentTheme = document.documentElement.getAttribute('data-theme')
+  const currentTheme = document.documentElement.getAttribute('data-theme');
   let newTheme;
   switch (currentTheme) {
     case 'light':
@@ -40,16 +40,16 @@ const switchTheme = () => {
       newTheme = 'light';
   }
   applyTheme(newTheme)
-  window.localStorage.setItem('Stellar.theme', newTheme)
+  window.localStorage.setItem('Stellar.theme', newTheme);
   const messages = {
     light: `已切换为浅色模式`,
     dark: `已切换为深色模式`,
   }
-  hud?.toast?.(messages[newTheme])
+  hud?.toast?.(messages[newTheme]);
 }
 
-const theme = window.localStorage.getItem('Stellar.theme')
-if (theme !== null) {applyTheme(theme)}
+const theme = window.localStorage.getItem('Stellar.theme');
+if (theme !== null) {applyTheme(theme);} else {window.localStorage.setItem('Stellar.theme', 'light');applyTheme('light');}
 
 const sidebar = {
   leftbar: () => {
@@ -78,34 +78,34 @@ const sidebar = {
 const util = {
   diffDate: (d, more = false) => {
     const ctx = {date_suffix: {just: `刚刚`, min: `分钟前`, hour: `小时前`, day: `天前`}, root : `/`,};
-    const dateNow = new Date()
-    const datePost = new Date(d)
-    const dateDiff = dateNow.getTime() - datePost.getTime()
-    const minute = 1000 * 60
-    const hour = minute * 60
-    const day = hour * 24
+    const dateNow = new Date();
+    const datePost = new Date(d);
+    const dateDiff = dateNow.getTime() - datePost.getTime();
+    const minute = 1000 * 60;
+    const hour = minute * 60;
+    const day = hour * 24;
 
-    let result
+    let result;
     if (more) {
-      const dayCount = dateDiff / day
-      const hourCount = dateDiff / hour
-      const minuteCount = dateDiff / minute
+      const dayCount = dateDiff / day;
+      const hourCount = dateDiff / hour;
+      const minuteCount = dateDiff / minute;
 
       if (dayCount > 14) {
-        result = null
+        result = null;
       } else if (dayCount >= 1) {
-        result = parseInt(dayCount) + ' ' + ctx.date_suffix.day
+        result = parseInt(dayCount) + ' ' + ctx.date_suffix.day;
       } else if (hourCount >= 1) {
-        result = parseInt(hourCount) + ' ' + ctx.date_suffix.hour
+        result = parseInt(hourCount) + ' ' + ctx.date_suffix.hour;
       } else if (minuteCount >= 1) {
-        result = parseInt(minuteCount) + ' ' + ctx.date_suffix.min
+        result = parseInt(minuteCount) + ' ' + ctx.date_suffix.min;
       } else {
-        result = ctx.date_suffix.just
+        result = ctx.date_suffix.just;
       }
     } else {
-      result = parseInt(dateDiff / day)
+      result = parseInt(dateDiff / day);
     }
-    return result
+    return result;
   },
   // toggle: (id) => {const el = document.getElementById(id);if (el) {el.classList.toggle("display");}},
   scrollTop: () => {
@@ -191,11 +191,11 @@ const init = {
   },
   relativeDate: (selector) => {
     selector.forEach(item => {
-      const $this = item
-      const timeVal = $this.getAttribute('datetime')
-      let relativeValue = util.diffDate(timeVal, true)
+      const $this = item;
+      const timeVal = $this.getAttribute('datetime');
+      let relativeValue = util.diffDate(timeVal, true);
       if (relativeValue) {
-        $this.innerText = relativeValue
+        $this.innerText = relativeValue;
       }
     })
   },
