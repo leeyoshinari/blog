@@ -5,8 +5,20 @@
   <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js').then(registration => {
+          console.log('SW registered: ', registration);
+        }).catch(registrationError => {
+          console.log('SW registration failed: ', registrationError);
+        });
+      });
+    }
+  </script>
   <title>白瑜的博客</title>
   <link rel="stylesheet" href="/css/main.css">
+  <!-- <link rel="manifest" href="/js/manifest.json"></link> -->
   <link rel="shortcut icon" href="/img/favicon.ico">
   <link rel="stylesheet" href="/css/font/result.css">
 </head>
@@ -113,7 +125,10 @@
   document.getElementsByClassName('page-footer footnote')[0].appendChild(createFootNote());
   document.getElementsByClassName('l_right')[0].appendChild(createDefaultRight());
   document.getElementById('start').appendChild(createFloatPanel(false));
+  let hitokoto = document.createElement('script');
+  hitokoto.type = "text/javascript";
+  hitokoto.src = "https://v1.hitokoto.cn/?/?c=b&encode=js&select=%23hitokoto";
+  document.getElementsByClassName('l_right')[0].appendChild(hitokoto);
 </script>
-<script type="text/javascript" src="https://v1.hitokoto.cn/?/?c=b&encode=js&select=%23hitokoto" async></script>
 <script type="text/javascript" src="/js/main.js"></script>
 </html>

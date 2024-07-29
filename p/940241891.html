@@ -25,23 +25,25 @@
         <p>既然这么多问题，那我就不用你了，那要存储文件怎么办，可以自己部署一个私有云盘呀。目前免费的比较好的私有云盘有: 国外的有 Nextcloud、ownCloud，这两个出自一脉，免费版的基本功能都有，但有一个致命的弱点是慢，非常占用服务器资源，网上一堆提高性能的攻略都没用(可能我水平不行，没有 get 到点)；国内的有可道云，免费版的也是基本功能都有，很多想用的功能都需要收费。于是我就自己写了这个网盘，网盘的前端是在<a href="https://github.com/tjy-gitnub/win12" target="_blank">开源Windows12网页版</a>项目的基础上进行了大量的增删改，后端纯个人开发。</p>
         <p>如果按照后面推荐的部署方案部署该网盘，成本比开百度会员要底很多，且可以保证数据安全。</p>
         <h2 id="功能概览">功能概览</h2>
+        <p>本项目分为 2 个版本：开源版本和闭源版本。以下是本项目的所有功能，开源版本中没有的功能就是这个功能没有开源，而不是这个功能没有实现。开源版本具有网盘的基本功能，基本能满足个人使用。</p>
+        <p>本项目的所有功能如下：</p>
         <ul>
-            <li>文件夹的新建、删除、重命名、移动、导出</li>
-            <li>文件的上传、下载、新建、删除、移动、重命名、分享</li>
+            <li>文件夹的新建、删除、重命名、移动、导出 —— 开源支持</li>
+            <li>文件的上传、下载、新建、删除、移动、重命名、分享 —— 开源支持</li>
             <li>支持 OnlyOffice (Word、Excel、PowerPoint) 在线编辑和多人协作</li>
-            <li>支持 txt、markdown、xmind脑图、表格、文档的在线编辑功能</li>
-            <li>支持 python 脚本在线编辑和运行</li>
+            <li>支持 txt、markdown、xmind脑图、表格、文档的在线编辑功能 —— 开源支持部分</li>
+            <li>支持 python 脚本在线编辑和运行 —— 开源支持</li>
             <li>支持远程连接 Linux 服务器</li>
-            <li>音乐播放器，支持播放云盘（服务端）和本地（客户端）的音乐</li>
+            <li>音乐播放器，支持播放云盘（服务端）和本地（客户端）的音乐 —— 开源支持</li>
             <li>集成 aria2，支持 HTTP、FTP、BitTorrent 等多种下载协议</li>
-            <li>增加游戏中心，支持贪吃蛇、俄罗斯方块游戏（会陆续支持更多小游戏）</li>
-            <li>支持多语言，支持配置多语言</li>
-            <li>单点登录，不同用户的数据完全隔离</li>
-            <li>可任意挂载多个磁盘</li>
+            <li>增加游戏中心，支持贪吃蛇、俄罗斯方块游戏（会陆续支持更多小游戏） —— 开源支持</li>
+            <li>支持多语言，支持配置多语言 —— 开源支持</li>
+            <li>单点登录，不同用户的数据完全隔离 —— 开源支持</li>
+            <li>可任意挂载多个磁盘 —— 开源支持</li>
         </ul>
         <p>如需体验网盘前端交互，<a href="https://windows.ihuster.top" target="_blank">请点击体验</a>，因为没有后端，只能体验前端交互。</p>
         <h2 id="部署">部署</h2>
-        <p>1、克隆项目</p>
+        <p>1、开源版本可直接克隆项目，闭源版本<a href="https://m.tb.cn/h.gj6vA8f?tk=RHZI32UwIJW" target="_blank">请点我</a>获取</p>
         <pre style="margin-left: 2em;"><code>git clone https://github.com/leeyoshinari/OneDrive.git</code></pre>
         <p>2、安装第三方依赖包；</p>
         <pre style="margin-left: 2em;"><code>pip3 install -r requirements.txt -i http://mirrors.aliyun.com/pypi/simple</code></pre>
@@ -158,7 +160,7 @@
         <p>支持在线编辑 py 文件，点击运行后可直接在浏览器上看到结果。如果想导入第三方库，需要专门打包，具体可查阅相关资料。</p>
         <img src="/img/Windows/pythonEditor.jpg" alt="" loading="lazy">
         <h2 id="其他">其他</h2>
-        <p>1、支持 <code>Linux</code>、<code>Windows</code>、<code>MacOS</code> 等多个平台，建议在 <code>Linux</code> 系统部署；可尝试在国产操作系统上部署，如有问题，欢迎提出。</p>
+        <p>1、支持 <code>Linux</code>、<code>Windows</code>、<code>IOS</code> 等多个平台，建议在 <code>Linux</code> 系统部署；可尝试在国产操作系统上部署，如有问题，欢迎提出。</p>
         <p>2、因为是在操作本地文件，所以不支持集群部署和分布式存储，如果非要集群部署，可通过挂在网络磁盘的方式让集群中的各个节点访问同一个文件夹。</p>
         <p>3、在线播放视频，基本上都是用的是流式播放（边缓存边播放），这就要求视频的元数据必须在视频文件的最前面，而有些视频的元数据在视频文件的末尾，这就需要浏览器把整个视频加载完成后才能播放，体验极差。因此需要手动将视频的元数据移动到视频文件的最前面，然后再上传至云盘，这里使用 <a href="https://github.com/BtbN/FFmpeg-Builds/releases" target="_blank">ffmpeg</a> 工具移动视频的元数据，命令：<code>ffmpeg -i input_video.mp4 -map_metadata 0 -c:v copy -c:a copy -movflags +faststart output_video.mp4</code>。</p>
         <p>4、所有页面和操作已尽可能的适配手机端了，使用手机浏览器打开页面，手机横屏展示，使用体验还是不错的。</p>
