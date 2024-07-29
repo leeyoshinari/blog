@@ -51,6 +51,26 @@ const switchTheme = () => {
 const theme = window.localStorage.getItem('Stellar.theme');
 if (theme !== null) {applyTheme(theme);} else {window.localStorage.setItem('Stellar.theme', 'light');applyTheme('light');}
 
+const openUrl = (url) => {
+  const isStandalone = (window.matchMedia('(display-mode: standalone)').matches) || (window.navigator.standalone) || document.referrer.includes('android-app://');
+  if (isStandalone) {
+    try {
+      navigator.clipboard.writeText(url);
+      hud?.toast?.('复制链接成功，请去浏览器打开');
+    } catch (err) {
+      const textarea = document.createElement('textarea');
+      textarea.value = url;
+      document.body.appendChild(textarea);
+      textarea.select();
+      document.execCommand('copy');
+      document.body.removeChild(textarea);
+      hud?.toast?.('复制链接成功，请去浏览器打开');
+    }
+  } else {
+    window.open(url);
+  }
+}
+
 const sidebar = {
   leftbar: () => {
     if (l_body) {
