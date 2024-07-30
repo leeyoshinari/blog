@@ -52,19 +52,32 @@ const theme = window.localStorage.getItem('Stellar.theme');
 if (theme !== null) {applyTheme(theme);} else {window.localStorage.setItem('Stellar.theme', 'light');applyTheme('light');}
 
 const openUrl = (url) => {
-  const isStandalone = (window.matchMedia('(display-mode: standalone)').matches) || (window.navigator.standalone) || document.referrer.includes('android-app://');
-  if (isStandalone) {
-    try {
-      navigator.clipboard.writeText(url);
-      hud?.toast?.('复制链接成功，请去浏览器打开');
-    } catch (err) {
-      const textarea = document.createElement('textarea');
-      textarea.value = url;
-      document.body.appendChild(textarea);
-      textarea.select();
-      document.execCommand('copy');
-      document.body.removeChild(textarea);
-      hud?.toast?.('复制链接成功，请去浏览器打开');
+  const userAgent = navigator.userAgent.toLowerCase();
+  var p = 'desktop';
+  if (/android|webos|iphone|ipod|blackberry|iemobile|opera mini/i.test(userAgent)) {
+      p = "mobile";
+  } else if (/ipad|tablet/i.test(userAgent)) {
+      p = "tablet";
+  } else {
+      p = "desktop";
+  }
+  if (p === "mobile") {
+    const isStandalone = (window.matchMedia('(display-mode: standalone)').matches) || (window.navigator.standalone) || document.referrer.includes('android-app://');
+    if (isStandalone) {
+      window.open(url);
+    } else {
+      try {
+        navigator.clipboard.writeText(url);
+        hud?.toast?.('复制链接成功，请去浏览器打开');
+      } catch (err) {
+        const textarea = document.createElement('textarea');
+        textarea.value = url;
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
+        hud?.toast?.('复制链接成功，请去浏览器打开');
+      }
     }
   } else {
     window.open(url);
