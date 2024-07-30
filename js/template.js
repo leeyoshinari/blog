@@ -20,7 +20,7 @@ export function createLeft() {
       <footer class="footer dis-select">
       <div class="social-wrap">
         <a class="social" title="主页" href="/"><img src="/img/home.svg" alt="" /></a>
-        <a class="social" title="Github" onclick="openUrl('https://github.com/leeyoshinari')"><img src="/img/github.svg" alt="" /></a>
+        <a class="social" title="Github" href="https://github.com/leeyoshinari" target="_blank"><img src="/img/github.svg" alt="" /></a>
         <!--a class="social left-donate" title="打赏" onclick="showQRCode()"><img src="/img/donate.svg" alt="" /></a-->
         <a class="social" title="浅色/深色" onclick="switchTheme()"><img src="/img/moon.svg" alt="" /></a>
       </div>
