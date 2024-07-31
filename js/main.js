@@ -280,3 +280,4 @@ if (isArticle === 0) {
     init.registerTabsTag();
   });
 }
+if(typeof(Viewer) !== 'undefined'){setTimeout(() => {document.querySelectorAll('article img').forEach(ele => {new Viewer(ele, {viewed() {},});})}, 2000);}

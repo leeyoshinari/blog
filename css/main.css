@@ -1,9 +1,10 @@
 :root {
   --width-main: 900px;
-  --fsp: 17px;
-  --fsh2: calc(var(--fsp) + 11px);
-  --fsh3: calc(var(--fsp) + 7px);
-  --fsh4: calc(var(--fsp) + 4px);
+  --fsp: 1rem;
+  --fsh1: calc(var(--fsp) + 0.8rem);
+  --fsh2: calc(var(--fsp) + 0.6rem);
+  --fsh3: calc(var(--fsp) + 0.4rem);
+  --fsh4: calc(var(--fsp) + 0.2rem);
   --side-content-width: 224px;
   --gap-margin: 16px;
   --gap-padding: 16px;
@@ -36,7 +37,6 @@
 .l_body.story {
   --gap-p: 2rem;
 }
-.l_body.story div.tag-plugin,
 .l_body.story p>img {
   margin-top: 2.4rem;
   margin-bottom: 2.4rem;
@@ -176,7 +176,7 @@ hr {
 img {
   max-width: 100%;
 }
-li {
+ol li {
   font-size: calc(var(--fsp) - 1px);
 }
 ul,
@@ -835,11 +835,10 @@ h6 {
   font-size: var(--fsp);
 }
 .fs14 {
-  --fsp: 0.875rem;
   font-size: var(--fsp);
 }
 .footnote {
-  --fsp: 0.8125rem;
+  --fsp: 0.9rem;
   font-size: var(--fsp);
 }
 .widgets .post-title {
@@ -1000,7 +999,7 @@ div.toast.show {
   --button-hover-bg: rgba(255,255,255,0.25);
 }
 .article.banner .content .title {
-  font-size: calc(17px + 9px);
+  font-size: var(--fsh1);
   color: var(--text-banner);
 }
 .article.banner .content h1 {
@@ -1060,9 +1059,6 @@ div.toast.show {
   font-weight: 500;
   color: var(--text-p2);
   font-size: calc(17px + 2px);
-}
-.md-text .article-footer .body {
-  --fsp: calc(17px - 2px);
 }
 .md-text .article-footer .body input.copy-area {
   margin: 0.75rem 0;
@@ -1976,9 +1972,6 @@ details.folding[child=iframe] >div.body {
   background-repeat: no-repeat;
   overflow: hidden;
 }
-.md-text .tag-plugin.img-wrap .frame-wrap[focus] {
-  height: auto;
-}
 .md-text .frame-wrap#iphone11 img,
 .md-text .frame-wrap#iphone11 video {
   width: 287px;
@@ -2627,7 +2620,7 @@ details.toc[open] >div.body section .header+.doc_tree {
   font-weight: 500;
 }
 .widget-wrapper.post-list .widget-body a {
-  font-size: 0.875rem;
+  font-size: 1rem;
   padding: 8px 16px;
   display: block;
   border-radius: 8px;
@@ -3026,7 +3019,7 @@ details.toc[open] >div.body section .header+.doc_tree {
 .widgets .widget-wrapper .widget-header >span {
   text-align: left;
   opacity: 0.6;
-  font-size: 1.15em;
+  font-size: 1.35em;
 }
 .widgets .widget-wrapper .widget-header:empty {
   display: none;
@@ -3822,7 +3815,6 @@ body>.sitebg .siteblur:hover {
 }
 .md-text p *,
 .md-text blockquote *,
-.md-text .tag-plugin *,
 .md-text ul *,
 .md-text ol *,
 .md-text .highlight *,
@@ -3831,13 +3823,6 @@ body>.sitebg .siteblur:hover {
 }
 .md-text .non-row {margin: 0;}
 .md-text .md-indent {text-indent: 2em;}
-/* .md-text p,
-.md-text ul,
-.md-text ol {
-  margin-top: calc(var(--gap-p) - 4px);
-  margin-bottom: calc(var(--gap-p) - 4px);
-} */
-.md-text .tag-plugin,
 .md-text iframe {
   margin-top: var(--gap-p);
   margin-bottom: var(--gap-p);
@@ -3888,23 +3873,14 @@ body>.sitebg .siteblur:hover {
   padding: 0 2px;
   font-size: 0.75rem;
 }
-.md-text.content h2 {
-  font-size: 2em;
-  font-weight: bold;
-}
 .md-text.content h2 >a:first-child:before {
   content: ':';
 }
 .md-text.content blockquote h2,
-/* .md-text.content .tag-plugin h2, */
 .md-text.content blockquote h3,
-/* .md-text.content .tag-plugin h3, */
 .md-text.content blockquote h4,
-/* .md-text.content .tag-plugin h4, */
 .md-text.content blockquote h5,
-/* .md-text.content .tag-plugin h5, */
 .md-text.content blockquote h6 {
-/* .md-text.content .tag-plugin h6 { */
   margin-top: 0.25em;
   margin-bottom: 0.25em;
 }

@@ -81,7 +81,7 @@ export function createDonate() {
     <div class="header"><!--span>打赏</span--></div>
     <div class="body">
         <p>如果这篇文章对您有帮助，那<a onclick="showQRCode()" class="donate-icon">请作者喝杯咖啡</a>吧!</p>
-        <div class="donate-image" id="donate-wechat" style="display:none; position:absolute; z-index:1000; transform: translateY(-100%); transform: translateX(-1%) translateY(-100%);">
+        <div class="donate-image" id="donate-wechat" style="display:none; position:absolute; z-index:1000; transform: translateY(-100%); transform: translateX(10%) translateY(-118%); max-width: 70%;">
         <img loading="lazy" src="/img/donate.jpg" alt="打赏" loading="lazy" />
         </div>
     </div>`;
