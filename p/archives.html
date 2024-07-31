@@ -48,6 +48,10 @@
   document.getElementsByClassName('page-footer footnote')[0].appendChild(createFootNote());
   document.getElementsByClassName('l_right')[0].appendChild(createDefaultRight());
   document.getElementById('start').appendChild(createFloatPanel(false));
+  let hitokoto = document.createElement('script');
+  hitokoto.type = "text/javascript";
+  hitokoto.src = "https://v1.hitokoto.cn/?/?c=b&encode=js&select=%23hitokoto";
+  document.getElementsByClassName('l_right')[0].appendChild(hitokoto);
 </script>
 <script type="text/javascript" src="https://v1.hitokoto.cn/?/?c=b&encode=js&select=%23hitokoto" async></script>
 <script type="text/javascript" src="/js/main.js"></script>

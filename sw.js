@@ -1,6 +1,5 @@
-const CACHE_NAME = 'sw-2';
+const CACHE_NAME = 'sw-3';
 
-// 要缓存的文件列表
 const urlsToCache = [
   '/', '/img/donate.jpg'
 ]
