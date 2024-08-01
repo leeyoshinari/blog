@@ -2293,8 +2293,8 @@ details.toc[open] >div.body section .header+.doc_tree {
 .social-wrap .social {
   line-height: 0;
   display: inline-block;
-  padding: 6px;
-  border-radius: 32px;
+  padding: 8px;
+  border-radius: 30px;
   filter: grayscale(100%);
   overflow: hidden;
   background: transparent;
@@ -2302,10 +2302,6 @@ details.toc[open] >div.body section .header+.doc_tree {
   -moz-transition: box-shadow 0.2s ease-out, background 0.2s ease-out, transform 0.2s ease-out;
   -webkit-transition: box-shadow 0.2s ease-out, background 0.2s ease-out, transform 0.2s ease-out;
   -o-transition: box-shadow 0.2s ease-out, background 0.2s ease-out, transform 0.2s ease-out;
-}
-.social-wrap .social img {
-  border-radius: 2px;
-  width: 32px;
 }
 .logo-wrap {
   display: flex;
