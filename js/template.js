@@ -36,7 +36,7 @@ export function createRight() {
   ele.innerHTML = `
     <widget class="widget-wrapper toc" id="data-toc" collapse="false">
       <div class="widget-header dis-select">
-        <span class="name" style="font-size: 1.3em; font-weight: bold;">目 录</span>
+        <span class="name" style="font-size: 1.5em; font-weight: bold;">目录</span>
         <a class="cap-action" onclick="sidebar.toggleTOC()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a>
       </div>
       <div class="widget-body"></div>

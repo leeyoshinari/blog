@@ -1,10 +1,12 @@
 :root {
   --width-main: 900px;
-  --fsp: 1rem;
-  --fsh1: calc(var(--fsp) + 0.8rem);
-  --fsh2: calc(var(--fsp) + 0.6rem);
-  --fsh3: calc(var(--fsp) + 0.4rem);
+  --fsp: 1.1rem;
+  --fsh1: calc(var(--fsp) + 0.6rem);
+  --fsh2: calc(var(--fsp) + 0.4rem);
+  --fsh3: calc(var(--fsp) + 0.3rem);
   --fsh4: calc(var(--fsp) + 0.2rem);
+  --fsh5: calc(var(--fsp) + 0.1rem);
+  --code: calc(var(--fsp) - 0.1rem);
   --side-content-width: 224px;
   --gap-margin: 16px;
   --gap-padding: 16px;
@@ -145,9 +147,12 @@
     --site-bg: #000;
   }
 }
+@font-face {
+  font-family: "MyKT";font-style:normal;font-weight:400;src: url("./FZKT.woff2") format("woff2");font-display: swap;
+}
 pre {
-  font-family: Menlo, Monaco, Consolas, system-ui, "Courier New", monospace, sans-serif;
-  font-size: 0.8125rem;
+  font-family: "MyKT", Menlo, Monaco, Consolas, system-ui, "Courier New", monospace, sans-serif;
+  font-size: var(--code);
   tab-size: 4;
   -moz-tab-size: 4;
   -o-tab-size: 4;
@@ -210,7 +215,7 @@ table:not([class]) tr:hover {
   background: var(--block);
 }
 *[ff=title] {
-  font-family: "LXGW WenKai Screen", system-ui, "Microsoft Yahei", "Segoe UI", -apple-system, Roboto, Ubuntu, "Helvetica Neue", Arial, "WenQuanYi Micro Hei", sans-serif;
+  font-family: "MyKT", system-ui, "Microsoft Yahei", "Segoe UI", -apple-system, Roboto, Ubuntu, "Helvetica Neue", Arial, "WenQuanYi Micro Hei", sans-serif;
 }
 blockquote {
   display: block;
@@ -520,11 +525,11 @@ a.button.start.gradient {
 code {
   -webkit-font-smoothing: auto;
   -moz-osx-font-smoothing: auto;
-  font-family: Menlo, Monaco, Consolas, system-ui, "Courier New", monospace, sans-serif;
+  font-family: "MyKT", Menlo, Monaco, Consolas, system-ui, "Courier New", monospace, sans-serif;
 }
 p>code:not([class]),
 li>code:not([class]) {
-  font-size: 85%;
+  font-size: var(--code);
   background: var(--block);
   padding: 0.2em;
   border-radius: 4px;
@@ -536,7 +541,7 @@ pre:not([class]):has(>code) {
   overflow: hidden;
   background: var(--block);
   line-height: 1.5;
-  font-family: Menlo, Monaco, Consolas, system-ui, "Courier New", monospace, sans-serif;
+  font-family: "MyKT", Menlo, Monaco, Consolas, system-ui, "Courier New", monospace, sans-serif;
   box-sizing: border-box;
 }
 @media screen and (min-width: 500px) {
@@ -554,7 +559,7 @@ pre:not([class]):has(>code) {
 }
 .md-text .gist .blob-code-inner {
   color: var(--text-p1);
-  font-family: Menlo, Monaco, Consolas, system-ui, "Courier New", monospace, sans-serif;
+  font-family: "MyKT", Menlo, Monaco, Consolas, system-ui, "Courier New", monospace, sans-serif;
 }
 .md-text .gist .gist-meta {
   background: var(--block-border);
@@ -660,7 +665,7 @@ table:not([class]) {
   outline: none;
 }
 html {
-  font-family: "LXGW WenKai Screen", system-ui, "Microsoft Yahei", "Segoe UI", -apple-system, Roboto, Ubuntu, "Helvetica Neue", Arial, "WenQuanYi Micro Hei", sans-serif;
+  font-family: "MyKT", system-ui, "Microsoft Yahei", "Segoe UI", -apple-system, Roboto, Ubuntu, "Helvetica Neue", Arial, "WenQuanYi Micro Hei", sans-serif;
   font-size: 16px;
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
@@ -683,13 +688,6 @@ div.lazy.img {
 input {
   background: none;
   border: none;
-}
-input.copy-area {
-  display: block;
-  font-family: Menlo, Monaco, Consolas, system-ui, "Courier New", monospace, sans-serif;
-  font-size: 0.8125rem;
-  font-weight: 700;
-  color: var(--text-p3);
 }
 .flex {
   display: flex;
@@ -838,8 +836,7 @@ h6 {
   font-size: var(--fsp);
 }
 .footnote {
-  --fsp: 0.9rem;
-  font-size: var(--fsp);
+  font-size: calc(var(--fsp) - 0.1rem);
 }
 .widgets .post-title {
   margin: 0.75rem 0;
@@ -1060,11 +1057,6 @@ div.toast.show {
   color: var(--text-p2);
   font-size: calc(17px + 2px);
 }
-.md-text .article-footer .body input.copy-area {
-  margin: 0.75rem 0;
-  padding: 0;
-  width: 100%;
-}
 .md-text .article-footer .body p {
   text-indent: 0;
   color: var(--text-p2);
@@ -1248,7 +1240,6 @@ div.toast.show {
 .navbar nav {
   display: flex;
   overflow: scroll visible;
-  font-size: 0.875rem;
 }
 .navbar nav::-webkit-scrollbar {
   height: 0;
@@ -1363,7 +1354,7 @@ div.toast.show {
   background-image: url("https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/arrow/f049bbd4e88ec.svg");
 }
 .paginator-wrap .current {
-  font-family: Menlo, Monaco, Consolas, system-ui, "Courier New", monospace, sans-serif;
+  font-family: "MyKT", Menlo, Monaco, Consolas, system-ui, "Courier New", monospace, sans-serif;
   background: var(--block);
 }
 .paginator-wrap .extend {
@@ -2080,7 +2071,7 @@ details.folding[child=iframe] >div.body {
   border-bottom-width: 2px;
   background: var(--card);
   padding: 2px 4px 1px 4px;
-  font-family: Menlo, Monaco, Consolas, system-ui, "Courier New", monospace, sans-serif;
+  font-family: "MyKT", Menlo, Monaco, Consolas, system-ui, "Courier New", monospace, sans-serif;
   font-weight: 700;
 }
 .md-text psw {
@@ -2102,7 +2093,7 @@ details.folding[child=iframe] >div.body {
   color: var(--theme);
   line-height: 1;
   font-weight: 700;
-  font-family: Menlo, Monaco, Consolas, system-ui, "Courier New", monospace, sans-serif;
+  font-family: "MyKT", Menlo, Monaco, Consolas, system-ui, "Courier New", monospace, sans-serif;
 }
 .md-text h1 sup,
 .md-text h2 sup,
@@ -2833,11 +2824,19 @@ details.toc[open] >div.body section .header+.doc_tree {
 }
 .widget-wrapper.toc .toc .toc-item {
   font-weight: 500;
-  --fsp: calc(17px - 1px);
+  --fsp: calc(var(--fsp) - 0.01rem);
 }
 .widget-wrapper.toc .toc .toc-item .toc-item {
   font-weight: 400;
-  --fsp: calc(17px - 2px);
+  --fsp: calc(var(--fsp) - 0.1rem);
+}
+.widget-wrapper.toc .toc .toc-item .toc-item .toc-item {
+  font-weight: 400;
+  --fsp: calc(var(--fsp) - 0.15rem);
+}
+.widget-wrapper.toc .toc .toc-item .toc-item .toc-item .toc-item {
+  font-weight: 400;
+  --fsp: calc(var(--fsp) - 0.2rem);
 }
 .widget-wrapper.toc .toc ol {
   padding-left: 0;
@@ -2922,7 +2921,7 @@ details.toc[open] >div.body section .header+.doc_tree {
   display: flex;
   align-items: center;
   color: inherit;
-  font-size: 0.875rem;
+  font-size: calc(var(--fsp) - 0.1rem);
   padding: 8px var(--gap-padding);
   border-radius: 8px;
   transition: all 0.2s ease-out;
@@ -3085,7 +3084,7 @@ details.toc[open] >div.body section .header+.doc_tree {
 }
 .post-list #archive .archive-header {
   display: inline-block;
-  font-family: Menlo, Monaco, Consolas, system-ui, "Courier New", monospace, sans-serif;
+  font-family: "MyKT", Menlo, Monaco, Consolas, system-ui, "Courier New", monospace, sans-serif;
   font-weight: 700;
   line-height: 1.2;
   margin-bottom: 0.5em;
@@ -3116,7 +3115,7 @@ details.toc[open] >div.body section .header+.doc_tree {
   border-bottom: 1px dashed var(--text-meta);
 }
 .post-list #archive a.post time {
-  font-family: Menlo, Monaco, Consolas, system-ui, "Courier New", monospace, sans-serif;
+  font-family: "MyKT", Menlo, Monaco, Consolas, system-ui, "Courier New", monospace, sans-serif;
   margin-right: 1em;
   font-weight: 700;
   flex-shrink: 0;
@@ -3157,7 +3156,7 @@ details.toc[open] >div.body section .header+.doc_tree {
 }
 .post-list #cats a.cat .badge {
   font-weight: 700;
-  font-family: Menlo, Monaco, Consolas, system-ui, "Courier New", monospace, sans-serif;
+  font-family: "MyKT", Menlo, Monaco, Consolas, system-ui, "Courier New", monospace, sans-serif;
   opacity: 0.5;
   font-size: 0.75rem;
 }
