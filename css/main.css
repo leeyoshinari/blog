@@ -7,6 +7,7 @@
   --fsh4: calc(var(--fsp) + 0.2rem);
   --fsh5: calc(var(--fsp) + 0.1rem);
   --code: calc(var(--fsp) - 0.1rem);
+  --toc1: 1.1rem;
   --side-content-width: 224px;
   --gap-margin: 16px;
   --gap-padding: 16px;
@@ -182,7 +183,7 @@ img {
   max-width: 100%;
 }
 ol li {
-  font-size: calc(var(--fsp) - 1px);
+  font-size: var(--toc1);
 }
 ul,
 ol {
@@ -2749,7 +2750,6 @@ details.toc[open] >div.body section .header+.doc_tree {
   border-radius: 4px;
 }
 .widget-wrapper.toc .toc {
-  --fsp: calc(17px - 2px);
   padding: 0;
   margin: 0;
   position: relative;
@@ -2824,19 +2824,19 @@ details.toc[open] >div.body section .header+.doc_tree {
 }
 .widget-wrapper.toc .toc .toc-item {
   font-weight: 500;
-  --fsp: calc(var(--fsp) - 0.01rem);
+  font-size: calc(var(--toc1) - 0.01rem);
 }
 .widget-wrapper.toc .toc .toc-item .toc-item {
   font-weight: 400;
-  --fsp: calc(var(--fsp) - 0.1rem);
+  font-size: calc(var(--toc1) - 0.1rem);
 }
 .widget-wrapper.toc .toc .toc-item .toc-item .toc-item {
   font-weight: 400;
-  --fsp: calc(var(--fsp) - 0.15rem);
+  font-size: calc(var(--toc1) - 0.15rem);
 }
 .widget-wrapper.toc .toc .toc-item .toc-item .toc-item .toc-item {
   font-weight: 400;
-  --fsp: calc(var(--fsp) - 0.2rem);
+  font-size: calc(var(--toc1) - 0.2rem);
 }
 .widget-wrapper.toc .toc ol {
   padding-left: 0;
@@ -3079,10 +3079,10 @@ details.toc[open] >div.body section .header+.doc_tree {
     background: var(--block);
   }
 }
-.post-list #archive {
+.post-list .archive {
   padding: 1rem;
 }
-.post-list #archive .archive-header {
+.post-list .archive .archive-header {
   display: inline-block;
   font-family: "MyKT", Menlo, Monaco, Consolas, system-ui, "Courier New", monospace, sans-serif;
   font-weight: 700;
@@ -3092,7 +3092,7 @@ details.toc[open] >div.body section .header+.doc_tree {
   padding: 4px 0;
   color: var(--text-p1);
 }
-.post-list #archive .archive-header:after {
+.post-list .archive .archive-header:after {
   content: "";
   position: absolute;
   height: 4px;
@@ -3103,7 +3103,7 @@ details.toc[open] >div.body section .header+.doc_tree {
   border-radius: 4px;
   background: #1cd0fd;
 }
-.post-list #archive a.post {
+.post-list .archive a.post {
   display: inline-flex;
   align-items: baseline;
   margin: 0.25rem 0;
@@ -3114,18 +3114,18 @@ details.toc[open] >div.body section .header+.doc_tree {
   -o-transition: color 0.2s ease-out, border 0.2s ease-out;
   border-bottom: 1px dashed var(--text-meta);
 }
-.post-list #archive a.post time {
+.post-list .archive a.post time {
   font-family: "MyKT", Menlo, Monaco, Consolas, system-ui, "Courier New", monospace, sans-serif;
   margin-right: 1em;
   font-weight: 700;
   flex-shrink: 0;
   color: var(--text-p4);
 }
-.post-list #archive a.post:hover {
+.post-list .archive a.post:hover {
   border-bottom: 1px solid #1cd0fd;
   color: var(--text);
 }
-.post-list #archive a.post:hover time {
+.post-list .archive a.post:hover time {
   color: #1cd0fd;
 }
 .post-list #cats {
@@ -3201,7 +3201,7 @@ details.toc[open] >div.body section .header+.doc_tree {
   opacity: 1;
 }
 @media screen and (min-width: 500px) {
-  .post-list.author #archive {
+  .post-list.author .archive {
     padding: 1rem 0;
   }
 }

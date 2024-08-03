@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>白瑜的博客</title>
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="shortcut icon" href="/img/favicon.ico">
+  <script src="/js/jquery.min.js"></script>
+  <link rel="stylesheet" href="/css/viewer.min.css">
+  <script src="/js/viewer.min.js"></script>
+</head>
+<body>
+  <div class="l_body s:aa content tech" id="start" layout="post" >
+    <aside class="l_left"></aside>
+    <div class="l_main" id="main">
+      <header class="header mobile-only"></header>
+      <div class="article banner top"><div class="content"><div class="bottom only-title"><div class="text-area">
+        <h1 class="text title"><span>Linux 性能优化实战</span></h1>
+      </div><div class="publish-date"><span>发布时间：2024-08-03</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>更新时间：2024-08-03</span></div></div></div></div>
+      <article class="md-text content">
+        <h2>介绍</h2>
+        <p>性能分析，其实就是找出应用或系统的瓶颈，并设法去避免或者缓解它们，从而更高效地利用系统资源处理更多的请求，这包括以下几个步骤：</p>
+        <p class="non-row md-indent">1、为应用程序和系统设置性能目标</p>
+        <p class="non-row md-indent">2、进行性能基准测试</p>
+        <p class="non-row md-indent">3、性能分析和定位</p>
+        <p class="non-row md-indent">4、优化系统和应用程序</p>
+        <p class="non-row md-indent">5、性能监控和告警</p>
+        <p><span style="font-weight: bold;">工欲善其事，必先利其器</span>。性能领域大师 Brendan Gregg 描绘的性能工具图谱：</p>
+        <img src="/img/note/perf/tools.png" alt="tools.png" loading="lazy" />
+        <h2>CPU 性能</h2>
+        <h3>平均负载</h3>
+        <p>平均负载可通过执行 top 或 uptime 命令查看，<code>load average</code> 后面的 3 个数字依次是系统过去 1 分钟、5 分钟、15分钟的平均负载。</p>
+        <h4>怎么理解平均负载</h4>
+        <p>平均负载是指单位时间内，系统处于<span style="font-weight: bold;">可运行状态</span>和<span style="font-weight: bold;">不可中断状态</span>的平均进程数，也就是<span style="font-weight: bold;">平均活跃进程数</span>。所谓可运行状态的进程是指处于 R 状态（Running 或 Runnable）的进程；不可中断状态的进程是指处于 D 状态的进程。</p>
+        <p>如果平均负载为 2，那意味着：</p>
+        <p class="non-row md-indent">· 在 2 个 CPU 的系统上，意味着所有的 CPU 都刚好被完全占用</p>
+        <p class="non-row md-indent">· 在 4 个 CPU 的系统上，意味着 CPU 有 50% 的是空闲的</p>
+        <p class="non-row md-indent">· 在 1 个 CPU 的系统上，意味着有一半的进程竞争不到 CPU</p>
+        <h4>平均负载多少合理</h4>
+        <p>如果在 1 个 CPU 的系统上，通过命令查看平均负载的 3 个数值是 1.88, 0.88, 5.88，那就说明在过去 1 分钟内，系统有 88% 的超载，而在过去的 15 分钟内，系统有 488% 的超载，从整体趋势来看，系统的负载是在降低的。</p>
+        <p>一般来说，当<span style="font-weight: bold;">平均负载超过 CPU 数量的 70% </span>时，就需要排查负载高的原因了。70% 不是绝对的，推荐做法是把平均负载监控起来，根据历史数据来判断负载变化趋势，如果负载明显升高，则需要去排查问题。</p>
+        <h4>平均负载和CPU使用率</h4>
+        <p>平均负载和 CPU 使用率变化并不完全一致：</p>
+        <p class="non-row md-indent">· CPU 密集型进程，大量使用 CPU 会导致平均负载升高，此时两者变化是一致的</p>
+        <p class="non-row md-indent">· IO 密集型进程，等待 IO 也会导致平均负载升高，但 CPU 使用率不一定高</p>
+        <p class="non-row md-indent">· 大量等待 CPU 的进程调度也会导致平均负载升高，此时 CPU 使用率也会变高</p>
+        <h3>CPU上下文切换</h3>
+        <p>进程在竞争 CPU 时并没有真正的运行，为什么还会导致系统负载升高？可能的原因之一是CPU 上下文切换，根据一些测试报告，CPU 进行一次上下文切换需要消耗几十纳秒到几微秒的 CPU 时间，如果上下文切换比较多的情况下，CPU 将会花费大量时间用于切换上下文，缩短了真正运行进程的时间，这是导致负载升高的一个重要因素。</p>
+        <p>CPU 在进行上下文切换时，CPU 的主要工作是保存当前任务的 CPU 寄存器和程序计数器，然后加载下一个任务的 CPU 寄存器和程序计数器。根据不同的场景，CPU 上下文切换可分为进程上下文切换、线程上下文切换和中断上下文切换。</p>
+        <h4>查询CPU上下文切换</h4>
+        <p>使用 vmstat 命令查看 CPU 上下文切换和中断的数据</p>
+        <pre style="margin-left: 2em;"><code># 每秒输出一组数据<br>$ vmstat 1<br>procs --memory-- -swap- --io-- -system-- --cpu--<br>r  b   swpd   free   buff  cache   si   so    bi    bo   in   cs us sy id wa st<br>0  0 132448  95884  82524 355236    0    0     1     3   24    4  1  0 99  0  0</code></pre>
+        <p class="non-row md-indent">r（Running or Runnable）是就绪队列的长度。如果该值大于 CPU 核数，则有进程在竞争 CPU。</p>
+        <p class="non-row md-indent">b（Blocked）是处于不可中断状态的进程数</p>
+        <p class="non-row md-indent">cs（context switch）是每秒上下文切换次数</p>
+        <p class="non-row md-indent">in（interrupt）是每秒中断的次数</p>
+        <p>查看进程的上下文切换数据</p>
+        <pre style="margin-left: 2em;"><code>$ pidstat -w -u 1<br>Linux 4.18.0-348.7.1.el8_5.x86_64 (centos)      08/03/2024      _x86_64_        (2 CPU)<br><br>06:12:00 PM   UID    PID   cswch/s nvcswch/s  Command<br>06:12:01 PM     0        11     36.27      0.00  rcu_sched<br>06:12:01 PM     0     24952     10.78      0.00  redis-server<br>06:12:01 PM     0     32128      0.98      0.00  kworker/0:1-events</code></pre>
+        <p>cswch 是自愿上下文切换，是指进程因无法获取所需资源而导致的上下文切换。nvcswch 是非自愿上下文切换，是指进程由于 CPU 时间片到了等原因，被系统强制调度而发生的上下文切换。</p>
+        <p>如果查看进程的上下文切换，发现上下文切换数量不高，那么可以查看线程的上下文切换，使用命令是</p>
+        <pre style="margin-left: 2em;"><code>pidstat -wt 1</code></pre>
+        <p>查看发生了什么类型的中断，</p>
+        <pre style="margin-left: 2em;"><code>watch -d cat /proc/interrupts</code></pre>
+        <h4>上下文切换问题分析</h4>
+        <p>每秒上下文切换的次数和 CPU 的性能有关，一般情况下，上下文切换次数超过一万次，或者切换次数出现数量级增长，系统很可能已经出现了性能问题。</p>
+        <p class="non-row md-indent">· 自愿上下文切换多，说明进程都在等待资源，可能发生了 IO 问题；</p>
+        <p class="non-row md-indent">· 非自愿上下文切换多，说明进程都在被强制调度，也就是进程都在争抢 CPU，CPU 成了瓶颈；</p>
+        <p class="non-row md-indent">· 中断次数多了，说明 CPU 主要在处理中断，通过查看 <code>/proc/interrupts</code> 分析具体的中断类型；</p>
+        <h3>CPU使用率</h3>
+        <p>我们常看到的 CPU 使用率是平均 CPU 使用率，是一些工具或命令每隔一段时间获取一次数据，作差后计算出这段时间的平均 CPU 使用率。计算公式：</p>
+        <pre style="margin-left: 2em;"><code>平均CPU使用率 = 1 - (Δ空闲时间 / Δ总CPU时间)</code></pre>
+        <h4>CPU使用率过高</h4>
+        <p>通过 top、ps、pidstat 等工具很容易找到 CPU 使用率高的进程和线程。对于 Java 应用，找到线程的 PID，然后转成 16 进制，再导出 Java 堆栈，然后根据 16 进制从堆栈中找到对应的线程，最后可以定位到是哪个方法占用 CPU。但如果不是 Java 应用呢？</p>
+        <p>使用 perf 工具可以分析 CPU 性能：</p>
+        <pre style="margin-left: 2em;"><code>$ perf top<br>Samples: 8K of event 'cycles', 3000 Hz, Event count (approx.): 728643798 lost: 0/0 drop: 0/0<br>Overhead  Shared Object                              Symbol<br>   2.07%  [kernel]                                   [k] find_get_entry<br>   1.50%  libpython3.11.so.1.0                       [.] _PyEval_EvalFrameDefault<br>   0.96%  perf                                       [.] dso__find_symbol<br>   0.86%  [kernel]                                   [k] __sched_text_star</code></pre>
+        <p>第一行数据是 perf 共采集了 8K 个 CPU 周期，总事件数为 728643798。列表中一共 4 列，分别是：</p>
+        <p class="non-row md-indent">· Overhead：该 Symbol 事件在所有采样中的比例</p>
+        <p class="non-row md-indent">· Shared：该函数或者指令所在的动态共享对象，如内核、进程名、动态链接库名、内核模块名 等</p>
+        <p class="non-row md-indent">· Object：动态共享对象的类型，[.] 表示用户空间的可执行程序或者动态链接库，[k] 表示内核空间</p>
+        <p class="non-row md-indent">· Symbol：函数名，当函数名未知时，用 16 进制的地址来表示</p>
+        <p>如果需要显示函数调用关系，那么需要执行这个命令 <code>perf top -g -p pid</code>，然后按方向键选择查看对应函数的调用关系。例如：执行如下 python 代码：</p>
+        <pre style="margin-left: 2em;"><code>result = 1<br>while True:<br>    result *= 11</code></pre>
+        <p>通过 <code>perf top -g -p pid</code> 命令查看的结果如下图，mul 函数的 CPU 使用率最高，和代码里存在的问题是一样的。</p>
+        <img src="/img/note/perf/perf_mul.jpg" alt="perf_mul.jpg" loading="lazy" />
+        <h4>相关命令</h4>
+        <p>mpstat：CPU 性能分析工具，实时查看每个 CPU 的性能指标，以及所有 CPU 的平均指标。</p>
+        <p>pidstat：进程性能分析工具，实时查看进程的 CPU、内存、IO、上下文切换等性能指标。</p>
+        <h2>总结</h2>
+        <img src="/img/note//perf/summary.jpg" alt="summary.jpg" loading="lazy" />
+        <hr style="margin-top: 3em;">
+        <div class="article-footer fs14"></div>
+      </article>
+      <footer class="page-footer footnote"><hr></footer>
+      <div class="main-mask" onclick="sidebar.dismiss()"></div>
+    </div>
+    <aside class="l_right"></aside>
+  </div>
+</body>
+<script type="module">
+  import { createLeft, createFootNote, createMobileHeader, createDonate, createRight, createFloatPanel } from '/js/template.js';
+  document.getElementsByClassName('l_left')[0].appendChild(createLeft());
+  document.getElementsByClassName('header mobile-only')[0].appendChild(createMobileHeader());
+  document.getElementsByClassName('article-footer fs14')[0].appendChild(createDonate());
+  document.getElementsByClassName('page-footer footnote')[0].appendChild(createFootNote());
+  document.getElementsByClassName('l_right')[0].appendChild(createRight());
+  document.getElementById('start').appendChild(createFloatPanel());
+</script>
+<script type="text/javascript" src="/js/main.js"></script>
+</html>
