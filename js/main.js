@@ -236,7 +236,6 @@ if (isArticle === 0) {
 } else {
   document.addEventListener('DOMContentLoaded', function() {
     const headers = document.querySelectorAll('h2, h3, h4, h5, h6');
-    headers.forEach(ele => {ele.id = ele.textContent;})
     const toc = document.getElementsByClassName('l_right')[0].getElementsByClassName('widget-body')[0];
     const ul = document.createElement('ol');
     ul.classList.add('toc');
@@ -245,6 +244,7 @@ if (isArticle === 0) {
     const numbering = [0, 0, 0, 0];
   
     headers.forEach(header => {
+      header.id = header.textContent;
       const level = parseInt(header.tagName[1]) - 1;
       const li = document.createElement('li');
       const a = document.createElement('a');

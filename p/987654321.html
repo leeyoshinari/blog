@@ -18,7 +18,7 @@
     <div class="l_main" id="main">
       <header class="header mobile-only"></header>
       <div class="article banner top"><div class="content"><div class="bottom only-title"><div class="text-area">
-        <h1 class="text title"><span>Linux 性能优化实战</span></h1>
+        <h1 class="text title"><span>Linux 性能分析实战</span></h1>
       </div><div class="publish-date"><span>发布时间：2024-08-03</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>更新时间：2024-08-03</span></div></div></div></div>
       <article class="md-text content">
         <h2>介绍</h2>
@@ -72,9 +72,16 @@
         <h3>CPU使用率</h3>
         <p>我们常看到的 CPU 使用率是平均 CPU 使用率，是一些工具或命令每隔一段时间获取一次数据，作差后计算出这段时间的平均 CPU 使用率。计算公式：</p>
         <pre style="margin-left: 2em;"><code>平均CPU使用率 = 1 - (Δ空闲时间 / Δ总CPU时间)</code></pre>
-        <h4>CPU使用率过高</h4>
-        <p>通过 top、ps、pidstat 等工具很容易找到 CPU 使用率高的进程和线程。对于 Java 应用，找到线程的 PID，然后转成 16 进制，再导出 Java 堆栈，然后根据 16 进制从堆栈中找到对应的线程，最后可以定位到是哪个方法占用 CPU。但如果不是 Java 应用呢？</p>
-        <p>使用 perf 工具可以分析 CPU 性能：</p>
+        <p>常用的查询 CPU 使用率的工具：</p>
+        <p class="non-row md-indent">mpstat：CPU 性能分析工具，实时查看每个 CPU 的性能指标，以及所有 CPU 的平均指标。</p>
+        <p class="non-row md-indent">pidstat：进程性能分析工具，实时查看进程的 CPU、内存、IO、上下文切换等性能指标。</p>
+        <h4>应用CPU使用率过高</h4>
+        <p>通过 top、ps、pidstat 等工具很容易找到 CPU 使用率高的进程和线程。对于 Java 应用，我们一般通过以下步骤定位问题：</p>
+        <p class="non-row md-indent">1、通过 <code>top</code> 命令找到进程 PID，通过 <code>top -Hp PID</code> 命令查看该进程下的线程，找到占用 CPU 的线程 PID；</p>
+        <p class="non-row md-indent">2、将线程 PID 转成 16 进制，<code>printf '%x\n' 线程 PID</code></p>
+        <p class="non-row md-indent">3、分析问题，<code>jstack 进程PID | grep 线程16进制 -A 30</code></p>
+        <p class="non-row md-indent">4、通过堆栈中的信息，可以直接定位到代码中的出现问题的具体位置</p>
+        <p>但如果不是 Java 应用呢？下面是一种通用的方法——使用 perf 工具可以分析 CPU 性能：</p>
         <pre style="margin-left: 2em;"><code>$ perf top<br>Samples: 8K of event 'cycles', 3000 Hz, Event count (approx.): 728643798 lost: 0/0 drop: 0/0<br>Overhead  Shared Object                              Symbol<br>   2.07%  [kernel]                                   [k] find_get_entry<br>   1.50%  libpython3.11.so.1.0                       [.] _PyEval_EvalFrameDefault<br>   0.96%  perf                                       [.] dso__find_symbol<br>   0.86%  [kernel]                                   [k] __sched_text_star</code></pre>
         <p>第一行数据是 perf 共采集了 8K 个 CPU 周期，总事件数为 728643798。列表中一共 4 列，分别是：</p>
         <p class="non-row md-indent">· Overhead：该 Symbol 事件在所有采样中的比例</p>
@@ -85,9 +92,12 @@
         <pre style="margin-left: 2em;"><code>result = 1<br>while True:<br>    result *= 11</code></pre>
         <p>通过 <code>perf top -g -p pid</code> 命令查看的结果如下图，mul 函数的 CPU 使用率最高，和代码里存在的问题是一样的。</p>
         <img src="/img/note/perf/perf_mul.jpg" alt="perf_mul.jpg" loading="lazy" />
-        <h4>相关命令</h4>
-        <p>mpstat：CPU 性能分析工具，实时查看每个 CPU 的性能指标，以及所有 CPU 的平均指标。</p>
-        <p>pidstat：进程性能分析工具，实时查看进程的 CPU、内存、IO、上下文切换等性能指标。</p>
+        <p><span style="font-weight: bold;">若出现无法解释的 CPU 使用率高的情况</span>，那么可以考虑是否存在短时应用，一般有如下 2 中情况：</p>
+        <p class="non-row md-indent">1、应用里直接调用了其他二进制程序，这些程序运行时间短，很难通过 top 命令发现；</p>
+        <p class="non-row md-indent">2、应用本身在不停的崩溃重启，启动过程的资源初始化，可能会占用较多的 CPU；</p>
+        <p>对于这类进程，可以使用 <code>pstree</code> 或者 <code>execsnoop</code> 找到它们的父进程，从父进程入手排查问题。</p>
+        <h3>iowait</h3>
+        <p>一般提到 iowait 升高，首先会想到是磁盘IO，可通过命令 <code>iostat -x -m 1 2</code> 查询服务器所有磁盘的 IO 情况。如果发现磁盘 IO 很高，那么就需要使用 <code>top</code> 命令查看哪些进程处于 D 状态，然后用 <code>pidstat</code> 命令查看进程的 IO 数据。</p>
         <h2>总结</h2>
         <img src="/img/note//perf/summary.jpg" alt="summary.jpg" loading="lazy" />
         <hr style="margin-top: 3em;">
