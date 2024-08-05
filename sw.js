@@ -1,4 +1,4 @@
-const CACHE_NAME = 'sw-10';
+const CACHE_NAME = 'sw-10-1';
 
 const urlsToCache = [
   '/', '/img/donate.jpg'

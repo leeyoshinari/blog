@@ -837,7 +837,7 @@ h6 {
   font-size: var(--fsp);
 }
 .footnote {
-  font-size: calc(var(--fsp) - 0.1rem);
+  font-size: calc(var(--fsp) - 0.2rem);
 }
 .widgets .post-title {
   margin: 0.75rem 0;
@@ -1483,7 +1483,7 @@ div.toast.show {
   box-sizing: border-box;
 }
 .banner .bottom.only-title .publish-date {
-  font-size: calc(var(--fsp) - 0.2rem);
+  font-size: calc(var(--fsp) - 0.3rem);
 }
 .banner .title {
   font-size: 1.5rem;
@@ -2416,7 +2416,7 @@ details.toc[open] >div.body section .header+.doc_tree {
   font-weight: 500;
 }
 .widget-wrapper.post-list .widget-body a {
-  font-size: calc(var(--fsp) - 0.1rem);
+  font-size: calc(var(--fsp) - 0.2rem);
   padding: 8px 16px;
   display: block;
   border-radius: 8px;

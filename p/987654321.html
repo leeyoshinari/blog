@@ -97,7 +97,23 @@
         <p class="non-row md-indent">2、应用本身在不停的崩溃重启，启动过程的资源初始化，可能会占用较多的 CPU；</p>
         <p>对于这类进程，可以使用 <code>pstree</code> 或者 <code>execsnoop</code> 找到它们的父进程，从父进程入手排查问题。</p>
         <h3>iowait</h3>
-        <p>一般提到 iowait 升高，首先会想到是磁盘IO，可通过命令 <code>iostat -x -m 1 2</code> 查询服务器所有磁盘的 IO 情况。如果发现磁盘 IO 很高，那么就需要使用 <code>top</code> 命令查看哪些进程处于 D 状态，然后用 <code>pidstat</code> 命令查看进程的 IO 数据。</p>
+        <p>iowait 高不一定代表 IO 有性能瓶颈。一般提到 iowait 升高，首先会想到是磁盘IO，可通过命令 <code>iostat -x -m 1 2</code> 查询服务器所有磁盘的 IO 情况。如果发现磁盘 IO 很高，那么就需要使用 <code>top</code> 命令查看哪些进程处于 D 状态，然后用 <code>pidstat -d -p pid 1 3</code> 命令查看进程的 IO 数据。</p>
+        <p>一般情况到这里已经可以发现问题了，如果想知道应用到底在执行什么 IO 操作，那就需要查看系统的进程调用，可使用 <code>strace -p pid</code> 命令。</p>
+        <p>如果上面步骤还找不出来问题，那么进程可能已经是僵尸进程了，可通过 <code>top</code> 或者 <code>ps aux |grep pid</code> 命令查看进程的状态。如果出现僵尸进程，需要找到父进程，可通过 <code>pstree -aps pid</code>命令查找，然后在代码里查找子进程结束的处理是否正确。</p>
+        <p>如果还是找不出来问题，那么就需要基于事件记录的动态追踪工具了，还是使用 <code>perf top</code> 命令了。</p>
+        <h3>中断</h3>
+        <h4>中断是什么</h4>
+        <p>Linux 为了解决中断处理程序执行过长和中断丢失问题，将中断处理过程分为两个阶段，分别是上半部和下半部</p>
+        <p class="non-row md-indent">· 上半部用来快速处理中断，它在中断禁止模式下运行，主要处理跟硬件紧密相关的或时间敏感的工作，就是常说的硬中断。</p>
+        <p class="non-row md-indent">· 下半部用来延迟处理上半部未完成的工作，通常以内核线程的方式运行，就是常说的软中断。</p>
+        <p>以网卡接收数据包为例：网卡接收到数据包后，会通过硬件中断的方式通知内核新的数据到了，上半部和下半部分别负责的工作是：</p>
+        <p class="non-row md-indent">· 上半部就是把网卡的数据读到内存，然后更新硬件寄存器的状态（表示数据已读完），最后发送一个软中断的信号，通知下半部做进一步处理。</p>
+        <p class="non-row md-indent">· 下半部被软中断信号唤醒，从内存中读取数据，然后按照网络协议栈，对数据进行逐层解析和处理，直到把数据送到应用程序。</p>
+        <h4>查看中断</h4>
+        <p>查看软中断的运行情况<code>cat /proc/softirqs</code>，查看硬中断的运行情况<code>cat /proc/interrupts</code>。查看软中断的输出结果，可以看到各种类型的软中断在不同 CPU 上的累积运行次数：</p>
+        <pre style="margin-left: 2em;"><code>$ cat /proc/softirqs<br>          CPU0       CPU1<br>HI:          0          0<br>TIMER:   16123954   15249385<br>NET_TX:          1          0<br>NET_RX:    4197945    2727293<br>BLOCK:     174780     162562<br>IRQ_POLL:          0          0<br>TASKLET:      55285      76987<br>SCHED:   24546262   22247964<br>HRTIMER:       3055       1435<br>RCU:   21638913   20773231</code></pre>
+        <p>第一列是软中断类型。正常情况下，同一种类型的软中断在不同的 CPU 上分布是差不多的，除了 TASKLET 软中断，每个 TASKLET 只运行一次就结束，并且只在调用它的函数所在的 CPU 上运行。</p>
+        <p>软中断是以内核线程的方式运行的，可通过 <code>ps aux|grep softirq</code> 命令查看这些线程运行情况。</p>
         <h2>总结</h2>
         <img src="/img/note//perf/summary.jpg" alt="summary.jpg" loading="lazy" />
         <hr style="margin-top: 3em;">
