@@ -86,7 +86,7 @@
         <p>InfluxDB 安装非常简单，可直接按照 <a href="https://www.influxdata.com/downloads/" target="_blank">InfluxDB 官网</a>的步骤安装。安装完成后，用浏览器打开 web 页面，设置 Organization，获取 Token，将 Organization 和 Token 配置在 <code>config.conf</code> 中。（ps：仅支持 InfluxDB2.x 版本，建议安装最新版）</p>
         <h3>MinIO 部署</h3>
         <p>MinIO 安装非常简单，可直接按照 <a href="https://min.io/download?license=agpl&platform=linux" target="_blank">MinIO 官网</a>的步骤安装。安装完成后，用浏览器打开 web 页面，主要配置如下：</p>
-        <img src="/img/PerformanceRunner/minio_config.jpg" alt="" loading="lazy">
+        <img src="/img/PerformanceRunner/minio_config.JPG" alt="" loading="lazy">
         <p>打开 <code>User Policy</code>，配置数据访问策略，如下。然后把 <code>Access Key</code> 和 <code>Secret Key</code> 配置在 <code>config.conf</code> 中。</p>
         <pre><code>{<br>    "Version": "2012-10-17",<br>    "Statement": [<br>    {<br>      "Effect": "Allow",<br>      "Action": [<br>        "s3:*"<br>      ],<br>      "Resource": [<br>        "arn:aws:s3:::*"<br>      ]<br>    }]<br>  }<br>}</code></pre>
         <h3>Nginx 部署</h3>
@@ -116,7 +116,7 @@
         <img src="/img/PerformanceRunner/server_home.jpg" alt="" loading="lazy">
         <h3>远程连接服务器</h3>
         <p>点击 OpenShell 即可打开 Shell 远程连接 Linux，可以同时打开很多个页面，如下:</p>
-        <img src="/img/PerformanceRunner/shell_ternimal.jpg" alt="" loading="lazy">
+        <img src="/img/PerformanceRunner/shell_ternimal.JPG" alt="" loading="lazy">
         <p>为了提供更好的使用体验，提供了 Ctrl+C（复制）和 Ctrl+V（粘贴）快捷键，不仅如此，还仍然保留了 Ctrl+C 快捷键在 shell 中的终止前台进程的功能，而绝大部分主流 shell 工具是不支持这种功能的，老板再也不担心你敲命令慢了。</p>
         <p>在打开的 Shell 中，可以上传文件到服务器，或者下载文件到本地。为了安全，上传和下载的入口也是可以关闭的。</p>
         <ul style="margin-top: 1em;">
@@ -125,7 +125,7 @@
         </ul>
         <h3>自动部署Agent</h3>
         <p>点击 Deploy 会打开新的页面，这个页面可以上传部署包、自动部署和卸载。</p>
-        <img src="/img/PerformanceRunner/shell_deploy.jpg" alt="" loading="lazy">
+        <img src="/img/PerformanceRunner/shell_deploy.JPG" alt="" loading="lazy">
         <p>由于一些部署包区分 Linux 发行版本和 CPU 架构，故需要先准备好对应的部署包，然后上传到平台，通过该平台进行部署。如果部署包不区分 Linux 发行版本和 CPU 架构，上传部署包时可随意选择一种。</p>
         <p>该平台下面的所有 agent 都可以且只能通过该平台自动部署（当前只支持部署 monitor-agent 、jmeter-agent 、java、jmeter）。为了方便部署，所有的 agent 的配置文件已经简化到不能再简化了，一般情况下不需要修改任何配置，所有的配置都从平台自动获取。建议部署顺序：先部署 Java (仅施压机部署且没有部署过)，再部署 JMeter (仅施压机部署)，再部署 monitor-agent 和 jmeter-agent。请往后查看如何打包 monitor-agent 和 jmeter-agent。</p>
         <p>在点击部署/卸载前，请仔细核对当前服务器的 Linux 系统发行版本和 CPU 架构是否和部署包的 Linux 系统发行版本和 CPU 架构一致。</p>
@@ -167,10 +167,10 @@
         </ul>
         <h3>监控首页</h3>
         <p>首页展示了所有已经部署监控的服务器，这里可以概览服务器资源的当前使用情况。这个入口仅管理员可以看到，可分项目组查询。</p>
-        <img src="/img/PerformanceRunner/monitor_home.jpg" alt="" loading="lazy">
+        <img src="/img/PerformanceRunner/monitor_home.JPG" alt="" loading="lazy">
         <h3>监控可视化</h3>
         <p>监控结果可视化，分项目组和机房查看，可选择任意时间段（监控数据保留时长在配置中设置）。</p>
-        <img src="/img/PerformanceRunner/monitor_figure.jpg" alt="" loading="lazy">
+        <img src="/img/PerformanceRunner/monitor_figure.JPG" alt="" loading="lazy">
         <p >主要监控下面数据：</p>
         <ul>
           <li>CPU：CPU 总使用率、iowait 使用率</li>
@@ -184,10 +184,10 @@
         <p>该工具主要用于解析 Nginx 的 access.log，从日志中提取出接口访问数据。如果您使用的不是 Nginx，可自行修改代码和日志格式。如果您不需要采集流量，可在配置文件中关闭该功能。</p>
         <h3>首页概览</h3>
         <p>首页页面展示的信息是根据接口聚合后的结果（过滤掉静态文件的请求），默认按照QPS排序，可选按响应时间、响应体大小、响应错误数量排序；可分别查看压测流量数据和正常流量数据。</p>
-        <img src="/img/PerformanceRunner/nginx_summary.jpg" alt="" loading="lazy">
+        <img src="/img/PerformanceRunner/nginx_summary.JPG" alt="" loading="lazy">
         <h3>单接口流量</h2>
         <p>点击每个接口，可查看该接口的每秒数据变化图，分别是 QPS、平均响应时间、响应体大小和错误数。</p>
-        <img src="/img/PerformanceRunner/nginx_detail.jpg" alt="" loading="lazy">
+        <img src="/img/PerformanceRunner/nginx_detail.JPG" alt="" loading="lazy">
         <h2>性能测试工具</h2>
         <p>现在开源的、最好用的性能测试工具是 JMeter，很多公司的性能测试平台的底层都用的是 JMeter，所以本工具底层也是用 JMeter 实现的，而且原滋原味的保留了 JMeter 的所有功能，让您像在本地使用 JMeter 一样的丝般顺滑，使用体验远超某电商的全链路压测平台。</p>
         <p>该工具具有以下功能：</p>
@@ -209,7 +209,7 @@
         <h3>在页面新增JMeter脚本</h3>
         <h4>添加测试计划</h4>
         <p>在左侧点击 Test Plan，可以查看测试计划，测试计划列表如下：</p>
-        <img src="/img/PerformanceRunner/plan_home.jpg" alt="" loading="lazy">
+        <img src="/img/PerformanceRunner/plan_home.JPG" alt="" loading="lazy">
         <p>Server Room 列可以查看该机房里空闲的施压机数量；</p>
         <p>Action列具有的一些操作：</p>
         <ul>
@@ -220,9 +220,9 @@
           <li>StartTest：开始执行性能测试。如果是手动执行，则会立即开始压测；如果是自动执行，则会生成一个压测任务，等待压测时间开始后自动执行。如果是指定线程数压测，则压测开始后，线程数会直接到目标线程数；如果是指定 TPS 压测，则压测开始后的初始压测流量为目标流量的 30%，等待后续手动/自动调整流量。</li>
         </ul>
         <p>点击 Variables，可以设置全局变量，如下：</p>
-        <img src="/img/PerformanceRunner/plan_variable.jpg" alt="" loading="lazy">
+        <img src="/img/PerformanceRunner/plan_variable.JPG" alt="" loading="lazy">
         <p>点击添加或编辑，出现下面的页面：（如果不清楚每个字段的意思，可点击问号查看提示）</p>
-        <img src="/img/PerformanceRunner/plan_add.jpg" alt="" loading="lazy">
+        <img src="/img/PerformanceRunner/plan_add.JPG" alt="" loading="lazy">
         <ul>
           <li>tearDown：对应 JMeter 中的 测试计划 中的设置 “主线程结束后运行tearDown线程组”；</li>
           <li>Serialize：对应 JMeter 中的 测试计划 中的设置 “独立运行每个线程组（例如在一个组运行结束后启动下一个）”；</li>
@@ -237,7 +237,7 @@
         </ul>
         <h4>添加线程组</h4>
         <p>在左侧点击 Thread Group，可以查看所有的线程组；如果在 Test Plan 中点击 ThreadGroup，可以查看该测试计划下的所有线程组。线程组列表如下：</p>
-        <img src="/img/PerformanceRunner/group_home.jpg" alt="" loading="lazy">
+        <img src="/img/PerformanceRunner/group_home.JPG" alt="" loading="lazy">
         <p>Action列具有的一些操作：</p>
         <ul>
           <li>Enabled/Disabled：禁用/启用，对应JMeter右键菜单里的 禁用/启用 功能；</li>
@@ -246,9 +246,9 @@
           <li>Controller：查看线程组中的所有控制器；</li>
         </ul>
         <p>Cookies 设置页面如下：</p>
-        <img src="/img/PerformanceRunner/group_cookie.jpg" alt="" loading="lazy">
+        <img src="/img/PerformanceRunner/group_cookie.JPG" alt="" loading="lazy">
         <p>点击添加或编辑，出现下面的页面：（如果不清楚每个字段的意思，可点击问号查看提示）</p>
-        <img src="/img/PerformanceRunner/group_add.jpg" alt="" loading="lazy">
+        <img src="/img/PerformanceRunner/group_add.JPG" alt="" loading="lazy">
         <ul>
           <li>Plan ID：将该线程组绑定到指定的测试计划；</li>
           <li>Ramp Time：在这个时间内启动所有的线程，对应 JMeter 线程组中的 “Ramp-Up时间（秒）”；</li>
@@ -265,9 +265,9 @@
         </ul>
         <h4>添加取样器</h4>
         <p>在左侧点击 HTTP Sample，可以查看所有的取样器；如果在 Controller 中点击 HttpSample，可以查看该控制器下的所有取样器。取样器列表如下：</p>
-        <img src="/img/PerformanceRunner/sample_home.jpg" alt="" loading="lazy">
+        <img src="/img/PerformanceRunner/sample_home.JPG" alt="" loading="lazy">
         <p>点击添加或编辑，出现下面的页面：（如果不清楚每个字段的意思，可点击问号查看提示）</p>
-        <img src="/img/PerformanceRunner/sample_add.jpg" alt="" loading="lazy">
+        <img src="/img/PerformanceRunner/sample_add.JPG" alt="" loading="lazy">
         <ul>
           <li>Controller ID：把该取样器绑定到指定的控制器；</li>
           <li>Protocol：协议，可选 HTTP 或 HTTPs；</li>
@@ -286,7 +286,7 @@
         <p >在左侧点击 HTTP Header，可以查看所有的请求头；</p>
         <img src="/img/PerformanceRunner/header_home.jpg" alt="" loading="lazy">
         <p>在设置请求头时，只需要把字段和值填入即可，这里也可以引用变量，引用格式和 JMeter 一样。</p>
-        <img src="/img/PerformanceRunner/header_add.jpg" alt="" loading="lazy">
+        <img src="/img/PerformanceRunner/header_add.JPG" alt="" loading="lazy">
         <p>以上，就完成了在这个工具上手动编写压测脚本。如果已有本地的已经调试好的 JMeter 脚本，且是按照上面说的结构，可以在 Test Plan 页面直接点击 Import Plan 按钮导入进系统中。导入后会对文件进行解析，可能会有少许修改，可以在页面手动核对和修改。</p>
         <h3>上传本地JMeter文件</h3>
         <p>考虑到有些性能测试场景的压测脚本很复杂，例如有 BeanShell 脚本、for/if 等控制语句，但仍想使用压测工具赋予的压测能力，可以把本地调试通过的 JMeter 脚本，连同需要使用的外部文件，打包成 zip 压缩包，然后在 Upload JMeter 页面上传该压缩包，上传成功后就可以使用工具赋予的压测能力了。</p>
@@ -295,7 +295,7 @@
         <p class="non-row md-indent">2、解压后，直接在解压的文件夹中寻找 jmx 格式的 JMeter 脚本，压缩包里必须有且仅有一个 jmx 格式的文件；由于是直接在解压的文件中寻找 jmx 文件，故压缩文件时，选择需要压缩的文件，然后压缩，而不是选择文件夹进行压缩；</p>
         <p class="non-row md-indent">3、经过一系列校验后，压缩包会被上传到文件系统；</p>
         <p class="non-row md-indent">4、生成一条记录，然后可以在页面修改压测参数，和 Test Plan 一样，如下：</p>
-        <img src="/img/PerformanceRunner/upload_home.jpg" alt="" loading="lazy">
+        <img src="/img/PerformanceRunner/upload_home.JPG" alt="" loading="lazy">
         <p>当需要压测的时候，会对 JMeter 文件进行修改，如下：
         <p class="non-row md-indent">1、从文件系统中下载文件，并解压；</p>
         <p class="non-row md-indent">2、如果运行类型设置为指定 TPS 运行，则会往 JMeter 脚本中添加一个吞吐量控制器；如果运行类型设置为指定线程数运行，则会修改 JMeter 脚本中的 Thread Group 的参数；</p>
@@ -307,7 +307,7 @@
         <h4>查看压测详情</h4>
         <p>在压测执行时或压测结束后，可以查看压测详情。
         当开始执行压测后，首先会生成压测所需要的文件，然后传给施压机，施压机会执行压测文件。此时页面会自动跳转到查看压测详情页面，由于压测初始化和产生压测结果需要时间，故需要等待一会儿才会在页面看到数据。</p>
-        <img src="/img/PerformanceRunner/task_detail.jpg" alt="" loading="lazy">
+        <img src="/img/PerformanceRunner/task_detail.JPG" alt="" loading="lazy">
         <p>在压测详情页面可以的操作（页面右上角）：</p><ul>
           <li>Stop：会立即停止压测；</li>
           <li>Change TPS：统一调整所有施压机的 TPS；</li>
