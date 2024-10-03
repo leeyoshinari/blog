@@ -19,7 +19,7 @@
       <header class="header mobile-only"></header>
       <div class="article banner top"><div class="content"><div class="bottom only-title"><div class="text-area">
         <h1 class="text title"><span>Windows 风格的个人网盘</span></h1>
-      </div><div class="publish-date"><span>发布时间: 2024-02-28</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>更新时间: 2024-09-07</span><span class="copy-right">版权</span></div><div class="copyright-content"></div></div></div></div>
+      </div><div class="publish-date"><span>发布时间: 2024-02-28</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>更新时间: 2024-10-03</span><span class="copy-right">版权</span></div><div class="copyright-content"></div></div></div></div>
       <article class="md-text content">
         <h2>写在最前面</h2>
         <p>众所周知，当前使用最广泛的云盘是百度网盘，而百度各种骚操作真让人无法忍受，倍速看视频还要开会员，真是恶心他妈给恶心开门。而号称不限速的阿里云盘也开始限速了，后面可能也和百度一个德行。其实各种体验问题都可以容忍，最无法忍受的是数据安全，我们上传到百度网盘的每一个文件，都已经被备份了 n 份了，尽管有些文件已经被我们删除了，但是这些文件仍然在百度的服务器里，个人隐私极不安全；可能有些人不太清楚，很久之前百度网盘有一个秒传功能，为什么一个几 G 的文件能秒传，那是因为百度的服务器里已经有了一个相同的文件了，你上传的文件其实并不是你的文件，如果你删除了这个文件，其实你也并没有删除这个文件。而且百度还有人工审核（偷窥）用户隐私图片的前科。还有另一个非常严重的问题是自己好不容易收藏的电影，结果变成了 8s 的教育片。</p>
@@ -75,47 +75,65 @@
         <h2>功能介绍</h2>
         <p>系统的核心功能就是一个网盘（和百度网盘的功能类似），还提供了比普通网盘更多的功能 —— 文本等文件的在线编辑功能，且可任意扩展功能。在页面上看到的文件和文件夹的目录层级结构在本地服务器/电脑的磁盘里是真实存在的，即使你以后觉得我这个系统不好用了，我也会给你留下一个完整有序的目录文件，而不是乱序的。</p>
         <h3>登录页面</h3>
-        <img src="/img/Windows/login.jpg" alt="" loading="lazy">
+        <img src="/img/Windows/login.jpg" alt="login.jpg" loading="lazy">
         <p>在登陆页面左上角可以切换语言。登录页面的背景图片的路径是<code>web/img/pictures/undefined/background.jpg</code>，如需修改登录背景图片，可直接替换掉这个图片即可，注意：图片名必须是<code>background.jpg</code>；</p>
         <h3>页面总概览</h3>
         <p>桌面背景图片可以在<code>设置</code>里更换。</p>
-        <img src="/img/Windows/desktop.jpg" alt="">
+        <img src="/img/Windows/desktop.jpg" alt="desktop.jpg" loading="lazy">
         <h3>文件资源管理器</h3>
         <p>上边一排工具栏依次是新建文件、新建文件夹、重命名、移动、复制、上传、下载、分享、删除，这些图标均来源<code>Windows10</code>的系统图标。文件列表可按照名称、创建时间、修改时间排序。文件资源管理器中的所有文件，除了支持在线编辑的文件外，其他格式的文件会直接用浏览器打开，浏览器能打开预览的文件可以直接在浏览器中预览，浏览器不支持预览的文件则直接下载到本地。</p>
         <p>使用文件上传功能上传文件时，会首先检测网盘是否存在相同的文件，如果存在则不上传，这就是类似一些网盘的秒传的功能。</p>
-        <img src="/img/Windows/file.jpg" alt="" loading="lazy">
+        <img src="/img/Windows/file.jpg" alt="file.jpg" loading="lazy">
         <h3>回收站</h3>
         <p>上边一排工具栏依次是还原文件、删除文件、清空回收站，基本上和<code>Windows</code>系统的回收站操作一样。</p>
-        <img src="/img/Windows/garbage.jpg" alt="" loading="lazy">
+        <img src="/img/Windows/garbage.jpg" alt="garbage.jpg" loading="lazy">
         <h3>我的分享</h3>
         <p>当分享文件时，可设置分享链接的打开次数，超过次数会返回 Nginx 默认页面，如果不想限制分享链接的打开次数，可设置打开次数为 0。其中：markdown、表格、文档 和 xmind 分享链接打开后页面虽然可以编辑，但数据不会保存，仅支持导出数据。</p>
         <p>分享功能的常规使用场景是分享文件给别人，还要一个场景就是去打印店打印文档，通过浏览器调用打印机后，刷新页面到指定的次数，这个链接就失效了，有效降低了文档泄漏的风险和使用U盘被病毒感染的风险。</p>
-        <img src="/img/Windows/share.jpg" alt="" loading="lazy">
+        <img src="/img/Windows/share.jpg" alt="share.jpg" loading="lazy">
         <h3>设置</h3>
-        <p>支持修改密码、退出登陆、上传桌面背景图片、设置主题、窗口透明、选择语言、播放本地视频、ssh。其中上传的桌面背景图片的格式必须是<code>jpg</code>。</p>
-        <img src="/img/Windows/setting.jpg" alt="" loading="lazy">
+        <p>设置里包含系统、账号、个性化、多媒体、游戏、终端等多个功能。</p>
+        <h4>系统</h4>
+        <p>可以查看系统资源使用情况和设备相关信息，如下：</p>
+        <img src="/img/Windows/system_about.jpg" alt="system_about.jpg" loading="lazy">
+        <img src="/img/Windows/system_resource.jpg" alt="system_resource.jpg" loading="lazy">
+        <h4>账号</h4>
+        <p>可以修改用户登陆密码和退出登陆。</p>
+        <img src="/img/Windows/setting_user.jpg" alt="setting_user.jpg" loading="lazy">
+        <h4>个性化</h4>
+        <p>可以设置桌面背景图片、切换明暗主题、切换窗口透明度、设置页面语言等，其中上传的桌面背景图片的格式必须是<code>jpg</code>。</p>
+        <img src="/img/Windows/setting_personal.jpg" alt="setting_personal.jpg" loading="lazy">
+        <h4>多媒体</h4>
+        <p>可以播放本地视频，或者打开音乐播放器听歌。</p>
+        <img src="/img/Windows/setting_media.jpg" alt="setting_media.jpg" loading="lazy">
+        <h4>游戏</h4>
+        <p>可以玩一些网页版的小游戏，如：贪吃蛇、俄罗斯方块、套圈圈，更多小游戏会陆续支持。</p>
+        <img src="/img/Windows/setting_game.jpg" alt="setting_game.jpg" loading="lazy">
+        <h4>终端</h4>
+        <p>可以添加服务器用于远程连接 Linux，可以执行 Shell 命令和上传下载文件。</p>
+        <img src="/img/Windows/setting_terminal.jpg" alt="setting_terminal.jpg" loading="lazy">
         <h3>计算器</h3>
         <p>一个很鸡肋的小工具，感觉还不如用 python 命令行计算。</p>
-        <img src="/img/Windows/calc.jpg" alt="" loading="lazy">
+        <img src="/img/Windows/calc.jpg" alt="calc.jpg" loading="lazy">
         <h3>Whiteboard 画板</h3>
         <p>没事的时候可以用鼠标涂鸦画画，放松一下。</p>
-        <img src="/img/Windows/wihteboard.jpg" alt="" loading="lazy">
+        <img src="/img/Windows/wihteboard.jpg" alt="wihteboard.jpg" loading="lazy">
         <h3>浏览器</h3>
         <p>功能简单的浏览器，只支持允许嵌套的网页。经测试，仅支持必应搜索。这里使用的是iframe嵌套的方式，百度和Google搜索不允许 iframe 嵌套，所以用不了；后面可考虑接入后端进行请求转发，解决跨域和嵌套的问题。</p>
-        <img src="/img/Windows/edge.jpg" alt="" loading="lazy">
+        <img src="/img/Windows/edge.jpg" alt="edge.jpg" loading="lazy">
         <h3>连接 Linux</h3>
         <p>在<code>设置</code>里添加服务器，在列表中点击<code>打开</code>即可远程连接 Linux，支持上传和下载文件，支持 <code>Ctrl+C（复制）</code> 和 <code>Ctrl+V（粘贴）</code> 快捷键，同时 <code>Ctrl+C</code> 还保留结束当前进程的功能。为节省服务器资源，对“挂机”超过10分钟的连接进行关闭。</p>
-        <img src="/img/Windows/shell1.jpg" alt="" loading="lazy">
-        <img src="/img/Windows/shell2.jpg" alt="" loading="lazy">
+        <img src="/img/Windows/setting_terminal.jpg" alt="setting_terminal.jpg" loading="lazy">
+        <img src="/img/Windows/shell2.jpg" alt="shell2.jpg" loading="lazy">
         <h3>播放本地视频</h3>
         <p>播放本地视频不使用流量，支持记录播放进度；做这个功能的原因是：我的手机上没有安装视频软件，只能用相册自带的功能看视频，但是它记不住播放进度，每次手误碰退出视频，就得重新看，贼麻烦。所以这个功能就是用来记录视频播放进度的。</p>
-        <img src="/img/Windows/playVideo.jpg" alt="" loading="lazy">
+        <img src="/img/Windows/setting_media.jpg" alt="setting_media.jpg" loading="lazy">
         <h3>音乐播放器</h3>
         <p>音乐播放器只支持 <code>mp3</code> 格式的歌曲和 <code>.lrc</code> 格式的歌词，如果要展示歌词，需要歌曲名和歌词名一样。只有当一首歌播放进度超过 <code>30%</code> 时，才会被添加到播放历史中；歌曲被添加到历史记录中时，播放次数就会 <code>+1</code>。</p>
         <p>打开音乐播放器的方式和在 windows 上使用一样：</p>
         <p>1、点击桌面音乐播放器的图标，进入音乐播放器界面，然后导入音乐；</p>
         <p>2、进入文件资源管理器，找到<code>mp3</code>格式的歌曲，双击打开即可播放刚打开的歌曲；</p>
-        <img src="/img/Windows/music.jpg" alt="" loading="lazy">
+        <img src="/img/Windows/music.jpg" alt="music.jpg" loading="lazy">
         <h3>Python 命令行</h3>
         <p>支持 python 命令行，支持导入 python 官方库，可以用来做一些简单的计算，或者处理一些简单的数据。</p>
         <img src="/img/Windows/python.jpg" alt="" loading="lazy">
@@ -125,8 +143,8 @@
         <img src="/img/Windows/download-new.jpg" alt="download-new.jpg" loading="lazy">
         <p>如需查看当前正在下载的任务，点击 <code>下载列表</code> 即可。点击<code>暂停</code>可以暂停下载任务，点击<code>取消</code>可以取消下载，下载完成后，即可在目录里看到下载的文件。</p>
         <img src="/img/Windows/download-list.jpg" alt="download-list.jpg" loading="lazy">
-        <h3>游戏中心</h3>
-        <p>增加了游戏中心，现支持贪吃蛇（支持方向键控制）、俄罗斯方块（支持方向键控制）、套圈圈游戏，后续会陆续支持其他网页版的小游戏</p>
+        <h3>游戏</h3>
+        <p>在设置里增加了网页版游戏，现支持贪吃蛇（支持方向键控制）、俄罗斯方块（支持方向键控制）、套圈圈游戏，后续会陆续支持其他网页版的小游戏</p>
         <img src="/img/Windows/snake.jpg" alt="snake.jpg" loading="lazy">
         <img src="/img/Windows/rings.png" alt="rings.png" loading="lazy">
         <h3>多语言设置</h3>
