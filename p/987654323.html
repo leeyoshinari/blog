@@ -19,7 +19,7 @@
       <header class="header mobile-only"></header>
       <div class="article banner top"><div class="content"><div class="bottom only-title"><div class="text-area">
         <h1 class="text title"><span>自建家庭 KTV</span></h1>
-      </div><div class="publish-date"><span>发布时间: 2024-10-20</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>更新时间: 2024-10-20</span><span class="copy-right">版权</span></div><div class="copyright-content"></div></div></div></div>
+      </div><div class="publish-date"><span>发布时间: 2024-10-20</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>更新时间: 2024-10-22</span><span class="copy-right">版权</span></div><div class="copyright-content"></div></div></div></div>
       <article class="md-text content">
         <p>现在用户最多、曲库最多的 K 歌软件是全民K歌，基本上想唱的歌都有，而且基本上每首歌都有 MV 或视频，使用体验也还不错，但是收费太贵了，对于一个月唱不了几次的打工人来说，唱一首歌就是“天价”。那是不是可以选择其他 K 歌软件呢？</p>
         <p>比如唱吧，曲库是真的有限，很多歌都没有，有些歌也不是原唱，大部分歌没有 MV，就一张默认的背景图片，恕我直言：没有 MV 的 K 歌软件就是垃圾。至于更多的其他 K 歌软件，真是一个比一个垃圾，也就三六十万的曲库也敢号称海量，可能是梁静茹给它们的勇气吧。</p>
@@ -82,7 +82,7 @@
         <img src="/img/karaoke/client.jpg" alt="client.jpg" loading="lazy" />
         <p>说实话，这个页面样式就是参考全民K歌的手机点歌页面，展示了当前正在唱的歌和下一首歌、切歌、原唱/伴奏切换、音量调整、开始/暂停、重唱、各种互动音效等，可以点歌，也可以查看已点歌曲列表，总之这个页面的功能基本上满足 K 歌需求。</p>
         <h2>多对多控制</h2>
-        <p>理论上，播放歌曲视频的页面可以打开任意多个，手机控制页面也可以打开任意多个，基于 SSE(Server-Send Event) 实现这种多对多的关系。切歌、调整音量、原唱/伴奏切换等操作会实时同步到每一个客户端，每个客户端的数据和 K 歌状态展示完全一致。为什么不用 WebSocket？因为 SSE 从来没用过，想学习学习。</p>
+        <p>理论上，播放歌曲视频的页面可以打开任意多个，手机控制页面也可以打开任意多个，基于 SSE(Server-Send Events) 实现这种多对多的关系。切歌、调整音量、原唱/伴奏切换等操作会实时同步到每一个客户端，每个客户端的数据和 K 歌状态展示完全一致。为什么不用 WebSocket？因为 SSE 从来没用过，想学习学习。</p>
         <h2>本地部署</h2>
         <h3>安装 FFmpeg</h3>
         <p>FFmpeg 是最受欢迎的音视频和图像处理工具，很多很出名的软件的底层都用的是 FFmpeg。本系统对音视频的处理也用的是 FFmpeg，故首先电脑需要安装 FFmpeg。</p>
