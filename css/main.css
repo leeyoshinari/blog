@@ -1476,7 +1476,6 @@ div.toast.show {
   height: 48px;
 }
 .banner .bottom {
-  /* display: flex; */
   padding: 1rem;
   width: 100%;
   box-sizing: border-box;
@@ -2174,6 +2173,9 @@ details.toc[open] >div.body section .header+.doc_tree {
   align-items: center;
   overflow: hidden;
   min-height: 48px;
+  background-image: url('/img/notbug.gif');
+  background-repeat: no-repeat;
+  background-position: right;
 }
 .logo-wrap img.avatar {
   object-fit: cover;

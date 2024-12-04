@@ -19,7 +19,7 @@
       <header class="header mobile-only"></header>
       <div class="article banner top"><div class="content"><div class="bottom only-title"><div class="text-area">
         <h1 class="text title"><span>Windows 风格的个人网盘</span></h1>
-      </div><div class="publish-date"><span>发布时间: 2024-02-28</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>更新时间: 2024-11-19</span><span class="copy-right">版权</span></div><div class="copyright-content"></div></div></div></div>
+      </div><div class="publish-date"><span>发布时间: 2024-02-28</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>更新时间: 2024-12-03</span><span class="copy-right">版权</span></div><div class="copyright-content"></div></div></div></div>
       <article class="md-text content">
         <h2>写在最前面</h2>
         <p>众所周知，当前使用最广泛的云盘是百度网盘，而百度各种骚操作真让人无法忍受，倍速看视频还要开会员，真是恶心他妈给恶心开门。而号称不限速的阿里云盘也开始限速了，后面可能也和百度一个德行。其实各种体验问题都可以容忍，最无法忍受的是数据安全，我们上传到百度网盘的每一个文件，都已经被备份了 n 份了，尽管有些文件已经被我们删除了，但是这些文件仍然在百度的服务器里，个人隐私极不安全；可能有些人不太清楚，很久之前百度网盘有一个秒传功能，为什么一个几 G 的文件能秒传，那是因为百度的服务器里已经有了一个相同的文件了，你上传的文件其实并不是你的文件，如果你删除了这个文件，其实你也并没有删除这个文件。而且百度还有人工审核（偷窥）用户隐私图片的前科。还有另一个非常严重的问题是自己好不容易收藏的电影，结果变成了 8s 的教育片。</p>
@@ -39,7 +39,7 @@
             <li>支持远程连接 Linux 服务器</li>
             <li>音乐播放器，支持播放云盘（服务端）和本地（客户端）的音乐</li>
             <li>支持 Karaoke，自建曲库，在家想唱就唱</li>
-            <li>集成 aria2，支持 HTTP、FTP 等多种下载协议</li>
+            <li>集成 aria2，支持 HTTP、FTP、BT等多种下载协议</li>
             <li>增加游戏中心，支持贪吃蛇、俄罗斯方块、套圈圈游戏（会陆续支持更多小游戏） —— 开源支持</li>
             <li>支持多语言，支持配置多语言 —— 开源支持</li>
             <li>单点登录，不同用户的数据完全隔离 —— 开源支持</li>
@@ -76,6 +76,7 @@
         <p>10、访问页面，url 是 <code>http://IP:Port/Windows</code>（这里的 IP 和 端口是 Nginx 中设置的 IP 和 端口。Windows 就是第 6 步中的前端配置的 location）</p>
         <p>11、如果想把当前服务器上已有的文件导入系统中，可访问后台 swagger-ui 接口页面，找到 <code>file/import</code> 接口，请求参数分别是需要导入的文件夹的绝对路径和目标的目录Id。</p>
         <p>12、如果你需要使用 Karaoke 的功能自建曲库，那么还需要安装 FFmpeg，具体配置流程可参考<a href="/p/987654323.html" target="_blank">《自建家庭 KTV》中的安装 FFmpeg </a>的部分。</p>
+        <p>13、如果你需要下载 m3u8 文件并合成视频，那么你也需要使用 FFmpeg。</p>
         <h2>功能介绍</h2>
         <p>系统的核心功能就是一个网盘（和百度网盘的功能类似），还提供了比普通网盘更多的功能 —— 文本等文件的在线编辑功能，且可任意扩展功能。在页面上看到的文件和文件夹的目录层级结构在本地服务器/电脑的磁盘里是真实存在的，即使你以后觉得我这个系统不好用了，我也会给你留下一个完整有序的目录文件，而不是乱序的。最终目标是把它做成一个“操作系统”。</p>
         <h3>登录页面</h3>
@@ -87,7 +88,7 @@
         <h3>设置</h3>
         <p>设置里包含系统、账号、个性化、多媒体、游戏、终端等多个功能。</p>
         <h4>系统</h4>
-        <p>可以查看系统资源使用情况、设备相关信息、备份文件、查看教程，如下：</p>
+        <p>可以查看系统资源使用情况、设备相关信息、备份文件、清理临时文件、查看教程，如下：</p>
         <img src="/img/Windows/system_about.jpg" alt="system_about.jpg" loading="lazy">
         <img src="/img/Windows/system_resource.jpg" alt="system_resource.jpg" loading="lazy">
         <h4>账号</h4>
@@ -126,6 +127,9 @@
         <p>网盘支持备份指定文件夹中的所有数据，为什么要指定文件夹而不是默认备份所有文件呢？因为，如果数据全部备份，那么就需要两块很大的磁盘，这不是浪费吗。我们存在磁盘中的文件，很多并不是重要的文件，没必要为了不重要的文件而占用过多的存储资源，因此，只需要将你认为重要的文件夹进行备份就可以了。如果你是土豪，就想备份所有文件，那么请把根目录下的文件夹全部设置成自动备份。</p>
         <p>在需要备份的文件夹上右键，点击<code>开启自动备份</code>，然后每天（可设置每天、每两天、每 n 天...）凌晨 5:20 开始自动备份文件，如果你删除了文件，自动备份时，也会同步删除备份的文件。在文件夹上右键，点击<code>取消自动备份</code>，那么则不会再自动备份了，但是已经备份的文件不会被自动删除，需要手动去删除。</p>
         <p>当然了，也可以手动立即开始备份数据。在<code>设置->系统</code>里，点击<code>备份文件</code>，即可立即开始备份，同时可以看到所有开启了自动备份的文件夹，在列表中可以打开文件夹所在位置和取消自动备份。</p>
+        <h3>清理临时文件</h3>
+        <p>临时文件是一些功能的中间过程产生的文件，主要有以下功能会读写临时文件：xmind 文件读取和导出、OnlyOffice文件保存、SSH 上传文件、Karaoke 的音视频格式转换、aria2c 下载临时存储。因此，需要有自动和手动的方式清理临时文件。</p>
+        <p>自动清理临时文件的任务是每天凌晨 5:20 运行，清理文件时，会先获取文件的修改时间，如果最近 30 分钟文件被修改过，则不会清理，这就避免了清理掉正在使用的文件了。也可以在设置里手动清理临时文件，这里会清理掉所有的临时文件，正常情况下尽量不要手动清理，可能网盘正在读取/写入临时文件，然后就被你手动清理掉了，就会影响功能。</p>
         <h3>计算器</h3>
         <p>一个很鸡肋的小工具，感觉还不如用 python 命令行计算。</p>
         <img src="/img/Windows/calc.jpg" alt="calc.jpg" loading="lazy">
@@ -151,11 +155,15 @@
         <h3>Python 命令行</h3>
         <p>支持 python 命令行，支持导入 python 官方库，可以用来做一些简单的计算，或者处理一些简单的数据。</p>
         <img src="/img/Windows/python.jpg" alt="python.jpg" loading="lazy">
-        <h3>aria2c 下载工具</h3>
-        <p>aria2 是一个轻量级的多协议命令行下载工具，支持 HTTP、FTP 等多种协议，支持多连接下载和断点续传。</p>
-        <p>进入需要下载文件的目录，然后点击 <code>新建文件 -> 新建下载任务</code>，在输入框中填入下载的 URL 即可，如果需要 cookie 才能下载，则需要填入 cookie，否则可以不填 cookie。</p>
+        <h3>下载工具</h3>
+        <p>aria2 是一个轻量级的多协议命令行下载工具，支持 HTTP、FTP、BT 等多种协议，支持多连接下载和断点续传。</p>
+        <p>进入需要下载文件的目录，然后点击 <code>新建文件 -> 新建下载任务</code>，在输入框中填入下载的 URL 或者 magnet 种子链接即可，如果需要 cookie 才能下载，则需要填入 cookie，否则可以不填 cookie。如果你已经有了 torrent 格式的种子文件，那么先把种子文件上传至网盘，然后双击即可。</p>
         <img src="/img/Windows/download-new.jpg" alt="download-new.jpg" loading="lazy">
-        <p>如需查看当前正在下载的任务，点击 <code>下载列表</code> 即可。点击<code>暂停</code>可以暂停下载任务，点击<code>取消</code>可以取消下载，下载完成后，即可在目录里看到下载的文件。</p>
+        <p>下载 BT 种子文件时，会去先获取可用的 tracker 列表，默认使用的是<a href="https://raw.githubusercontent.com/ngosang/trackerslist/refs/heads/master/trackers_all_ip.txt" target="_blank">这个地址</a>，但是这个地址国内大部分时间是无法访问的，可以使用以下两个地址替换：<a href="https://cdn.jsdelivr.net/gh/XIU2/TrackersListCollection@master/all.txt" target="_blank">地址1</a>、<a href="https://trackerslist.com/all_aria2.txt" target="_blank">地址2</a>。然后会自动解析 BT 种子文件，如下图，请选择文件进行下载（一次只能选一个）。</p>
+        <img src="/img/Windows/bt.jpg" alt="bt.jpg" loading="lazy">
+        <p>m3u8 是一种广泛用在互联网视频和音频流的文件格式，m3u8 文件通常用于定义多媒体播放列表（内容如下），很多视频网站播放视频用的就是 m3u8 格式。如需下载 m3u8 格式的视频流，可直接 <code>新建下载任务</code> 并将 m3u8 文件的链接粘贴进来，就会下载视频流并自动合并成 mp4 视频。</p>
+        <pre><code>#EXTM3U<br>#EXT-X-VERSION:3<br>#EXT-X-TARGETDURATION:19<br>#EXT-X-PLAYLIST-TYPE:VOD<br>#EXT-X-MEDIA-SEQUENCE:0<br>#EXT-X-KEY:METHOD=AES-128,URI="/G1131016/500kb/hls/key.key"<br>#EXTINF:10.36,<br>/G1131016/500kb/hls/Lf3Ryo8k.js<br>#EXTINF:9.92,<br>/G1131016/500kb/hls/yGTGe1Pc.js<br>......</code></pre>
+        <p>如需查看当前正在下载的任务，点击 <code>下载列表</code> 即可。点击<code>暂停</code>可以暂停下载任务，点击<code>取消</code>可以取消下载，下载完成后，即可在目录里看到下载的文件。注意：m3u8 文件下载无法在列表中查看。</p>
         <img src="/img/Windows/download-list.jpg" alt="download-list.jpg" loading="lazy">
         <h3>Karaoke(卡拉OK)</h3>
         <p>自建曲库，可以从网上下载自己喜欢的 MV 或者歌曲视频，经过一系列处理后就可以用来 K 歌了，任何互联网上能找到的歌曲，都可以进入你的曲库，再也不用担心曲库里没有你想唱的歌。具体介绍详见<a href="/p/987654323.html">自建家庭 KTV</a>。</p>
