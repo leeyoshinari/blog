@@ -58,6 +58,7 @@
         <p>8、处理所有静态文件；</p>
         <pre><code>python3 manage.py collectstatic --noinput</code></pre>
         <p>9、处理多语言；</p>
+        <p>处理多语言需要安装 gettext，不同操作系统安装 gettext 的方法可以从网上查找。gettext 安装完成后，就可以执行下面命令了：</p>
         <pre><code>python3 manage.py compilemessages</code></pre>
         <p>如果你手动修改了多语言翻译，那么需要执行上面命令让多语言生效。如果你需要从代码中重新收集多语言信息，那么需要执行下面命令：</p>
         <pre><code>python3 manage.py makemessages -l zh_Hans<br>python3 manage.py makemessages -l en<br>python3 manage.py makemessages -d djangojs -l zh_Hans<br>python3 manage.py makemessages -d djangojs -l en</code></pre>
