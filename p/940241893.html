@@ -8,9 +8,9 @@
   <title>白瑜的博客</title>
   <link rel="stylesheet" href="/css/main.css">
   <link rel="shortcut icon" href="/img/favicon.ico">
-  <script src="/js/jquery.min.js"></script>
+  <script type="text/javascript" src="/js/jquery.min.js"></script>
   <link rel="stylesheet" href="/css/viewer.min.css">
-  <script src="/js/viewer.min.js"></script>
+  <script type="text/javascript" src="/js/viewer.min.js"></script>
 </head>
 <body>
   <div class="l_body s:aa content tech" id="start" layout="post" >
@@ -63,6 +63,7 @@
     </div>
     <aside class="l_right"></aside>
   </div>
+  <div id="spig" class="spig"><div id="message">……</div><div id="mumu" class="mumu"></div></div>
 </body>
 <script type="module">
   import { createLeft, createFootNote, createMobileHeader, createDonate, createRight, createFloatPanel } from '/js/template.js';
@@ -74,4 +75,5 @@
   document.getElementById('start').appendChild(createFloatPanel());
 </script>
 <script type="text/javascript" src="/js/main.js"></script>
+<script type="text/javascript" src="/js/spig.js"></script>
 </html>

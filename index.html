@@ -18,8 +18,9 @@
   </script>
   <title>白瑜的博客</title>
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="manifest" href="/js/manifest.json"></link>
+  <link rel="manifest" href="/js/manifest.json">
   <link rel="shortcut icon" href="/img/favicon.ico">
+  <script type="text/javascript" src="/js/jquery.min.js"></script>
 </head>
 <body>
   <div class="l_body s:aa index tech" id="start" layout>
@@ -127,6 +128,7 @@
     </div>
     <aside class="l_right"></aside>
   </div>
+  <div id="spig" class="spig"><div id="message">……</div><div id="mumu" class="mumu"></div></div>
 </body>
 <script type="module">
   import { createLeft, createFootNote, createMobileHeader, createDefaultRight, createFloatPanel } from '/js/template.js';
@@ -141,4 +143,5 @@
   document.getElementsByClassName('l_right')[0].appendChild(hitokoto);
 </script>
 <script type="text/javascript" src="/js/main.js"></script>
+<script type="text/javascript" src="/js/spig.js"></script>
 </html>
