@@ -6,15 +6,15 @@
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <script>
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js').then(registration => {
-          console.log('SW registered: ', registration);
-        }).catch(registrationError => {
-          console.log('SW registration failed: ', registrationError);
-        });
-      });
-    }
+    // if ('serviceWorker' in navigator) {
+    //   window.addEventListener('load', () => {
+    //     navigator.serviceWorker.register('/sw.js').then(registration => {
+    //       console.log('SW registered: ', registration);
+    //     }).catch(registrationError => {
+    //       console.log('SW registration failed: ', registrationError);
+    //     });
+    //   });
+    // }
   </script>
   <title>白瑜的博客</title>
   <link rel="stylesheet" href="/css/main.css">
@@ -29,7 +29,7 @@
       <header class="header mobile-only"></header>
       <div class="navbar top">
         <nav class="post">
-          <a class="active" href="/">最近</a><a href="/p/archives.html">归档</a>
+          <a class="active" href="/">最近</a><a href="/p/document.html">文档</a><a href="/p/archives.html">归档</a>
         </nav>
       </div>
       <div class="post-list post">
@@ -40,7 +40,7 @@
               <p>自建K歌曲库，在家就可以无限制的想K就K</p>
             </div>
             <div class="meta cap">
-              <span class="cap" id="post-meta"><img src="/img/post-date.svg" alt=""><time datetime="2024-10-20T22:20:00.000Z">2024-10-20</time></span>
+              <span class="cap post-meta"><img src="/img/post-date.svg" alt=""><time datetime="2024-10-20T22:20:00.000Z">2024-10-20</time></span>
             </div>
           </article>
         </a>
@@ -51,7 +51,7 @@
               <p>详细介绍本博客的搭建步骤</p>
             </div>
             <div class="meta cap">
-              <span class="cap" id="post-meta"><img src="/img/post-date.svg" alt="" /><time datetime="2024-07-31T09:00:00.000Z">2024-07-31</time></span>
+              <span class="cap post-meta"><img src="/img/post-date.svg" alt="" /><time datetime="2024-07-31T09:00:00.000Z">2024-07-31</time></span>
             </div>
           </article>
         </a>
@@ -62,7 +62,7 @@
               <p>主要包括服务器管理、服务器资源监控、性能测试等功能，支持分布式压测，支持自动化压测</p>
             </div>
             <div class="meta cap">
-              <span class="cap" id="post-meta"><img src="/img/post-date.svg" alt="" /><time datetime="2024-07-20T20:30:00.000Z">2024-07-20</time></span>
+              <span class="cap post-meta"><img src="/img/post-date.svg" alt="" /><time datetime="2024-07-20T20:30:00.000Z">2024-07-20</time></span>
             </div>
           </article>
         </a>
@@ -73,7 +73,7 @@
               <p>买东西前先领取优惠券，既省钱又可以拿佣金</p>
             </div>
             <div class="meta cap">
-              <span class="cap" id="post-meta"><img src="/img/post-date.svg" alt="" /><time datetime="2024-06-08T20:20:00.000Z">2024-06-08</time></span>
+              <span class="cap post-meta"><img src="/img/post-date.svg" alt="" /><time datetime="2024-06-08T20:20:00.000Z">2024-06-08</time></span>
             </div>
           </article>
         </a>
@@ -84,7 +84,7 @@
               <p>将 AIGC 的文本生成能力集成进 OnlyOffice 中，提高办公效率</p>
             </div>
             <div class="meta cap">
-              <span class="cap" id="post-meta"><img src="/img/post-date.svg" alt="" /><time datetime="2024-05-25T17:25:00.000Z">2024-05-25</time></span>
+              <span class="cap post-meta"><img src="/img/post-date.svg" alt="" /><time datetime="2024-05-25T17:25:00.000Z">2024-05-25</time></span>
               <!--span class="cap breadcrumb"><img src="img/post-category.svg" alt="" /><span>读书笔记</span></span-->
             </div>
           </article>
@@ -96,7 +96,7 @@
               <p>除了支持和商业网盘一样的功能外，还支持在线编辑和 OnlyOffice 多人协作，以及更多好玩的功能</p>
             </div>
             <div class="meta cap">
-              <span class="cap" id="post-meta"><img src="/img/post-date.svg" alt=""><time datetime="2024-02-08T20:30:00.000Z">2024-02-08</time></span>
+              <span class="cap post-meta"><img src="/img/post-date.svg" alt=""><time datetime="2024-02-08T20:30:00.000Z">2024-02-08</time></span>
             </div>
           </article>
         </a>
@@ -107,7 +107,7 @@
               <p>晚上睡觉时自动控制空调开和关，即省电，又不冷也不热</p>
             </div>
             <div class="meta cap">
-              <span class="cap" id="post-meta"><img src="/img/post-date.svg" alt=""><time datetime="2023-07-09T21:21:00.000Z">2023-07-09</time></span>
+              <span class="cap post-meta"><img src="/img/post-date.svg" alt=""><time datetime="2023-07-09T21:21:00.000Z">2023-07-09</time></span>
             </div>
           </article>
         </a>
@@ -118,7 +118,7 @@
               <p>实时监控 Linux 服务器的 CPU、内存、磁盘、网络、TCP连接等数据，并在页面可视化展示</p>
             </div>
             <div class="meta cap">
-              <span class="cap" id="post-meta"><img src="/img/post-date.svg" alt=""><time datetime="2023-05-04T13:14:00.000Z">2023-05-04</time></span>
+              <span class="cap post-meta"><img src="/img/post-date.svg" alt=""><time datetime="2023-05-04T13:14:00.000Z">2023-05-04</time></span>
             </div>
           </article>
         </a>

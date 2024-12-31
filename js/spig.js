@@ -23,7 +23,7 @@ jQuery(document).ready(function ($) {
     } else if (now > 22 && now <= 23) {
         showMessage('夜深了，不要熬夜！', 6000);
     } else {
-        showMessage('哇！吓你一跳！', 6000);
+        showMessage('哇！是不是吓了你一跳！', 6000);
     }
     $(".spig").animate({
         top: $(".spig").offset().top + 300,
@@ -61,10 +61,10 @@ jQuery(document).ready(function ($) {
     $(".mumu").click(function () {
         stat_click++;
         if (stat_click > 4) {
-            msgs = ["你有完没完呀？", "你已经摸我" + stat_click + "次了", "非礼呀！救命！", "你摸疼我了~", "哼！不理你了！", "略略略，抓不到我~", "求求你了，放过我吧！", "哼，我可不是好惹的！", "我害羞啦！", "我在这儿呢！"];
+            msgs = ["你有完没完呀？", "你已经摸我" + stat_click + "次了", "非礼呀！救命！", "你摸疼我了~", "哼！不理你了！", "略略略，抓不到我~", "求求你了，放过我吧！", "哼，我可不是好惹的！"];
             i = Math.floor(Math.random() * msgs.length);
         } else {
-            msgs = ["我跑呀跑呀跑！~~", "别摸我，我害羞啦！", "惹不起你，我还躲不起么？", "戳我干嘛！", "别碰我啦！", "走开走开！", "猜我在哪？"];
+            msgs = ["我跑呀跑呀跑！~~", "惹不起你，我还躲不起么？", "烦死了，别碰我啦！", "走开走开！"];
             i = Math.floor(Math.random() * msgs.length);
         }
         let leftx = Math.min(Math.floor(Math.random() * (document.body.offsetWidth - 115)), document.body.offsetWidth - 115);

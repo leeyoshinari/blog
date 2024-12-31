@@ -19,7 +19,7 @@
       <header class="header mobile-only"></header>
       <div class="article banner top"><div class="content"><div class="bottom only-title"><div class="text-area">
         <h1 class="text title"><span>Windows 风格的个人网盘</span></h1>
-      </div><div class="publish-date"><span>发布时间: 2024-02-28</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>更新时间: 2024-12-03</span><span class="copy-right">版权</span></div><div class="copyright-content"></div></div></div></div>
+      </div><div class="publish-date"><span>发布时间: 2024-02-28</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>更新时间: 2024-12-31</span><span class="copy-right">版权</span></div><div class="copyright-content"></div></div></div></div>
       <article class="md-text content">
         <h2>写在最前面</h2>
         <p>众所周知，当前使用最广泛的云盘是百度网盘，而百度各种骚操作真让人无法忍受，倍速看视频还要开会员，真是恶心他妈给恶心开门。而号称不限速的阿里云盘也开始限速了，后面可能也和百度一个德行。其实各种体验问题都可以容忍，最无法忍受的是数据安全，我们上传到百度网盘的每一个文件，都已经被备份了 n 份了，尽管有些文件已经被我们删除了，但是这些文件仍然在百度的服务器里，个人隐私极不安全；可能有些人不太清楚，很久之前百度网盘有一个秒传功能，为什么一个几 G 的文件能秒传，那是因为百度的服务器里已经有了一个相同的文件了，你上传的文件其实并不是你的文件，如果你删除了这个文件，其实你也并没有删除这个文件。而且百度还有人工审核（偷窥）用户隐私图片的前科。还有另一个非常严重的问题是自己好不容易收藏的电影，结果变成了 8s 的教育片。</p>
@@ -37,6 +37,7 @@
             <li>支持给文件添加桌面快捷方式</li>
             <li>支持自动备份指定文件夹中的所有文件</li>
             <li>支持远程连接 Linux 服务器</li>
+            <li>支持点对点视频聊天和屏幕分享(基于 WebRTC)</li>
             <li>音乐播放器，支持播放云盘（服务端）和本地（客户端）的音乐</li>
             <li>支持 Karaoke，自建曲库，在家想唱就唱</li>
             <li>集成 aria2，支持 HTTP、FTP、BT等多种下载协议</li>
@@ -77,6 +78,7 @@
         <p>11、如果想把当前服务器上已有的文件导入系统中，可访问后台 swagger-ui 接口页面，找到 <code>file/import</code> 接口，请求参数分别是需要导入的文件夹的绝对路径和目标的目录Id。</p>
         <p>12、如果你需要使用 Karaoke 的功能自建曲库，那么还需要安装 FFmpeg，具体配置流程可参考<a href="/p/987654323.html" target="_blank">《自建家庭 KTV》中的安装 FFmpeg </a>的部分。</p>
         <p>13、如果你需要下载 m3u8 文件并合成视频，那么你也需要使用 FFmpeg。</p>
+        <p>14、如果你需要基于 WebRTC 的视频聊天功能，那么你需要安装 <a href="https://webrtc.org/getting-started/turn-server?hl=zh-cn" target="_blank">TURN 服务器</a>。只局域网内聊天可不需要安装。</p>
         <h2>功能介绍</h2>
         <p>系统的核心功能就是一个网盘（和百度网盘的功能类似），还提供了比普通网盘更多的功能 —— 文本等文件的在线编辑功能，且可任意扩展功能。在页面上看到的文件和文件夹的目录层级结构在本地服务器/电脑的磁盘里是真实存在的，即使你以后觉得我这个系统不好用了，我也会给你留下一个完整有序的目录文件，而不是乱序的。最终目标是把它做成一个“操作系统”。</p>
         <h3>登录页面</h3>
@@ -98,7 +100,7 @@
         <p>可以设置桌面背景图片、切换明暗主题、切换窗口透明度、设置页面语言等，其中上传的桌面背景图片的格式必须是<code>jpg</code>。</p>
         <img src="/img/Windows/setting_personal.jpg" alt="setting_personal.jpg" loading="lazy">
         <h4>多媒体</h4>
-        <p>可以播放本地视频，也可以打开音乐播放器听歌，更可以 K 歌哦。</p>
+        <p>可以视频聊天，播放本地视频，也可以打开音乐播放器听歌，更可以 K 歌哦。</p>
         <img src="/img/Windows/setting_media.jpg" alt="setting_media.jpg" loading="lazy">
         <h4>游戏</h4>
         <p>可以玩一些网页版的小游戏，如：贪吃蛇、俄罗斯方块、套圈圈，更多小游戏会陆续支持。</p>
@@ -143,6 +145,15 @@
         <p>在<code>设置</code>里添加服务器，在列表中点击<code>打开</code>即可远程连接 Linux，支持上传和下载文件，支持 <code>Ctrl+C（复制）</code> 和 <code>Ctrl+V（粘贴）</code> 快捷键，同时 <code>Ctrl+C</code> 还保留结束当前进程的功能。为节省服务器资源，对“挂机”超过10分钟的连接进行关闭。</p>
         <img src="/img/Windows/setting_terminal.jpg" alt="setting_terminal.jpg" loading="lazy">
         <img src="/img/Windows/shell2.jpg" alt="shell2.jpg" loading="lazy">
+        <h3>视频聊天</h3>
+        <p>我们常用的视频聊天软件是 QQ 和微信，常用的会议软件有腾讯会议、钉钉、飞书等，使用它们的话，你的聊天内容和会议内容就会被它们监控和保存，隐私严重受到威胁，特别是腾讯，你的 QQ 号、微信号、以及数据等都不是属于你的，腾讯可以向某些人提供你的所有数据，而你还不知道。这就是为什么大公司都自建内部通讯和会议软件，而作为个人，需要有一种通信方式来交流重要敏感的信息。</p>
+        <p> WebRTC 是一项开源的基于网页的应用技术，它允许用户在不安装任何插件的情况下就可以发送实时媒体流，实现浏览器之间的点对点通信，它的安全性远超任何软件。基本上现代浏览器都支持 WebRTC，不限任何设备，所以只要有浏览器，就可以进行视频聊天。</p>
+        <p>在设置里点击<a href="/p/940241891.html#多媒体">视频聊天</a>，首先需要创建聊天室，然后所有用户可通过聊天室加入聊天。系统会对加入聊天的用户进行验证，避免未登陆的用户进入聊天室；用户通过验证后，系统会辅助用户之间建立连接，然后就是用户之间的点对点通信了，和系统就没有任何联系了。</p>
+        <p>支持多个聊天室同时聊天，支持多对多的用户视频聊天；支持禁用麦克风、禁用摄像头、切换前后置摄像头、禁扬声器、分享屏幕的功能。理论上支持无限多用户在一个聊天室进行聊天，实际支持的用户数受限于设备的性能和网络带宽。一个聊天室只能使用一次，如果未使用，2天后也不能再使用了。</p>
+        <img src="/img/Windows/chatting.jpg" alt="chatting.jpg" loading="lazy">
+        <p>分享屏幕时，支持分享浏览器标签页、分享窗口和分享整个屏幕，<span style="font-weight: bold;">特别注意：分享屏幕时，需要勾选同时分享系统音频，否则在分享屏幕时，无法关闭自己的麦克风。</span><span style="font-weight: bold; color: red;">特别提醒：手机浏览器不支持分享屏幕。</span></p>
+        <img src="/img/Windows/chat_share_screen.jpg" alt="chat_share_screen.jpg" loading="lazy">
+        <p style="font-weight: bold; color: red;">如果需要在非局域网的场景下进行视频聊天，那么需要<a href="/p/987654324.html">部署 TURN 服务器</a>，需要有公网 IP。</p>
         <h3>播放本地视频</h3>
         <p>播放本地视频不使用流量，支持记录播放进度；做这个功能的原因是：我的手机上没有安装视频软件，只能用相册自带的功能看视频，但是它记不住播放进度，每次手误碰退出视频，就得重新看，贼麻烦。所以这个功能就是用来记录视频播放进度的。</p>
         <img src="/img/Windows/setting_media.jpg" alt="setting_media.jpg" loading="lazy">

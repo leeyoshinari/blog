@@ -232,7 +232,7 @@ const init = {
 
 const isArticle = document.querySelectorAll('.md-text.content').length;
 if (isArticle === 0) {
-  init.relativeDate(document.querySelectorAll('#post-meta time'));
+  init.relativeDate(document.querySelectorAll('.post-meta time'));
 } else {
   document.addEventListener('DOMContentLoaded', function() {
     const headers = document.querySelectorAll('h2, h3, h4, h5, h6');
