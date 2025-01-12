@@ -19,7 +19,7 @@
       <header class="header mobile-only"></header>
       <div class="article banner top"><div class="content"><div class="bottom only-title"><div class="text-area">
         <h1 class="text title"><span>Windows 风格的个人网盘</span></h1>
-      </div><div class="publish-date"><span>发布时间: 2024-02-28</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>更新时间: 2024-12-31</span><span class="copy-right">版权</span></div><div class="copyright-content"></div></div></div></div>
+      </div><div class="publish-date"><span>发布时间: 2024-02-28</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>更新时间: 2025-01-12</span><span class="copy-right">版权</span></div><div class="copyright-content"></div></div></div></div>
       <article class="md-text content">
         <h2>写在最前面</h2>
         <p>众所周知，当前使用最广泛的云盘是百度网盘，而百度各种骚操作真让人无法忍受，倍速看视频还要开会员，真是恶心他妈给恶心开门。而号称不限速的阿里云盘也开始限速了，后面可能也和百度一个德行。其实各种体验问题都可以容忍，最无法忍受的是数据安全，我们上传到百度网盘的每一个文件，都已经被备份了 n 份了，尽管有些文件已经被我们删除了，但是这些文件仍然在百度的服务器里，个人隐私极不安全；可能有些人不太清楚，很久之前百度网盘有一个秒传功能，为什么一个几 G 的文件能秒传，那是因为百度的服务器里已经有了一个相同的文件了，你上传的文件其实并不是你的文件，如果你删除了这个文件，其实你也并没有删除这个文件。而且百度还有人工审核（偷窥）用户隐私图片的前科。还有另一个非常严重的问题是自己好不容易收藏的电影，结果变成了 8s 的教育片。</p>
@@ -41,6 +41,7 @@
             <li>支持 Karaoke，自建曲库，在家想唱就唱</li>
             <li>集成 aria2，支持 HTTP、FTP、BT等多种下载协议</li>
             <li>增加游戏中心，支持贪吃蛇、俄罗斯方块、套圈圈游戏（会陆续支持更多小游戏）</li>
+            <li>支持服务重启，支持自动更新系统</li>
             <li>支持多语言，支持配置多语言</li>
             <li>单点登录，不同用户的数据完全隔离</li>
             <li>支持 PWA，可以“安装”到手机上</li>
@@ -58,9 +59,9 @@
         <p>桌面背景图片可以在<code>设置</code>里上传图片更换。</p>
         <img src="/img/Windows/desktop.jpg" alt="desktop.jpg" loading="lazy">
         <h3>设置</h3>
-        <p>设置里包含系统、账号、个性化、多媒体、游戏、终端等多个功能。</p>
+        <p>设置里包含系统、账号、个性化、多媒体、游戏、终端、系统更新等多个功能。</p>
         <h4>系统</h4>
-        <p>可以查看教程、查看系统资源使用情况、设备相关信息、备份文件、清理临时文件，如下：</p>
+        <p>可以查看教程、重启服务、查看系统资源使用情况、设备相关信息、备份文件、清理临时文件，如下：</p>
         <img src="/img/Windows/system_about.jpg" alt="system_about.jpg" loading="lazy">
         <img src="/img/Windows/system_resource.jpg" alt="system_resource.jpg" loading="lazy">
         <h4>账号</h4>
@@ -78,6 +79,9 @@
         <h4>终端</h4>
         <p>可以添加服务器用于远程连接 Linux，可以执行 Shell 命令和上传下载文件。</p>
         <img src="/img/Windows/setting_terminal.jpg" alt="setting_terminal.jpg" loading="lazy">
+        <h4>系统更新</h4>
+        <p>可以检查系统更新，并更新系统，查看系统更新日志</p>
+        <img src="/img/Windows/system_update.jpg" alt="system_update.jpg" loading="lazy">
         <h3>文件资源管理器</h3>
         <p>上边一排工具栏依次是新建文件、新建文件夹、重命名、移动、复制、上传、下载、分享、删除、列表展示/图标展示，这些图标均来源<code>Windows10</code>的系统图标。文件列表可按照名称、创建时间、修改时间排序。文件资源管理器中的所有文件，除了支持在线编辑的文件外，其他格式的文件会直接用浏览器打开，浏览器能打开预览的文件可以直接在浏览器中预览，浏览器不支持预览的文件则直接下载到本地。</p>
         <p>使用文件上传功能上传文件时，会首先检测网盘是否存在相同的文件，如果存在则不上传，这就是类似一些网盘的秒传的功能。</p>
@@ -153,11 +157,16 @@
         <p>在设置里增加了网页版游戏，现支持贪吃蛇（支持方向键控制）、俄罗斯方块（支持方向键控制）、套圈圈游戏，后续会陆续支持其他网页版的小游戏</p>
         <img src="/img/Windows/snake.jpg" alt="snake.jpg" loading="lazy">
         <img src="/img/Windows/rings.png" alt="rings.png" loading="lazy">
+        <h3>自动更新系统</h3>
+        <p>考虑到大家在使用这个系统时，无法感知系统是否有更新，且手动更新很麻烦，所以增加了系统更新的功能，很像 Windows 系统的更新。首先需要点击 检查更新，如果检测到有更新，下载 按钮会点亮，点击下载最新版本；下载完成后，重启更新 按钮会点亮，点击 重启更新 即可自动完成系统更新。</p>
+        <p>强烈建议自动更新前，先查看系统更新日志，万一自动更新失败，可以手动去更新。</p>
+        <img src="/img/Windows/system_update.jpg" alt="system_update.jpg" loading="lazy">
+        <p>自动更新的功能已全面支持 Windows、Linux、MacOS 等操作系统，在第一次部署的时候需要按照后面的部署步骤操作，就像 Windows 系统一样，第一次安装比较麻烦，后面更新就很方便了。</p>
         <h3>多语言设置</h3>
         <p>目前多语言已支持中文简体和英文，可能存在翻译不正确，或者漏翻译的，请自行修改。</p>
         <p>多语言切换有2个地方：一个地方是登陆页面左上角；另一个地方是 <code>设置->个性化->设置语言</code>。多语言配置分为前端配置和后端配置，前端配置的多语言主要是页面文案展示，后端配置的多语言主要是接口返回信息和日志。</p>
         <p>1、前端多语言配置在 <code>web->language</code> 目录下面，每一种语言对应一个 json 文件，json 文件里对应的是多语言字段的 key 和翻译，如需新增多语言，请先复制一份 json 文件，然后修改翻译，不能修改 key。</p>
-        <p>2、后端多语言配置在 <code>common->messages.py</code> 文件中，每一个 message 是一个 dict，dict 中的每一个 key 对应一种多语言，如需新增多语言，可直接新增一对 key-value 即可。</p>
+        <p>2、后端多语言配置在 <code>common->messages.py</code> 文件中，如需新增多语言，可按照规范新增。</p>
         <h3>OnlyOffice</h3>
         <p>打开 office 文件，会使用 onlyoffice 打开，可在线编辑并实时保存，关闭窗口可退出编辑，onlyoffice 默认设置是：用户退出编辑 10s 后，才会自动把文件保存到本地。</p>
         <p>多人协作编辑文档：可通过在文件列表中需要协作编辑的文件上右键，获取协作编辑的链接，然后把链接发送给协作编辑的人。如果其中一个用户退出编辑，然后再通过链接进入编辑状态，此时不会协作编辑，必须所有用户全部重新进入编辑状态才可以协作编辑。</p>
@@ -187,6 +196,8 @@
         <h4>Python 脚本</h4>
         <p>支持在线编辑 py 文件，点击运行后可直接在浏览器上看到结果。如果想导入第三方库，需要专门打包，具体可查阅相关资料。</p>
         <img src="/img/Windows/pythonEditor.jpg" alt="pythonEditor.jpg" loading="lazy">
+        <h3>导入已有文件</h3>
+        <p>如果想把当前电脑/服务器上已有的文件导入系统中，可访问后台 swagger-ui 接口页面，找到 <code>file/import</code> 接口，请求参数分别是需要导入的文件夹的绝对路径和目标的目录Id。</p>
         <h3>PWA应用</h3>
         <p>因为每次使用网盘都需要打开浏览器，而且浏览器还有标题栏和地址栏，为了更好的使用体验，本网盘支持了 PWA，可以把这个网站“安装”到手机上，像使用 APP 一样使用网盘，手机横屏使用，体验还是可以的。</p>
         <p>当前主流浏览器基本上都支持 PWA，但是支持最好的是 Chrome 浏览器，其次是 Edge 浏览器。手机浏览器打开网站，一般会提醒安装应用，如果没有提醒，可在网站设置里把网站添加到主屏幕即可。如果你使用其他浏览器安装 PWA，出现了页面跳转返回等异常，那么建议使用 Edge 或 Chrome 浏览器。注意：安装 PWA 需要网站地址是本地地址（127.0.0.1）或者是 https 协议。</p>
@@ -197,36 +208,51 @@
         <p>4、所有页面和操作已尽可能的适配手机端了，使用手机浏览器打开页面，手机横屏展示，使用体验还是不错的。</p>
         <p>5、更好的使用体验建议：不管你用的是 PC 端浏览器还是手机端浏览器，设置浏览器全屏展示，使用体验更好。</p>
         <h2>部署</h2>
-        <p>1、克隆项目</p>
-        <pre><code>git clone https://github.com/leeyoshinari/WinHub.git</code></pre>
-        <p>2、进入目录 <code>cd WinHub</code></p>
-        <p>3、安装第三方依赖包；</p>
-        <pre><code>pip3 install -r requirements.txt</code></pre>
-        <p>4、修改配置文件<code>config.conf</code>；</p>
-        <p>5、初始化数据库，依次执行下面命令;</p>
+        <h3>克隆项目</h3>
+        <p>克隆项目，然后进入项目的目录</p>
+        <pre><code>git clone https://github.com/leeyoshinari/WinHub.git<br>cd WinHub</code></pre>
+        <h3>修改配置文件</h3>
+        <p>可以先查看配置文件<code>config.conf</code>中有哪些配置，然后看你需要修改哪些配置，并把这些配置设置成系统环境变量。其中：<code>winHubHost、winHubPort、winHubRootPath</code> 必须配置成系统环境变量。</p>
+        <p>Windows 用户需要设置成系统环境变量，不要设置成用户变量。MacOS 用户直接在终端执行 <code>vim ~/.bash_profile</code> 设置环境变量，保存后执行 <code>source ~/.bash_profile</code>。Linux 用户直接执行命令 <code>vim /etc/profile</code> 设置环境变量，保存后执行 <code>source /etc/profile</code>。设置后的效果图如下：</p>
+        <img src="/img/Windows/system_variable.jpg" alt="system_variable.jpg" loading="lazy">
+        <p style="color:red;">特别注意：Windows 系统的目录，需要使用 / 分割，而不是使用 \ 分割。Linux 和 MacOS 系统，配置 winHubRootPath 时，需要加上转义符，且不要有空格。请严格按照上图中的格式配置。</p>
+        <p>验证配置的系统环境变量是否生效，Windows 系统在 CMD 中执行 <code>echo %winHubRootPath%</code>，Linux 和 MacOS 系统执行 <code>echo $winHubRootPath</code>。</p>
+        <h3>安装第三方依赖包</h3>
+        <p>Windows 用户执行 <code>pip install -r requirements.txt</code>，如果提示命令不存在，请把可执行程序所在的目录添加到系统环境变量中。Linux 和 MacOS 用户执行 <code>pip3 install -r requirements.txt</code>，如果提示命令不存在，请把 pip3 命令软连接到 <code>/user/bin/pip3</code>。</p>
+        <h3>初始化数据库</h3>
+        <p>依次执行下面的命令：</p>
         <pre><code>aerich init -t settings.TORTOISE_ORM<br>aerich init-db</code></pre>
-        <p>6、安装文件下载工具 <a href="https://github.com/aria2/aria2/releases" target="_blank">aria2</a>，执行 <code>aria2c -v</code> 验证是否安装成功。</p>
-        <p>7、部署<code>nginx</code>，并修改配置，location 相关配置如下：(ps: 下面 location 中的<code>mycloud</code>就是配置文件<code>config.conf</code>中的<code>prefix</code>，可根据自己需要修改)。如果您不了解 Nginx 的配置，那么请参考本项目提供的 <code>nginx.conf</code> 文件；</p>
+        <p>如果提示命令不存在，Windows 用户请把可执行程序所在的目录添加到系统环境变量中，Linux 和 MacOS 用户请把 aerich 命令软连接到 <code>/user/bin/aerich</code></p>
+        <h3>安装 aria2c</h3>
+        <p>安装文件下载工具 <a href="https://github.com/aria2/aria2/releases" target="_blank">aria2</a>，执行 <code>aria2c -v</code> 验证是否安装成功。</p>
+        <h3>安装部署 Nginx</h3>
+        <p>部署<code>nginx</code>，并修改配置，location 相关配置如下：(ps: 下面 location 中的<code>mycloud</code>就是配置文件<code>config.conf</code>中的<code>winHubBackEndPrefix</code>，<code>Windows</code>就是配置文件<code>config.conf</code>中的<code>winHubFrontEndPrefix</code>，可根据自己需要修改)。如果您不了解 Nginx 的配置，那么请参考本项目提供的 <code>nginx.conf</code> 文件；</p>
         <p>（1）前端配置：前端文件在 <code>web</code> 目录里, <code>/Windows</code>可任意修改成你喜欢的名字</p>
         <pre><code>location /Windows {<br>    alias /home/WinHub/web/;<br>    index  index.html;<br>}</code></pre>
-        <p>（2）后端请求：<code>proxy_pass</code> 是配置文件 <code>config.conf</code> 中的 IP 和 端口, <code>/mycloud</code> 必须和 <code>config.conf</code> 中的 <code>prefix</code> 一样</p>
+        <p>（2）后端请求：<code>proxy_pass</code> 是配置文件 <code>config.conf</code> 中的 IP 和 端口, <code>/mycloud</code>可任意修改成你喜欢的名字</p>
         <pre><code>location /mycloud {<br>    proxy_pass  http://127.0.0.1:15200;<br>    proxy_set_header Host $proxy_host;<br>    proxy_set_header lang $http_lang;<br>    proxy_set_header X-Real-IP $remote_addr;<br>    proxy_set_header Upgrade $http_upgrade;<br>    proxy_set_header Connection $proxy_connection;<br>    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;<br>}</code></pre>
         <p>（3）在 <code>http</code> 模块中，需要添加一个映射关系</p>
         <pre><code>map $http_upgrade $proxy_connection {<br>    default upgrade;<br>    "" close;<br>}</code></pre>
         <p>（4）访问 Swagger 接口页面</p>
         <pre><code>location /api/openapi {<br>    proxy_pass  http://127.0.0.1:15200;<br>}</code></pre>
         <p>通常nginx会限制请求体大小，需要增加配置<code>client_max_body_size 4096M;</code>，还有其他超时时间的配置，可自行上网查找资料修改；</p>
-        <p>8、启动</p>
-        <pre><code>sh startup.sh</code></pre>
-        <p>停止请执行 <code>sh shutdown.sh</code></p>
-        <p>9、创建用户</p>
-        <p>为了避免被其他人恶意创建账号，页面未放开创建账号的入口；可以通过在API接口文档中创建用户，进入 swagger-ui 页面，找到 <code>createUser</code> 接口即可。详见 <span style="font-weight:bold;">3.1 创建用户</span>；</p>
+        <h3>启动服务</h3>
+        <p>可以先尝试启动，查看能否正常启动。Windows 用户执行 <code>python main.py</code>，Linux 和 MacOS 用户执行 <code>python3 main.py</code>。如果服务正常启动，页面能正常访问，那么可以正式按照生成环境的方式启动了。</p>
+        <p>Linux 和 MacOS 用户执行<code>sh startup.sh</code>，如果提示 gunicorn 命令不存在，请把 gunicorn 命令软连接到 <code>/user/bin/gunicorn</code>。停止请执行 <code>sh shutdown.sh</code>。</p>
+        <p>Windows 用户部署起来比较麻烦，首先需求安装 pywin32 包，执行 <code>pip install pywin32</code>。然后以管理员身份打开 CMD，进入到项目所在的目录，执行 <code>python generate_service.py install</code> 生成 Windows 服务，此时查看 Windows 服务，可以看到一个名叫 WinHubService 的服务，然后可以执行以下命令：</p>
+        <pre><code># 启动服务<br>sc start WinHubService 或者 python generate_service.py start<br><br># 停止服务<br>sc stop WinHubService 或者 python generate_service.py stop<br><br># 删除服务<br>sc delete WinHubService 或者 python generate_service.py remove</code></pre>
+        <p>注意：Windows 下执行这些命令时，必须以管理员身份打开 CMD 执行。由于种种原因，Windows 下该服务不支持停止，手动停止后，还会自动拉起。</p>
+        <p>由于不知道的原因，Windows 下启动服务后，需要等 30s 左右，系统才可用，Linux 和 MacOS 则无此问题。</p>
+        <h3>用户创建</h3>
+        <p>为了避免被其他人恶意创建账号，页面未放开创建账号的入口，具体详见 <span style="font-weight:bold;">3.1 创建用户</span>；</p>
         <pre><code>http://IP:Port/mycloud/swagger-ui</code></pre>
-        <p>10、访问页面，url 是 <code>http://IP:Port/Windows</code>（这里的 IP 和 端口是 Nginx 中设置的 IP 和 端口。Windows 就是第 7 步中的前端配置的 location）</p>
-        <p>11、如果想把当前服务器上已有的文件导入系统中，可访问后台 swagger-ui 接口页面，找到 <code>file/import</code> 接口，请求参数分别是需要导入的文件夹的绝对路径和目标的目录Id。</p>
-        <p>12、如果你需要使用 Karaoke 的功能自建曲库，那么还需要安装 FFmpeg，具体配置流程可参考<a href="/p/987654323.html" target="_blank">《自建家庭 KTV》中的安装 FFmpeg </a>的部分。</p>
-        <p>13、如果你需要下载 m3u8 文件并合成视频，那么你也需要使用 FFmpeg。</p>
-        <p>14、如果你需要基于 WebRTC 的视频聊天功能，那么你需要安装 <a href="https://webrtc.org/getting-started/turn-server?hl=zh-cn" target="_blank">TURN 服务器</a>。</p>
+        <h3>访问页面</h3>
+        <p>url 是 <code>http://IP:Port/Windows</code>（这里的 IP 和 端口是 Nginx 中设置的 IP 和 端口。Windows 就是第 4.6 步中的前端配置的 location）</p>
+        <h3>安装 FFmpeg</h3>
+        <p>如果你需要使用 Karaoke 的功能自建曲库，那么还需要安装 FFmpeg，具体配置流程可参考<a href="/p/987654323.html" target="_blank">《自建家庭 KTV》中的安装 FFmpeg </a>的部分。</p>
+        <p>如果你需要下载 m3u8 文件并合成视频，那么你也需要使用 FFmpeg。</p>
+        <h3>部署 TURN 服务</h3>
+        <p>如果你需要基于 WebRTC 的视频聊天功能，那么你需要安装 <a href="https://webrtc.org/getting-started/turn-server?hl=zh-cn" target="_blank">TURN 服务器</a>。</p>
         <h2>推荐部署方案</h2>
         <p>1、首先要有公网 IP，IPv4 地址有限，很难分配到固定的 IP，但是 IPv6 地址无限多，可以要求宽带运营商给你分配公网 IPv6，使用 IPv6 的一个弊端是：如果你连接的 WIFI 的路由器关闭了 IPv6，那么就无法访问；但现在手机网络是默认支持 IPv6 的。如果你有带公网 IP 的云服务器那就更好了，买云服务器的钱比开百度网盘会员的钱要便宜的多得多，而且有公网 IP，还可以干其他很多有趣的事情；</p>
         <p>2、树莓派，用于部署网盘服务，可根据自己的需求买对应配置的树莓派，500 元左右就可以买一个差不多配置的树莓派了，咸鱼上可能更便宜。树莓派 24h 开机，一个星期的耗电量大约不到 1 度电；高配置的树莓派还可以用来当电脑、电视、机顶盒用哦，就看你的动手能力有多强了；当然了，其他主机/服务器也是可以用的；</p>
