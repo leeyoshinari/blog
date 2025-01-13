@@ -158,10 +158,11 @@
         <img src="/img/Windows/snake.jpg" alt="snake.jpg" loading="lazy">
         <img src="/img/Windows/rings.png" alt="rings.png" loading="lazy">
         <h3>自动更新系统</h3>
-        <p>考虑到大家在使用这个系统时，无法感知系统是否有更新，且手动更新很麻烦，所以增加了系统更新的功能，很像 Windows 系统的更新。首先需要点击 检查更新，如果检测到有更新，下载 按钮会点亮，点击下载最新版本；下载完成后，重启更新 按钮会点亮，点击 重启更新 即可自动完成系统更新。</p>
+        <p>考虑到大家在使用这个系统时，无法感知系统是否有更新，且手动下载更新很麻烦，所以增加了系统更新的功能，很像 Windows 系统的更新。首先需要点击 检查更新，如果检测到有更新，下载 按钮会点亮，点击下载最新版本；下载完成后，重启更新 按钮会点亮，点击 重启更新 即可自动完成系统更新。</p>
         <p>强烈建议自动更新前，先查看系统更新日志，万一自动更新失败，可以手动去更新。</p>
         <img src="/img/Windows/system_update.jpg" alt="system_update.jpg" loading="lazy">
         <p>自动更新的功能已全面支持 Windows、Linux、MacOS 等操作系统，在第一次部署的时候需要按照后面的部署步骤操作，就像 Windows 系统一样，第一次安装比较麻烦，后面更新就很方便了。</p>
+        <p style="font-weight:bold;">自动更新功能需要访问 github 查询最新版本以及下载最新版本，由于众所周知的原因，中国国内有时可以访问，有时不可以访问，如果宽带不能访问，可尝试手机 wifi 热点，切换不同的网络运营商。</p>
         <h3>多语言设置</h3>
         <p>目前多语言已支持中文简体和英文，可能存在翻译不正确，或者漏翻译的，请自行修改。</p>
         <p>多语言切换有2个地方：一个地方是登陆页面左上角；另一个地方是 <code>设置->个性化->设置语言</code>。多语言配置分为前端配置和后端配置，前端配置的多语言主要是页面文案展示，后端配置的多语言主要是接口返回信息和日志。</p>
@@ -198,6 +199,12 @@
         <img src="/img/Windows/pythonEditor.jpg" alt="pythonEditor.jpg" loading="lazy">
         <h3>导入已有文件</h3>
         <p>如果想把当前电脑/服务器上已有的文件导入系统中，可访问后台 swagger-ui 接口页面，找到 <code>file/import</code> 接口，请求参数分别是需要导入的文件夹的绝对路径和目标的目录Id。</p>
+        <h3>定时任务</h3>
+        <p>当前系统所有定时任务均在凌晨 5:20 执行，共有以下几个定时任务：</p>
+        <p>1、自动清理缓存文件任务：一些操作的中间步骤可能会产生临时文件，需要定时清理它们；</p>
+        <p>2、自动清理未使用的聊天室任务：创建的聊天室可能从未使用，也需要定时清理它们；</p>
+        <p>3、自动备份文件任务：自动备份可以避免文件丢失，需要有定时任务触发；</p>
+        <p>4、自动更新系统任务：保持系统始终是最新的版本，提高用户体验；</p>
         <h3>PWA应用</h3>
         <p>因为每次使用网盘都需要打开浏览器，而且浏览器还有标题栏和地址栏，为了更好的使用体验，本网盘支持了 PWA，可以把这个网站“安装”到手机上，像使用 APP 一样使用网盘，手机横屏使用，体验还是可以的。</p>
         <p>当前主流浏览器基本上都支持 PWA，但是支持最好的是 Chrome 浏览器，其次是 Edge 浏览器。手机浏览器打开网站，一般会提醒安装应用，如果没有提醒，可在网站设置里把网站添加到主屏幕即可。如果你使用其他浏览器安装 PWA，出现了页面跳转返回等异常，那么建议使用 Edge 或 Chrome 浏览器。注意：安装 PWA 需要网站地址是本地地址（127.0.0.1）或者是 https 协议。</p>
@@ -241,7 +248,7 @@
         <p>Linux 和 MacOS 用户执行<code>sh startup.sh</code>，如果提示 gunicorn 命令不存在，请把 gunicorn 命令软连接到 <code>/user/bin/gunicorn</code>。停止请执行 <code>sh shutdown.sh</code>。</p>
         <p>Windows 用户部署起来比较麻烦，首先需求安装 pywin32 包，执行 <code>pip install pywin32</code>。然后以管理员身份打开 CMD，进入到项目所在的目录，执行 <code>python generate_service.py install</code> 生成 Windows 服务，此时查看 Windows 服务，可以看到一个名叫 WinHubService 的服务，然后可以执行以下命令：</p>
         <pre><code># 启动服务<br>sc start WinHubService 或者 python generate_service.py start<br><br># 停止服务<br>sc stop WinHubService 或者 python generate_service.py stop<br><br># 删除服务<br>sc delete WinHubService 或者 python generate_service.py remove</code></pre>
-        <p>注意：Windows 下执行这些命令时，必须以管理员身份打开 CMD 执行。由于种种原因，Windows 下该服务不支持停止，手动停止后，还会自动拉起。</p>
+        <p>注意：Windows 下执行这些命令时，必须以管理员身份打开 CMD 执行。由于种种原因，Windows 下该服务不支持停止，手动停止后，还会自动拉起，但是可以在任务管理器中停止掉。</p>
         <p>由于不知道的原因，Windows 下启动服务后，需要等 30s 左右，系统才可用，Linux 和 MacOS 则无此问题。</p>
         <h3>用户创建</h3>
         <p>为了避免被其他人恶意创建账号，页面未放开创建账号的入口，具体详见 <span style="font-weight:bold;">3.1 创建用户</span>；</p>

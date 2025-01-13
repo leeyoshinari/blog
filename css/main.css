@@ -3714,8 +3714,8 @@ a[data-fancybox] {
   /* width:195px; */
   /* height:246px; */
   position:absolute;
-  bottom: 300px;
-  left:180px;
+  top: 50px;
+  left: 1px;
   z-index:9999;
 }
 #message{

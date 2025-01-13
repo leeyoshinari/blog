@@ -25,12 +25,21 @@ jQuery(document).ready(function ($) {
     } else {
         showMessage('哇！是不是吓了你一跳！', 6000);
     }
+    let spig_top = $(".l_left").height() - 150
     $(".spig").animate({
-        top: $(".spig").offset().top + 300,
+        top: spig_top,
         left: document.body.offsetWidth - 205
     },{
         queue: false,
         duration: 1000
+    });
+    $(window).scroll(function () {
+        $(".spig").animate({
+            top: $(window).scrollTop() + spig_top
+        },{
+            queue: false,
+            duration: 1000
+        });
     });
 });
 
@@ -40,18 +49,6 @@ jQuery(document).ready(function ($) {
         let i = Math.floor(Math.random() * msgs.length);
         showMessage(msgs[i], 8000);
     }, 15000);
-});
-
-jQuery(document).ready(function ($) {
-    let f = $(".spig").offset().top;
-    $(window).scroll(function () {
-        $(".spig").animate({
-            top: $(window).scrollTop() + f +300
-        },{
-            queue: false,
-            duration: 1000
-        });
-    });
 });
 
 //鼠标点击时
