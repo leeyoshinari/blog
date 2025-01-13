@@ -25,7 +25,7 @@ jQuery(document).ready(function ($) {
     } else {
         showMessage('哇！是不是吓了你一跳！', 6000);
     }
-    let spig_top = $(".l_left").height() - 150
+    let spig_top = window.innerHeight - 200
     $(".spig").animate({
         top: spig_top,
         left: document.body.offsetWidth - 205
