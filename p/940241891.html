@@ -244,7 +244,7 @@
         <pre><code>location /api/openapi {<br>    proxy_pass  http://127.0.0.1:15200;<br>}</code></pre>
         <p>通常nginx会限制请求体大小，需要增加配置<code>client_max_body_size 4096M;</code>，还有其他超时时间的配置，可自行上网查找资料修改；</p>
         <h3>启动服务</h3>
-        <p>可以先尝试启动，查看能否正常启动。Windows 用户执行 <code>python main.py</code>，Linux 和 MacOS 用户执行 <code>python3 main.py</code>。如果服务正常启动，页面能正常访问，那么可以正式按照生成环境的方式启动了。</p>
+        <p>可以先尝试启动，查看能否正常启动。Windows 用户执行 <code>python main.py</code>，Linux 和 MacOS 用户执行 <code>python3 main.py</code>。如果服务正常启动，页面能正常访问，那么可以正式按照生产环境的方式启动了。</p>
         <p>Linux 和 MacOS 用户执行<code>sh startup.sh</code>，如果提示 gunicorn 命令不存在，请把 gunicorn 命令软连接到 <code>/user/bin/gunicorn</code>。停止请执行 <code>sh shutdown.sh</code>。</p>
         <p>Windows 用户部署起来比较麻烦，首先需求安装 pywin32 包，执行 <code>pip install pywin32</code>。然后以管理员身份打开 CMD，进入到项目所在的目录，执行 <code>python generate_service.py install</code> 生成 Windows 服务，此时查看 Windows 服务，可以看到一个名叫 WinHubService 的服务，然后可以执行以下命令：</p>
         <pre><code># 启动服务<br>sc start WinHubService 或者 python generate_service.py start<br><br># 停止服务<br>sc stop WinHubService 或者 python generate_service.py stop<br><br># 删除服务<br>sc delete WinHubService 或者 python generate_service.py remove</code></pre>
