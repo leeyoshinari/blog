@@ -219,11 +219,7 @@
         <p>克隆项目，然后进入项目的目录</p>
         <pre><code>git clone https://github.com/leeyoshinari/WinHub.git<br>cd WinHub</code></pre>
         <h3>修改配置文件</h3>
-        <p>可以先查看配置文件<code>config.conf</code>中有哪些配置，然后看你需要修改哪些配置，并把这些配置设置成系统环境变量。其中：<code>winHubHost、winHubPort、winHubRootPath</code> 必须配置成系统环境变量，其他更多配置详见 <a href="https://github.com/leeyoshinari/WinHub/blob/main/README_zh.md#%E9%85%8D%E7%BD%AE%E8%A7%A3%E9%87%8A" target="_blank">README.md</a>。</p>
-        <p>Windows 用户需要设置成系统环境变量，不要设置成用户变量。MacOS 用户直接在终端执行 <code>vim ~/.bash_profile</code> 设置环境变量，保存后执行 <code>source ~/.bash_profile</code>。Linux 用户直接执行命令 <code>vim /etc/profile</code> 设置环境变量，保存后执行 <code>source /etc/profile</code>。设置后的效果图如下：</p>
-        <img src="/img/Windows/system_variable.jpg" alt="system_variable.jpg" loading="lazy">
-        <p style="color:red;">特别注意：Windows 系统的目录，需要使用 / 分割，而不是使用 \ 分割。Linux 和 MacOS 系统，配置 winHubRootPath 时，需要加上转义符，且不要有空格。请严格按照上图中的格式配置。</p>
-        <p>验证配置的系统环境变量是否生效，Windows 系统在 CMD 中执行 <code>echo %winHubRootPath%</code>，Linux 和 MacOS 系统执行 <code>echo $winHubRootPath</code>。</p>
+        <p>先将配置文件 <code>.env.example</code> 复制一份，然后重命名成 <code>.env</code>，然后按需修改 <code>.env</code> 中的变量。更多配置解释详见 <a href="https://github.com/leeyoshinari/WinHub/blob/main/README_zh.md#%E9%85%8D%E7%BD%AE%E8%A7%A3%E9%87%8A" target="_blank">README.md</a>。</p>
         <h3>安装第三方依赖包</h3>
         <p>Windows 用户执行 <code>pip install -r requirements.txt</code>，如果提示命令不存在，请把可执行程序所在的目录添加到系统环境变量中。Linux 和 MacOS 用户执行 <code>pip3 install -r requirements.txt</code>，如果提示命令不存在，请把 pip3 命令软连接到 <code>/user/bin/pip3</code>。</p>
         <h3>初始化数据库</h3>
@@ -246,7 +242,8 @@
         <h3>启动服务</h3>
         <p>可以先尝试启动，查看能否正常启动。Windows 用户执行 <code>python main.py</code>，Linux 和 MacOS 用户执行 <code>python3 main.py</code>。如果服务正常启动，页面能正常访问，那么可以正式按照生产环境的方式启动了。</p>
         <p>Linux 和 MacOS 用户执行<code>sh startup.sh</code>，如果提示 gunicorn 命令不存在，请把 gunicorn 命令软连接到 <code>/user/bin/gunicorn</code>。停止请执行 <code>sh shutdown.sh</code>。</p>
-        <p>Windows 用户部署起来比较麻烦，首先需求安装 pywin32 包，执行 <code>pip install pywin32</code>。然后以管理员身份打开 CMD，进入到项目所在的目录，执行 <code>python generate_service.py install</code> 生成 Windows 服务，此时查看 Windows 服务，可以看到一个名叫 WinHubService 的服务，然后可以执行以下命令：</p>
+        <p>Windows 用户部署起来比较麻烦，需要添加启动服务。首先需要修改 <code>generate_service.py</code> 代码中的端口号，在代码中的第14、15行，按需修改即可；然后需要安装 pywin32 包，执行 <code>pip install pywin32</code>；最后直接在 <code>start.bat</code> 文件右键->以管理员身份运行，运行成功后等 30s 即可，此时可以在 Windows 服务列表中找到一个名叫 WinHubService 的服务。如需删除服务，可直接在<code>delete.bat</code> 文件右键->以管理员身份运行。</p>
+        <p>手动一步一步部署：以管理员身份打开 CMD，进入到项目所在的目录，执行 <code>python generate_service.py install</code> 生成 Windows 服务，此时查看 Windows 服务，可以看到一个名叫 WinHubService 的服务，然后可以执行以下命令：</p>
         <pre><code># 启动服务<br>sc start WinHubService 或者 python generate_service.py start<br><br># 停止服务<br>sc stop WinHubService 或者 python generate_service.py stop<br><br># 删除服务<br>sc delete WinHubService 或者 python generate_service.py remove</code></pre>
         <p>注意：Windows 下执行这些命令时，必须以管理员身份打开 CMD 执行。由于种种原因，Windows 下该服务不支持停止，手动停止后，还会自动拉起，但是可以在任务管理器中停止掉。</p>
         <p>由于不知道的原因，Windows 下启动服务后，需要等 30s 左右，系统才可用，Linux 和 MacOS 则无此问题。</p>
