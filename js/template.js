@@ -9,7 +9,7 @@ export function createLeft() {
           <div class="widget-body fs14">
           <a class="item title" href="/p/940241891.html"><span class="title">Windows 风格的个人网盘</span></a>
           <a class="item title" href="/p/987654323.html"><span class="title">自建家庭 KTV</span></a>
-          <a class="item title" href="/p/940241892.html"><span class="title">性能测试平台</span></a>
+          <!--a class="item title" href="/p/940241892.html"><span class="title">性能测试平台</span></a-->
           <a class="item title" href="/p/940242882.html"><span class="title">做一个自己的领券网站</span></a>
           <a class="item title" href="/p/940241893.html"><span class="title">AIGC 助力办公智能化</span></a>
           <a class="item title" href="/p/940241883.html"><span class="title">“自制”空调遥控器</span></a>
