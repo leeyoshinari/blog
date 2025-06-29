@@ -19,7 +19,7 @@
       <header class="header mobile-only"></header>
       <div class="article banner top"><div class="content"><div class="bottom only-title"><div class="text-area">
         <h1 class="text title"><span>Windows 风格的个人网盘</span></h1>
-      </div><div class="publish-date"><span>发布时间: 2024-02-28</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>更新时间: 2025-03-02</span><span class="copy-right">版权</span></div><div class="copyright-content"></div></div></div></div>
+      </div><div class="publish-date"><span>发布时间: 2024-02-28</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>更新时间: 2025-06-29</span><span class="copy-right">版权</span></div><div class="copyright-content"></div></div></div></div>
       <article class="md-text content">
         <h2>写在最前面</h2>
         <p>众所周知，当前使用最广泛的云盘是百度网盘，而百度各种骚操作真让人无法忍受，倍速看视频还要开会员，真是恶心他妈给恶心开门。而号称不限速的阿里云盘也开始限速了，后面可能也和百度一个德行。其实各种体验问题都可以容忍，最无法忍受的是数据安全，我们上传到百度网盘的每一个文件，都已经被备份了 n 份了，尽管有些文件已经被我们删除了，但是这些文件仍然在百度的服务器里，个人隐私极不安全；可能有些人不太清楚，很久之前百度网盘有一个秒传功能，为什么一个几 G 的文件能秒传，那是因为百度的服务器里已经有了一个相同的文件了，你上传的文件其实并不是你的文件，如果你删除了这个文件，其实你也并没有删除这个文件。而且百度还有人工审核（偷窥）用户隐私图片的前科。还有另一个非常严重的问题是自己好不容易收藏的电影，结果变成了 8s 的教育片。</p>
@@ -197,6 +197,9 @@
         <h4>Python 脚本</h4>
         <p>支持在线编辑 py 文件，点击运行后可直接在浏览器上看到结果。如果想导入第三方库，需要专门打包，具体可查阅相关资料。</p>
         <img src="/img/Windows/pythonEditor.jpg" alt="pythonEditor.jpg" loading="lazy">
+        <h4>健康管理</h4>
+        <p>在健康管理页面，你可以记录体重、心跳、血压、血糖、血氧饱和度的数据，然后可视化出来</p>
+        <img src="/img/Windows/small_tool.jpg" alt="small_tool.jpg" loading="lazy">
         <h3>导入已有文件</h3>
         <p>如果想把当前电脑/服务器上已有的文件导入系统中，可访问后台 swagger-ui 接口页面，找到 <code>file/import</code> 接口，请求参数分别是需要导入的文件夹的绝对路径和目标的目录Id。</p>
         <h3>定时任务</h3>
@@ -222,10 +225,6 @@
         <p>先将配置文件 <code>.env.example</code> 复制一份，然后重命名成 <code>.env</code>，然后按需修改 <code>.env</code> 中的变量。更多配置解释详见 <a href="https://github.com/leeyoshinari/WinHub/blob/main/README_zh.md#%E9%85%8D%E7%BD%AE%E8%A7%A3%E9%87%8A" target="_blank">README.md</a>。</p>
         <h3>安装第三方依赖包</h3>
         <p>Windows 用户执行 <code>pip install -r requirements.txt</code>，如果提示命令不存在，请把可执行程序所在的目录添加到系统环境变量中。Linux 和 MacOS 用户执行 <code>pip3 install -r requirements.txt</code>，如果提示命令不存在，请把 pip3 命令软连接到 <code>/user/bin/pip3</code>。</p>
-        <h3>初始化数据库</h3>
-        <p>依次执行下面的命令：</p>
-        <pre><code>aerich init -t settings.TORTOISE_ORM<br>aerich init-db</code></pre>
-        <p>如果提示命令不存在，Windows 用户请把可执行程序所在的目录添加到系统环境变量中，Linux 和 MacOS 用户请把 aerich 命令软连接到 <code>/user/bin/aerich</code></p>
         <h3>安装 aria2c</h3>
         <p>安装文件下载工具 <a href="https://github.com/aria2/aria2/releases" target="_blank">aria2</a>，执行 <code>aria2c -v</code> 验证是否安装成功。</p>
         <h3>安装部署 Nginx</h3>
@@ -249,7 +248,7 @@
         <p>由于不知道的原因，Windows 下启动服务后，需要等 30s 左右，系统才可用，Linux 和 MacOS 则无此问题。</p>
         <h3>用户创建</h3>
         <p>为了避免被其他人恶意创建账号，页面未放开创建账号的入口，具体详见 <span style="font-weight:bold;">3.1 创建用户</span>；</p>
-        <pre><code>http://IP:Port/mycloud/swagger-ui</code></pre>
+        <pre><code>http://IP:Port/mycloud/schema</code></pre>
         <h3>访问页面</h3>
         <p>url 是 <code>http://IP:Port/Windows</code>（这里的 IP 和 端口是 Nginx 中设置的 IP 和 端口。Windows 就是第 4.6 步中的前端配置的 location）</p>
         <h3>安装 FFmpeg</h3>
