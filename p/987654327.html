@@ -57,12 +57,12 @@
         <p>浏览器资源占用更小，缓存文件不到 1M，而 LobeChat 的缓存文件超过 120M。</p>
         <h2>部署</h2>
         <h3>账号准备</h3>
-        <p>首先需要注册 GitHUb 账号，然后可以使用 GitHUb 账号登陆 Vercel 平台。然后注册 Google 账号（需要梯子）和 Cloudflare 账号。</p>
+        <p>首先需要注册 GitHub 账号，然后可以使用 GitHub 账号登陆 Vercel 平台。然后注册 Google 账号（需要梯子）和 Cloudflare 账号。</p>
         <p></p>
         <h3>获取 API Key</h3>
         <p>获取 Google Gemini 的 API Key，和 Cloudflare Workers AI 的 API Token 和 Account ID，OpenAI 和 DeepSeek 的账号和 API Key 自行去网上找，这里不说了，避免广告嫌疑。</p>
         <h3>导入项目</h3>
-        <p>进入 GitHUb，Fork <a href="https://github.com/leeyoshinari/chat" target="_blank">本项目</a>，如果喜欢 LobeChat，也可以 Fork <a href="https://github.com/lobehub/lobe-chat" target="_blank">LobeChat</a>。然后进入 Vercel 平台，点击 <code>Add New -> Project</code>，然后<code>Import Git Repository</code>，然后选择 Repository，点击部署即可。</p>
+        <p>进入 GitHub，Fork <a href="https://github.com/leeyoshinari/chat" target="_blank">本项目</a>，如果喜欢 LobeChat，也可以 Fork <a href="https://github.com/lobehub/lobe-chat" target="_blank">LobeChat</a>。然后进入 Vercel 平台，点击 <code>Add New -> Project</code>，然后<code>Import Git Repository</code>，然后选择 Repository，点击部署即可。</p>
         <h3>配置环境变量</h3>
         <p>在 Vercel 平台部署的 Project 里，点击 <code>Settings -> Environment Variables</code>，开始设置环境变量，设置完成后重新部署一次。</p>
         <pre><code># 应用访问密码<br>ACCESS_PASSWORD=your-password-here<br><br># 历史消息限制数量<br>HISTORY_LIMIT=50<br><br># OpenAI 配置<br>OPENAI_ENABLED=false<br>OPENAI_BASE_URL=https://api.openai.com/v1<br>OPENAI_API_KEY=your-openai-api-key<br>OPENAI_MODELS=gpt-4o=GPT-4o&lt;fc:vision&gt;,gpt-4o-mini=GPT-4o Mini&lt;fc:vision&gt;,gpt-4-turbo=GPT-4 Turbo&lt;fc:vision&gt;<br><br># Google (Gemini) 配置<br>GOOGLE_ENABLED=false<br>GOOGLE_BASE_URL=https://generativelanguage.googleapis.com/v1beta<br>GOOGLE_API_KEY=your-google-api-key<br>GOOGLE_MODELS=gemini-2.5-flash=Gemini 2.5 Flash&lt;fc:vision:file:reasoning&gt;,gemini-3.0-flash=Gemini 3.0 Flash&lt;fc:vision:file:reasoning:search&gt;<br><br># DeepSeek 配置<br>DEEPSEEK_ENABLED=false<br>DEEPSEEK_BASE_URL=https://api.deepseek.com/v1<br>DEEPSEEK_API_KEY=your-deepseek-api-key<br>DEEPSEEK_MODELS=deepseek-chat=DeepSeek V3&lt;fc&gt;,deepseek-reasoner=DeepSeek R1&lt;reasoning&gt;<br><br># Cloudflare Workers AI 配置<br>CLOUDFLARE_ENABLED=false<br>CLOUDFLARE_BASE_URL=https://api.cloudflare.com/client/v4/accounts/{account_id}/ai/v1<br>CLOUDFLARE_API_KEY=your-cloudflare-api-key<br>CLOUDFLARE_MODELS=@cf/meta/llama-3.3-70b-instruct-fp8-fast=Llama 3.3 70B&lt;fc&gt;<br><br># 联网搜索工具<br>WEB_SEARCH_ENABLED=false<br># 搜索 API 类型: google 或 serper<br>SEARCH_API_TYPE=serper<br><br># Google Search API 配置<br>GOOGLE_SEARCH_API_KEY=your-google-search-api-key<br>GOOGLE_SEARCH_ENGINE_ID=your-search-engine-id<br><br># Serper API 配置<br>SERPER_API_KEY=your-serper-api-key<br><br># 联网搜索关键词智能提取使用的模型提供商和模型名称<br># openai | deepseek | cloudflare | google<br>KEYWORD_EXTRACTOR_PROVIDER=cloudflare<br>KEYWORD_EXTRACTOR_MODEL=@cf/meta/llama-3.3-70b-instruct-fp8-fast</code></pre>
@@ -73,7 +73,7 @@
         <p>以上，你就极低成本拥有一个没有限制的 AI 会话应用了，随时随地都可以使用。</p>
         <h2>怎么自己做一个项目</h2>
         <p>说实话，我是不会 Nodejs 的，要是我自己做，肯定是做不出来，得益于 AI Coding，我可以迅速完成这个项目的开发，这里推荐使用 Qoder 工具。Qoder 开发这个项目用了不到十分钟的时间，这充分说明了 AI 将能替代绝大部分人的工作；但是细节优化、页面和交互调整、Bug修复却用了我四天多的时间，这也充分说明了 AI 暂时还不能完全取代人工。下面是我写的第一版的提示词：</p>
-        <pre><code>你是一个全球顶尖的前端工程师，请使用nextjs框架实现一个大模型对话的项目，和 LobeChat 功能一样，支持回答问题、发送图片和文件、接受图片和文件、支持展示各种返回格式的文本，具体要求如下：
+        <pre><code>你是一个全球顶尖的前端工程师，请使用nextjs框架实现一个大模型对话的项目，支持回答问题、发送图片和文件、接受图片和文件、支持展示各种返回格式的文本，具体要求如下：
 - 使用nodejs和nextjs框架，使用typescript语言，代码加上详细的注释。
 - 整个页面主要分2块，左侧边栏展示历史对话列表，页面剩余部分展示对话内容，页面样式参考图片 destop.png。如果在手机端使用，整个页面都要展示对话内容（页面样式参考mobile.png），历史对话列表在下方使用抽屉页的交互展示（页面样式参考mobile session.png），对话列表每个对话支持删除和重命名。在对话内容的上方展示对话的标题、使用的模型名称、调用的工具名称（如果没有调用工具，则不展示）。
 - 页面需要有一个输入框，输入框右侧是消息发送按钮，紧挨着输入框上方是工具栏，工具栏支持选择模型、是否思考模式、上传图片、上传文件、选择调用工具、清除当前对话历史、新建对话等。
