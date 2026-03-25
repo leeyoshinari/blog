@@ -3,7 +3,7 @@
     "short_name": "时光笔",
     "display": "standalone",
     "start_url": "/",
-    "background_color": "#fff",
+    "background_color": "#ffffff",
     "theme_color": "#00000000",
     "scope": "/",
     "icons": [
